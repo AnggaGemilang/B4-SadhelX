@@ -1,27 +1,18 @@
 package main
 
 import (
-	"aph-go-service/transport"
-	_ "expvar"
+	"api-go-mux/router"
+	"fmt"
+	"log"
 	"net/http"
-	"os"
-
-	"github.com/go-kit/kit/log"
 )
 
 func main() {
+	r := router.Router()
 
-	logger := log.NewLogfmtLogger(os.Stdout)
+	// fs := http.FileServer(http.Dir("build"))
+	// http.Handle("/", fs)
 
-	transport.RegisterHttpsServicesAndStartListener()
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-
-	logger.Log("listening-on", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		logger.Log("listen.error", err)
-	}
+	fmt.Println("Server dijalankan pada port 8080...")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }

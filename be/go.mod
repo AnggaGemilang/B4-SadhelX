@@ -1,22 +1,24 @@
-module main
+module api-go-mux
 
-require aph-go-service/transport v1.1.0
+require api-go-mux/router v0.0.0
 
-require aph-go-service/datastruct v0.0.0 // indirect
+require api-go-mux/config v0.0.0 // indirect
 
-require aph-go-service/logging v0.0.0 // indirect
+require api-go-mux/models v0.0.0 // indirect
+
+require api-go-mux/controller v0.0.0 // indirect
 
 require (
-	aph-go-service/service v0.0.0 // indirect
-	github.com/go-kit/kit v0.12.0
+	github.com/joho/godotenv v1.4.0 // indirect
+	github.com/lib/pq v1.10.3 // indirect
 )
 
-replace aph-go-service/transport => ./transport
+replace api-go-mux/router => ./router
 
-replace aph-go-service/datastruct => ./datastruct
+replace api-go-mux/config => ./config
 
-replace aph-go-service/logging => ./logging
+replace api-go-mux/models => ./models
 
-replace aph-go-service/service => ./service
+replace api-go-mux/controller => ./controller
 
 go 1.13
