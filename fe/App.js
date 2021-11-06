@@ -1,112 +1,234 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native'
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
+const Profil = () => {
+    return (
+    <View>
         <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+            style = {{            
+            margin:20,
+            alignItems: 'center', 
+            paddingLeft: 320,
+            flexDirection: 'row'
+            }}>
+            <Text>
+                logo
+            </Text>
+            <Text>
+                logo
+            </Text>
+
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+
+        {/* Status atas */}
+            <View
+                style = {{
+                    top: 50,
+                    paddingLeft: 207
+                    
+                }}
+            >
+                <Text
+                    style = {{
+                        fontSize: 20
+                    }}
+                >
+                    ini jumlh polower dll
+                </Text>
+            </View>
+            
+            
+        {/* nick */}
+            <View
+                style ={{
+                    top: 110,
+                    marginHorizontal: 20,
+                }}
+            >
+            <Text
+                style = {{
+                    fontWeight: 'bold',
+                    fontSize: 15
+                }}
+            >
+                thoriq1520
+            </Text>
+            </View>
+            
+        {/* KET */}
+        <View
+            style = {{
+                marginHorizontal: 20,
+                top: 122,
+            }}
+            >
+            <Text>
+                biodata meren
+            </Text>
+        </View>
+        
+        {/* PP */}
+            
+            <View
+                style={{
+                    paddingHorizontal: 70,
+                    top: -40
+                    
+                }}
+            >
+                <Text>
+                    ini PP
+                </Text>
+            </View>
+            
+
+        {/* Tombol */}
+            <View
+            style = {{
+                marginHorizontal: 15,
+                position:'relative',
+                
+            }}
+            >
+
+
+       {/* Follow */}
+       <View>
+           
+       </View>
+        <TouchableOpacity
+            style = {{
+                width:98,
+                // height:29,
+                top: 150,
+                // bottom: 592,
+                backgroundColor: '#4192EF',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 5,
+                // marginHorizontal: 15,
+                borderRadius: 10,
+                elevation: 5,              
+            }}
+            onPress={() => console.log('sukses')}
+        >
+            <Text
+            style = {{
+                color: '#fff',
+                fontWeight: 'bold'
+                
+            }}
+            >
+            Follow
+            </Text>
+        </TouchableOpacity>
+        
+        {/* Activity */}
+        <TouchableOpacity
+            style = {{
+                width:98,
+                // height:29,
+                top: 120,
+                // bottom: 592,
+                left: 110,
+                // right:592,
+                backgroundColor: '#000',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 5,
+                // marginHorizontal: 15,
+                borderRadius: 10,
+                elevation: 5
+            }}
+        >
+            <Text
+            style = {{
+                color: '#fff',
+                fontWeight: 'bold'
+                
+            }}
+            >
+            Activity
+            </Text>
+        </TouchableOpacity>
+            
+        {/* Menus */}
+        <TouchableOpacity
+            style = {{
+                width:98,
+                // height:29,
+                top: 92,
+                //bottom: 598,
+                left: 220,
+                // right: 82,
+                backgroundColor: '#000',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 5,
+                // marginHorizontal: 15,
+                borderRadius: 10,
+                elevation: 5
+            }}
+        >
+            <Text
+            style = {{
+                color: '#fff',
+                fontWeight: 'bold'
+                
+            }}
+            >
+            Menus
+            </Text>
+        </TouchableOpacity>
+            
+        {/* dll */}
+        <TouchableOpacity
+            style = {{
+                width:32,
+                // height:29,
+                top: 64,
+                //bottom: 598,
+                left: 327,
+                // right: 82,
+                backgroundColor: '#000',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 5,
+                // marginHorizontal: 15,
+                borderRadius: 10,
+                elevation: 5
+            }}
+        >
+            <Text
+            style = {{
+                color: '#fff',
+                fontWeight: 'bold'
+                
+            }}
+            >
+            V
+            </Text>
+        </TouchableOpacity>
+
+        <View
+            style={{
+            position:'relative',
+            top: 70,
+            borderBottomColor: 'black',
+            borderBottomWidth: 1,
+            }}/>
+
+            </View>
+
+
+
+        </View>
+    )
+}
+
+export default Profil
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
-export default App;
+})
