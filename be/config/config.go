@@ -5,17 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-)
-
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "postgres"
-	password = "root"
-	dbname   = "postgres"
 )
 
 func CreateConnection() *sql.DB {
@@ -25,8 +19,10 @@ func CreateConnection() *sql.DB {
 		log.Fatalf("Error loading .env file")
 	}
 
+	port, err := strconv.Atoi(os.Getenv("DB_PORT"))
+
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
+		os.Getenv("DB_HOST"), port, os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME"))
 
 	db, err := sql.Open("postgres", psqlInfo)
 
@@ -39,8 +35,6 @@ func CreateConnection() *sql.DB {
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println("Sukses Konek ke Db!")
 
 	return db
 }
