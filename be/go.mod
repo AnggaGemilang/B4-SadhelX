@@ -1,28 +1,28 @@
-module aph-go-service
+module be
 
-require aph-go-service/transport v0.0.0 // indirect
+require be/transport v0.0.0 // indirect
 
-require aph-go-service/datastruct v0.0.0 // indirect
+require be/datastruct v0.0.0 // indirect
 
-require aph-go-service/logging v0.0.0 // indirect
+require be/logging v0.0.0 // indirect
 
-require aph-go-service/service v0.0.0 // indirect
+require be/service v0.0.0 // indirect
 
-require aph-go-service/config v0.0.0 // indirect
+require be/config v0.0.0 // indirect
 
-require aph-go-service/router v0.0.0
+require be/router v0.0.0
 
-replace aph-go-service/transport => ./transport
+replace be/transport => ./transport
 
-replace aph-go-service/datastruct => ./datastruct
+replace be/datastruct => ./datastruct
 
-replace aph-go-service/logging => ./logging
+replace be/logging => ./logging
 
-replace aph-go-service/service => ./service
+replace be/service => ./service
 
-replace aph-go-service/config => ./config
+replace be/config => ./config
 
-replace aph-go-service/router => ./router
+replace be/router => ./router
 
 require (
 	github.com/go-kit/kit v0.12.0 // indirect

@@ -1,7 +1,7 @@
 package router
 
 import (
-	"aph-go-service/transport"
+	"be/transport"
 
 	"github.com/gorilla/mux"
 )

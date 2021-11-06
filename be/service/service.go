@@ -1,8 +1,9 @@
 package service
 
 import (
-	"aph-go-service/config"
-	"aph-go-service/datastruct"
+	"be/config"
+	"be/datastruct"
+	fmt "fmt"
 	"log"
 )
 
@@ -19,6 +20,8 @@ func TambahTeman(teman datastruct.Teman) int64 {
 	if err != nil {
 		log.Fatalf("Tidak Bisa mengeksekusi query. %v", err)
 	}
+
+	fmt.Printf("%v berhasil pengirimkan permintaan pertemanan ke %v", teman.Pengirim_id, teman.Penerima_id)
 
 	return teman.Pengirim_id
 }

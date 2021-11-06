@@ -8,26 +8,6 @@ type Teman struct {
 	Status       string `json:"status"`
 }
 
-type Member struct {
-	Username       string `json:"username"`
-	Firstname      string `json:"firstname"`
-	Lastname       string `json:"lastname"`
-	Phonenumber    string `json:"phonenumber"`
-	Password       string `json:"password"`
-	Email_verified string `json:"email_verified"`
-	Image_file     string `json:"image_file"`
-	Identity_type  string `json:"identity_type"`
-	Identity_no    int64  `json:"identity_no"`
-	Emergency_call int64  `json:"emergency_call"`
-	Address_ktp    string `json:"address_ktp"`
-	Domisili       string `json:"domisili"`
-	Create_date    string `json:"create_date"`
-	Update_date    string `json:"update_date"`
-	Email          string `json:"email"`
-	Isprivate      bool   `json:"isPrivate"`
-	User_id        int64  `json:"user_id"`
-}
-
 type Response1 struct {
 	ID_pengirim int64  `json:"id_pengirim,omitempty"`
 	Message     string `json:"message,omitempty"`
