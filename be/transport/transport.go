@@ -1,71 +1,34 @@
 package transport
 
 import (
-	"context"
+	"be/datastruct"
+	"be/service"
 	"encoding/json"
-	"errors"
-	"fmt"
+	"log"
 	"net/http"
-
-	"aph-go-service/datastruct"
-	"aph-go-service/logging"
-	"aph-go-service/service"
-
-	"github.com/go-kit/kit/endpoint"
-	httptransport "github.com/go-kit/kit/transport/http"
+	"time"
 )
 
-type AphService interface {
-	HelloWorldService(context.Context, string) string
-}
+func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 
-type aphService struct{}
+	var teman datastruct.Teman
 
-var ErrEmpty = errors.New("empty string")
+	err := json.NewDecoder(r.Body).Decode(&teman)
 
-func (aphService) HelloWorldService(_ context.Context, name string) string {
+	teman.Requested_at = time.Now().Format("01-02-2006 15:04:05")
+	teman.Responded_at = time.Now().Format("01-02-2006 15:04:05")
+	teman.Status = "approved"
 
-	return call_ServiceHelloWorld(name)
-}
-
-func call_ServiceHelloWorld(name string) string {
-
-	messageResponse := service.HelloWorld(name)
-
-	return messageResponse
-
-}
-
-func makeHelloWorldEndpoint(aph AphService) endpoint.Endpoint {
-	return func(ctx context.Context, request interface{}) (interface{}, error) {
-		req := request.(datastruct.HelloWorldRequest)
-		logging.Log(fmt.Sprintf("Name Request %s", req.NAME))
-		v := aph.HelloWorldService(ctx, req.NAME)
-		logging.Log(fmt.Sprintf("Response Final Message %s", v))
-		return datastruct.HelloWorldResponse{v}, nil
+	if err != nil {
+		log.Fatalf("Tidak bisa mendecode dari request body.  %v", err)
 	}
-}
 
-func decodeHelloWorldRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	var request datastruct.HelloWorldRequest
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
-		return nil, err
+	insertID := service.TambahTeman(teman)
+
+	res := datastruct.Response1{
+		ID_pengirim: insertID,
+		Message:     "Data teman telah ditambahkan",
 	}
-	return request, nil
-}
 
-func encodeResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
-	return json.NewEncoder(w).Encode(response)
-}
-
-func RegisterHttpsServicesAndStartListener() {
-	aph := aphService{}
-
-	HelloWorldHandler := httptransport.NewServer(
-		makeHelloWorldEndpoint(aph),
-		decodeHelloWorldRequest,
-		encodeResponse,
-	)
-
-	http.Handle("/HelloWorld", HelloWorldHandler)
+	json.NewEncoder(w).Encode(res)
 }
