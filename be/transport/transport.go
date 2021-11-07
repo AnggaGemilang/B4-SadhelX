@@ -1,28 +1,49 @@
 package transport
 
 import (
-	"be/datastruct"
-	"be/logging"
-	"be/service"
+	"aph-go-service/datastruct"
+	"aph-go-service/logging"
+	"aph-go-service/service"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 )
 
 func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 
 	var teman datastruct.Teman
+	var member datastruct.Member
 
 	err := json.NewDecoder(r.Body).Decode(&teman)
 
-	teman.Requested_at = time.Now().Format("01-02-2006 15:04:05")
-	teman.Responded_at = time.Now().Format("01-02-2006 15:04:05")
-	teman.Status = "approved"
-
 	if err != nil {
 		log.Fatalf("Tidak bisa mendecode dari request body.  %v", err)
+	}
+
+	teman.Requested_at = logging.GetDateTimeNowInString()
+	teman.Responded_at = logging.GetDateTimeNowInString()
+
+	getApiMember := fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", teman.Penerima_id)
+	response, err := http.Get(getApiMember)
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mendecode dari request body member.  %v", err)
+	}
+
+	responseData, err := ioutil.ReadAll(response.Body)
+
+	json.Unmarshal(responseData, &member)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if member.Isprivate {
+		teman.Status = "approved"
+	} else {
+		teman.Status = "pending"
 	}
 
 	insertID := service.TambahTeman(teman)
