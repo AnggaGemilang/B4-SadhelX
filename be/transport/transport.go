@@ -2,8 +2,10 @@ package transport
 
 import (
 	"be/datastruct"
+	"be/logging"
 	"be/service"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -24,6 +26,8 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	insertID := service.TambahTeman(teman)
+
+	logging.Log(fmt.Sprintf("%d mengirimkan pertemanan ke %d", teman.Pengirim_id, teman.Penerima_id))
 
 	res := datastruct.Response1{
 		ID_pengirim: insertID,

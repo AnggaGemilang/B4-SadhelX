@@ -15,7 +15,20 @@ export default class Follow extends Component {
   Followed(){
     const newState = !this.state.toggle;
     this.setState({toggle:newState});
-    console.log('sukses ngab');
+    
+    fetch('http://192.168.1.9:8080/api/teman', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            pengirim_id: 1,
+            penerima_id: 173
+        }),
+    });
+
+    console.log('sukses ngabs');
     
   }
   render() {
