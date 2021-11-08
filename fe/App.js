@@ -16,25 +16,37 @@ export default class Follow extends Component {
     const newState = !this.state.toggle;
     this.setState({toggle:newState});
     
-    fetch('http://192.168.1.9:8080/api/teman', {
-        method: 'POST',
+    const options = {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
+        method: 'POST',
         body: JSON.stringify({
             pengirim_id: 1,
-            penerima_id: 173
-        }),
-    });
+            penerima_id: 2
+        })  
+    };
 
-    console.log('sukses ngabs');
-    
+    fetch( 'http://192.168.1.9:8080/api/teman', options)
+    .then( response => response.json() )
+    .then( response => {
+        console.log(response)
+        if(response.is_private){
+            this.setState({textValue:"Requested"})
+        } else {
+            this.setState({textValue:"Followed"})
+        }
+    })
+    .catch( response => {
+        this.state = true
+        console.log(response)
+    })
   }
   render() {
     
     const {toggle} = this.state;
-    const Teman = toggle?"Follow":"Followed";
+    const Teman = toggle?"Follow":this.state.textValue;
     const TombolBg = toggle? "#16C79C":"#808080";
     
 
@@ -99,7 +111,7 @@ export default class Follow extends Component {
                 style = {{
                     position: 'absolute',
                     paddingVertical: 150,
-                    left: 230,
+                    left: 210,
                     flex: 1,
                     
                 }}
@@ -109,7 +121,7 @@ export default class Follow extends Component {
                         fontSize: 20
                     }}
                 >
-                    ini jumlh polower dll
+                    Jumlah Polower
                 </Text>
             </View>     
         
@@ -166,7 +178,7 @@ export default class Follow extends Component {
                     fontSize: 15
                 }}
             >
-                biodata meren
+                Biodata
             </Text>
         </View>
 
