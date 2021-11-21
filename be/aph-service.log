@@ -177,3 +177,5 @@
 [LOG] [2021-11-21 20:04:34] 2 mencari data follower dengan kata kunci ar
 [LOG] [2021-11-21 20:05:16] 2 menampilkan data follower
 [LOG] [2021-11-21 20:05:21] 2 mencari data following dengan kata kunci 'ar'
+[LOG] [2021-11-21 21:54:40] 20 mengirimkan pertemanan ke 2
+[LOG] [2021-11-21 21:54:46] Total data yang terhapus 1 

@@ -58,3 +58,31 @@ func TampilkanTeman(id int64, path string) ([]datastruct.Teman, error) {
 	}
 	return list_teman, err
 }
+
+func HapusTeman(pengirim int, penerima int) int64 {
+
+	// mengkoneksikan ke db postgres
+	db := config.CreateConnection()
+
+	// kita tutup koneksinya di akhir proses
+	defer db.Close()
+
+	// buat sql query
+
+	sqlStatement := `DELETE FROM teman WHERE pengirim_id=$1 AND penerima_id=$2`
+	// eksekusi sql statement
+	res, err := db.Exec(sqlStatement, pengirim, penerima)
+
+	if err != nil {
+		log.Fatalf("tidak bisa mengeksekusi query. %v", err)
+	}
+
+	// cek berapa jumlah data/row yang di hapus
+	rowsAffected, err := res.RowsAffected()
+
+	if err != nil {
+		log.Fatalf("tidak bisa mencari data. %v", err)
+	}
+
+	return rowsAffected
+}

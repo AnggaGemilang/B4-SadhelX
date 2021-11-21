@@ -50,3 +50,8 @@ type Response3 struct {
 	Message string  `json:"message"`
 	Data    []Member `json:"data"`	
 }
+
+type Response4 struct {
+	Status  int    `json:"status"`
+	Message string `json:"message"`
+}

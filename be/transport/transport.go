@@ -203,3 +203,44 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(response)
 }
+
+func HapusTeman(w http.ResponseWriter, r *http.Request) {
+
+	// kita ambil request parameter idnya
+	
+	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	params := mux.Vars(r)
+
+	// konversikan ke int yang sebelumnya adalah string
+	id1, err := strconv.Atoi(params["pengirim"])
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	}
+
+	id2, err := strconv.Atoi(params["penerima"])
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	}
+
+	// panggil fungsi hapusbuku , dan convert int ke int64
+	deletedRows := service.HapusTeman(id1, id2)
+	logging.Log(fmt.Sprintf("Total data yang terhapus %v ", deletedRows))
+	
+	// ini adalah format message berupa string
+	msg := fmt.Sprintf("Friend has been deleted. Total : %v", deletedRows)
+
+	// ini adalah format reponse message
+	res := datastruct.Response4{
+		Status:  1,
+		Message: msg,
+	}
+
+	// send the response
+	json.NewEncoder(w).Encode(res)
+}
