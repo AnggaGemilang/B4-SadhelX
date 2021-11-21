@@ -11,6 +11,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -48,9 +49,9 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 	teman.Requested_at = logging.GetDateTimeNowInString()
 	teman.Responded_at = logging.GetDateTimeNowInString()
 	if member.Isprivate {
-		teman.Status = "approved"
-	} else {
 		teman.Status = "pending"
+	} else {
+		teman.Status = "approved"
 	}
 
 	service.TambahTeman(teman)
@@ -115,6 +116,64 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 	response.Status = 1
 	response.Message = "Success"
 	response.Data = list_member
+
+	json.NewEncoder(w).Encode(response)
+}
+
+func CariTeman(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	var list_member []datastruct.Member
+	var selected_member []datastruct.Member
+
+	params := mux.Vars(r)
+
+	id, err := strconv.Atoi(params["id"])
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	}
+
+	list_teman, err := service.TampilkanTeman(int64(id))
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengambil data. %v", err)
+	}
+
+	for _, element := range list_teman {
+
+		var member datastruct.Member
+
+		getApiMember := fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
+		response, _ := http.Get(getApiMember)
+		if response.StatusCode != 200 {
+			w.WriteHeader(response.StatusCode)
+			w.Write([]byte("Not found"))
+			return
+		}
+
+		responseData, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		json.Unmarshal(responseData, &member)
+
+		list_member = append(list_member, member)
+	}
+
+	for _, element := range list_member {
+		if strings.Contains(element.Username, params["query"]) || strings.Contains(element.Firstname, params["query"]) || strings.Contains(element.Lastname, params["query"]) {
+			selected_member = append(selected_member, element)
+		}
+	}
+
+	var response datastruct.Response3
+	response.Status = 1
+	response.Message = "Success"
+	response.Data = selected_member
 
 	json.NewEncoder(w).Encode(response)
 }

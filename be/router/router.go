@@ -12,7 +12,7 @@ func Router() *mux.Router {
 
 	router.HandleFunc("/api/teman", transport.TmbhTeman).Methods("POST", "OPTIONS")
 	router.HandleFunc("/api/teman/{id}", transport.TmplknTeman).Methods("GET", "OPTIONS")
-	router.HandleFunc("/api/teman/{query}", transport.TmbhTeman).Methods("GET", "OPTIONS")
+	router.HandleFunc("/api/teman/{id}/{query}", transport.CariTeman).Methods("GET", "OPTIONS")
 
 	return router
 }
