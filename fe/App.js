@@ -52,7 +52,6 @@ export default class Follow extends Component {
 
     return (
      <View>
-
         {/* <View
             style = {{
                 position: 'absolute',
@@ -111,14 +110,14 @@ export default class Follow extends Component {
                 style = {{
                     position: 'absolute',
                     paddingVertical: 150,
-                    left: 210,
+                    left: 170,
                     flex: 1,
                     
                 }}
             >
                 <Text
                     style = {{
-                        fontSize: 20
+                        fontSize: 18
                     }}
                 >
                     Jumlah Polower
@@ -157,7 +156,7 @@ export default class Follow extends Component {
             <Text
                 style = {{
                     fontWeight: 'bold',
-                    fontSize: 20
+                    fontSize: 18
                 }}
             >
                 thoriq1520
@@ -175,7 +174,7 @@ export default class Follow extends Component {
             >
             <Text
                 style = {{
-                    fontSize: 15
+                    fontSize: 13
                 }}
             >
                 Biodata
@@ -201,7 +200,7 @@ export default class Follow extends Component {
         <TouchableOpacity
             
             style = {{
-                width: 120,
+                width: 107,
                 height: 30,
                 // height:29,
                 // top: 150,
@@ -210,7 +209,7 @@ export default class Follow extends Component {
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingVertical: 5,
-                marginHorizontal: 5,
+                marginHorizontal: 4,
                 borderRadius: 10,
                 elevation: 5,              
             }}
@@ -231,7 +230,7 @@ export default class Follow extends Component {
         {/* Activity */}
         <TouchableOpacity
             style = {{
-                width: 120,
+                width: 100,
                 // height:29,
                 // top: 120,
                 // bottom: 592,
@@ -260,7 +259,7 @@ export default class Follow extends Component {
         {/* Menus */}
         <TouchableOpacity
             style = {{
-                width: 120,
+                width: 100,
                 // height:29,
                 // top: 92,
                 //bottom: 598,
