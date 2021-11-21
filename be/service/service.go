@@ -23,14 +23,19 @@ func TambahTeman(teman datastruct.Teman) int64 {
 	return teman.Pengirim_id
 }
 
-func TampilkanTeman(id int64) ([]datastruct.Teman, error) {
+func TampilkanTeman(id int64, path string) ([]datastruct.Teman, error) {
 	db := config.CreateConnection()
 
 	defer db.Close()
 
 	var list_teman []datastruct.Teman
+	var sqlStatement string
 
-	sqlStatement := `SELECT * FROM teman WHERE pengirim_id=$1 AND status='approved'`
+	if path == "following" {
+		sqlStatement = `SELECT * FROM teman WHERE pengirim_id=$1 AND status='approved'`
+	} else {
+		sqlStatement = `SELECT * FROM teman WHERE penerima_id=$1 AND status='approved'`
+	}
 
 	rows, err := db.Query(sqlStatement, id)
 
@@ -50,7 +55,6 @@ func TampilkanTeman(id int64) ([]datastruct.Teman, error) {
 		}
 
 		list_teman = append(list_teman, teman)
-
 	}
 	return list_teman, err
 }
