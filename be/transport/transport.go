@@ -75,8 +75,11 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	var list_member []datastruct.Member
+	var getAPIMember string
 
 	params := mux.Vars(r)
+
+	path := strings.Split(r.URL.Path, "/")
 
 	id, err := strconv.Atoi(params["id"])
 
@@ -84,7 +87,7 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
 	}
 
-	list_teman, err := service.TampilkanTeman(int64(id))
+	list_teman, err := service.TampilkanTeman(int64(id), path[2])
 
 	if err != nil {
 		log.Fatalf("Tidak bisa mengambil data. %v", err)
@@ -94,8 +97,13 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 
 		var member datastruct.Member
 
-		getApiMember := fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
-		response, _ := http.Get(getApiMember)
+		if path[2] == "following" {
+			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
+		} else {
+			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Pengirim_id)
+		}
+
+		response, _ := http.Get(getAPIMember)
 		if response.StatusCode != 200 {
 			w.WriteHeader(response.StatusCode)
 			w.Write([]byte("Not found"))
@@ -110,6 +118,12 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		json.Unmarshal(responseData, &member)
 
 		list_member = append(list_member, member)
+	}
+
+	if path[2] == "following" {
+		logging.Log(fmt.Sprintf("%d menampilkan data following", id))
+	} else {
+		logging.Log(fmt.Sprintf("%d menampilkan data follower", id))
 	}
 
 	var response datastruct.Response3
@@ -127,7 +141,8 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 	var list_member []datastruct.Member
 	var selected_member []datastruct.Member
-
+	var getAPIMember string
+	path := strings.Split(r.URL.Path, "/")
 	params := mux.Vars(r)
 
 	id, err := strconv.Atoi(params["id"])
@@ -136,7 +151,7 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
 	}
 
-	list_teman, err := service.TampilkanTeman(int64(id))
+	list_teman, err := service.TampilkanTeman(int64(id), path[2])
 
 	if err != nil {
 		log.Fatalf("Tidak bisa mengambil data. %v", err)
@@ -146,8 +161,13 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 		var member datastruct.Member
 
-		getApiMember := fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
-		response, _ := http.Get(getApiMember)
+		if path[2] == "following" {
+			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
+		} else {
+			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Pengirim_id)
+		}
+
+		response, _ := http.Get(getAPIMember)
 		if response.StatusCode != 200 {
 			w.WriteHeader(response.StatusCode)
 			w.Write([]byte("Not found"))
@@ -168,6 +188,12 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 		if strings.Contains(element.Username, params["query"]) || strings.Contains(element.Firstname, params["query"]) || strings.Contains(element.Lastname, params["query"]) {
 			selected_member = append(selected_member, element)
 		}
+	}
+
+	if path[2] == "following" {
+		logging.Log(fmt.Sprintf("%d mencari data following dengan kata kunci '%s'", id, params["query"]))
+	} else {
+		logging.Log(fmt.Sprintf("%d mencari data follower dengan kata kunci '%s'", id, params["query"]))
 	}
 
 	var response datastruct.Response3
