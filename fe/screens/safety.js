@@ -22,7 +22,7 @@ export default class Friendlist extends Component {
   }
  
   componentDidMount() {
-    return fetch('https://jsonplaceholder.typicode.com/users')
+    return fetch('https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/')
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -43,7 +43,7 @@ export default class Friendlist extends Component {
     //passing the inserted text in textinput
     const newData = this.arrayholder.filter(function(item) {
       //applying filter for the inserted text in search bar
-      const itemData = item.name  ? item.name.toUpperCase() : ''.toUpperCase();
+      const itemData = item.firstname  ? item.firstname.toUpperCase() : ''.toUpperCase();
       const nick = item.username      ? item.username.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
@@ -115,7 +115,7 @@ export default class Friendlist extends Component {
           renderItem={({ item }) => (
             <TouchableOpacity>
                <Text style={styles.textStyle}>{item.username}</Text>
-               <Text style={styles.textburik}>{item.name}</Text>
+               <Text style={styles.textburik}>{item.firstname}</Text>
             </TouchableOpacity>
            
           )}
