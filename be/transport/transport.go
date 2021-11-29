@@ -76,6 +76,7 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 
 	var list_member []datastruct.Member
 	var getAPIMember string
+	jmlData := 0
 
 	params := mux.Vars(r)
 
@@ -118,6 +119,7 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		json.Unmarshal(responseData, &member)
 
 		list_member = append(list_member, member)
+		jmlData++
 	}
 
 	if path[2] == "following" {
@@ -127,8 +129,9 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var response datastruct.Response3
-	response.Status = 1
+	response.Status = 200
 	response.Message = "Success"
+	response.JumlahData = jmlData
 	response.Data = list_member
 
 	json.NewEncoder(w).Encode(response)
@@ -142,6 +145,7 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 	var list_member []datastruct.Member
 	var selected_member []datastruct.Member
 	var getAPIMember string
+	jmlData := 0
 	path := strings.Split(r.URL.Path, "/")
 	params := mux.Vars(r)
 
@@ -187,6 +191,7 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 	for _, element := range list_member {
 		if strings.Contains(element.Username, params["query"]) || strings.Contains(element.Firstname, params["query"]) || strings.Contains(element.Lastname, params["query"]) {
 			selected_member = append(selected_member, element)
+			jmlData++
 		}
 	}
 
@@ -197,8 +202,9 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var response datastruct.Response3
-	response.Status = 1
+	response.Status = 200
 	response.Message = "Success"
+	response.JumlahData = jmlData
 	response.Data = selected_member
 
 	json.NewEncoder(w).Encode(response)
@@ -207,7 +213,7 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 func HapusTeman(w http.ResponseWriter, r *http.Request) {
 
 	// kita ambil request parameter idnya
-	
+
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
@@ -231,7 +237,7 @@ func HapusTeman(w http.ResponseWriter, r *http.Request) {
 	// panggil fungsi hapusbuku , dan convert int ke int64
 	deletedRows := service.HapusTeman(id1, id2)
 	logging.Log(fmt.Sprintf("Total data yang terhapus %v ", deletedRows))
-	
+
 	// ini adalah format message berupa string
 	msg := fmt.Sprintf("Friend has been deleted. Total : %v", deletedRows)
 

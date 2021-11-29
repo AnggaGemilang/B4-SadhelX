@@ -21,15 +21,15 @@ type Member struct {
 	Email_verified string `json:"email_verified"`
 	Image_file     string `json:"image_file"`
 	Identity_type  string `json:"identity_type"`
-	Identity_no    string  `json:"identity_no"`
-	Emergency_call string  `json:"emergency_call"`
+	Identity_no    string `json:"identity_no"`
+	Emergency_call string `json:"emergency_call"`
 	Address_ktp    string `json:"address_ktp"`
 	Domisili       string `json:"domisili"`
 	Create_date    string `json:"create_date"`
 	Update_date    string `json:"update_date"`
 	Email          string `json:"email"`
 	Isprivate      bool   `json:"isPrivate"`
-	User_id        string  `json:"user_id"`
+	User_id        string `json:"user_id"`
 }
 
 type Response1 struct {
@@ -46,9 +46,10 @@ type Response2 struct {
 }
 
 type Response3 struct {
-	Status  int     `json:"status"`
-	Message string  `json:"message"`
-	Data    []Member `json:"data"`	
+	Status     int      `json:"status"`
+	Message    string   `json:"message"`
+	JumlahData int      `json:"jml_data"`
+	Data       []Member `json:"data"`
 }
 
 type Response4 struct {
