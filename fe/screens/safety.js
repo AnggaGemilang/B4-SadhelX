@@ -11,6 +11,8 @@ import {
   Touchable,
   TouchableOpacity,
   Button,
+  Image,
+  ImageBackground,
 } from 'react-native';
  
 export default class Friendlist extends Component {
@@ -43,11 +45,12 @@ export default class Friendlist extends Component {
     //passing the inserted text in textinput
     const newData = this.arrayholder.filter(function(item) {
       //applying filter for the inserted text in search bar
-      const itemData = item.firstname  ? item.firstname.toUpperCase() : ''.toUpperCase();
-      const nick = item.username      ? item.username.toUpperCase() : ''.toUpperCase();
+      const itemData = item.username  ? item.username.toUpperCase() : ''.toUpperCase();
+      // const nick = item.firstname      ? item.firstname.toUpperCase() : ''.toUpperCase();
+      // const gambar = item.image_file  ? item.image_file.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
-      return nick.indexOf(textData) > -1;
+      // return nick.indexOf(textData) > -1;
     });
     this.setState({
       //setting the filtered newData on datasource
@@ -107,16 +110,19 @@ export default class Friendlist extends Component {
             marginHorizontal: 10,
           }}
         >
-          10 Teman
+          96 Teman
         </Text>
         <FlatList
           data={this.state.dataSource}
           ItemSeparatorComponent={this.ListViewItemSeparator}
           renderItem={({ item }) => (
             <TouchableOpacity>
+            <Image source={{uri:item.image_file}} style={styles.gambar} />
                <Text style={styles.textStyle}>{item.username}</Text>
                <Text style={styles.textburik}>{item.firstname}</Text>
+                
             </TouchableOpacity>
+           
           )}
           enableEmptySections={true}
           style={{ marginTop: 30 }}
@@ -137,10 +143,22 @@ const styles = StyleSheet.create({
     padding: 5,
     marginHorizontal: 5,
     fontWeight: '900',
+    left: 60
   },
   textburik: {
     fontWeight: '500',
-    padding: 10
+    padding: 10,
+     left: 60
+  },
+
+  gambar: {
+    top: 10,
+    padding: 15,
+    width: 50,
+    height:50,
+    borderRadius: 40,
+    position: 'absolute'
+
   },
   textInputStyle: {
     height: 40,
