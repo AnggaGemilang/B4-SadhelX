@@ -117,7 +117,6 @@ export default class Friendlist extends Component {
                <Text style={styles.textStyle}>{item.username}</Text>
                <Text style={styles.textburik}>{item.firstname}</Text>
             </TouchableOpacity>
-           
           )}
           enableEmptySections={true}
           style={{ marginTop: 30 }}
