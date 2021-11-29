@@ -18,7 +18,7 @@ const Tabs = () => {
                     backgroundColor: '#ffffff',
                     borderTopLeftRadius: 30,
                     borderTopRightRadius: 30,
-                    height: 72
+                    height: 70
                 }
             }}
         >
@@ -108,6 +108,21 @@ const Tabs = () => {
         </Tab.Navigator>
     );
 }
+
+// const Safetyy = ({navigation}) => {
+//     return (
+//         <button
+//         title = "go to friend list"
+//         onPress = {() =>
+//             navigation.navigate('Safety')
+//         }
+//         />
+//     );
+// };
+
+// const ProfileScreen = ({ navigation, route }) => {
+//   return <Text>This is {route.params.name}'s profile</Text>;
+// };
 
 export default Tabs;
 
