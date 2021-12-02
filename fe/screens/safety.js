@@ -20,20 +20,20 @@ export default class Followers extends Component {
   constructor(props) {
     super(props);
     //setting default state
-    this.state = {data: [], isLoading: true, text: '', page: 1, };
+    this.state = {data: [], isLoading: false, text: '', page: 1, };
     this.arrayholder = [];
 
   }
  
   componentDidMount() {
-    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=' + this.state.page;
+    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=1';
     return fetch(url)
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
           {
             isLoading: false,
-            dataSource: this.state.data.concat(responseJson)
+            data: responseJson,
           },
           // function() {
           //   this.state.dataSource.concat(responseJson);
@@ -76,26 +76,47 @@ export default class Followers extends Component {
     );
   };
 
-handleLoadMore = () => {
-  this.setState(
-    {page: this.state.page+1},
-    this.getData
-  )
+handleLoadMore = async () => {
+  await this.setState(
+    {page: this.state.page+1, isLoading: true})
+    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=' + this.state.page;
+    return fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            data: this.state.data.concat(responseJson),
+            isLoading: false
+          },
+          // function() {
+          //   this.state.dataSource.concat(responseJson);
+          // }
+        );
+      })
 }
-
+  footerList = () => {
+    return(
+         <View>
+      <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
+    </View>
+    )
+   
+  }
   render() {
-    if (this.state.isLoading) {
-      //Loading cenah
-      return (
-        <View style={{ flex: 1, paddingTop: 20 }}>
-          <ActivityIndicator />
-        </View>
-      );
-    }
+    // if (this.state.isLoading) {
+    //   //Loading cenah
+    //   return (
+    //     <View style={{ flex: 1, paddingTop: 20 }}>
+    //       <ActivityIndicator />
+    //     </View>
+    //   );
+    // }
     return (
       //ListView to show with textinput used as search bar
       
-      <View style={styles.viewStyle}>
+      <View 
+      style={styles.viewStyle}>
+
           <Text
           style = {{
             fontSize: 30,
@@ -126,19 +147,18 @@ handleLoadMore = () => {
           96 Teman
         </Text>
         <FlatList
-          data={this.state.dataSource}
+          data={this.state.data}
           ItemSeparatorComponent={this.ListViewItemSeparator}
           onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={0}
+          ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
-            <ScrollView showsVerticalScrollIndicator={true}>
             <TouchableOpacity>
             <Image source={{uri:item.image_file}} style={styles.gambar} />
                <Text style={styles.textStyle}>{item.username}</Text>
                <Text style={styles.textburik}>{item.firstname}</Text>
                 
             </TouchableOpacity>
-           </ScrollView>
+           
           )}
           enableEmptySections={true}
           style={{ marginTop: 30 }}
