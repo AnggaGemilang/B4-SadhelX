@@ -18,11 +18,6 @@ import (
 
 func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "POST")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-
 	var teman datastruct.Teman
 	var member datastruct.Member
 
@@ -59,10 +54,11 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 	logging.Log(fmt.Sprintf("%d mengirimkan pertemanan ke %d", teman.Pengirim_id, teman.Penerima_id))
 
 	res := datastruct.Response1{
+		Status:      "Berhasil",
+		Message:     "Data teman telah ditambahkan",
 		ID_pengirim: teman.Pengirim_id,
 		ID_penerima: teman.Penerima_id,
 		Is_private:  member.Isprivate,
-		Message:     "Data teman telah ditambahkan",
 	}
 
 	w.WriteHeader(201)
@@ -70,9 +66,6 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 }
 
 func TmplknTeman(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	var list_member []datastruct.Member
 	var getAPIMember string
@@ -129,8 +122,8 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var response datastruct.Response3
-	response.Status = 200
-	response.Message = "Success"
+	response.Status = "Berhasil"
+	response.Message = fmt.Sprintf("%d buah data telah diambil", jmlData)
 	response.JumlahData = jmlData
 	response.Data = list_member
 
@@ -138,9 +131,6 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 }
 
 func CariTeman(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	var list_member []datastruct.Member
 	var selected_member []datastruct.Member
@@ -202,8 +192,8 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var response datastruct.Response3
-	response.Status = 200
-	response.Message = "Success"
+	response.Status = "Berhasil"
+	response.Message = fmt.Sprintf("%d buah data telah diambil", jmlData)
 	response.JumlahData = jmlData
 	response.Data = selected_member
 
@@ -212,16 +202,8 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 func HapusTeman(w http.ResponseWriter, r *http.Request) {
 
-	// kita ambil request parameter idnya
-
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-
 	params := mux.Vars(r)
 
-	// konversikan ke int yang sebelumnya adalah string
 	id1, err := strconv.Atoi(params["pengirim"])
 
 	if err != nil {
@@ -234,19 +216,16 @@ func HapusTeman(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
 	}
 
-	// panggil fungsi hapusbuku , dan convert int ke int64
 	deletedRows := service.HapusTeman(id1, id2)
-	logging.Log(fmt.Sprintf("Total data yang terhapus %v ", deletedRows))
 
-	// ini adalah format message berupa string
-	msg := fmt.Sprintf("Friend has been deleted. Total : %v", deletedRows)
+	msg := fmt.Sprintf("%v data telah dihapus", deletedRows)
 
-	// ini adalah format reponse message
+	logging.Log(msg)
+
 	res := datastruct.Response4{
-		Status:  1,
+		Status:  "Berhasil",
 		Message: msg,
 	}
 
-	// send the response
 	json.NewEncoder(w).Encode(res)
 }

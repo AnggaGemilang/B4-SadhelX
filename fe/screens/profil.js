@@ -29,7 +29,7 @@ export default class Follow extends Component {
         })
     };
 
-    fetch( 'http://192.168.1.9:8080/api/teman', options)
+    fetch( 'http://192.168.1.8:8080/api/following', options)
     .then( response => response.json() )
     .then( response => {
         console.log(response)
