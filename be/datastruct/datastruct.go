@@ -33,26 +33,27 @@ type Member struct {
 }
 
 type Response1 struct {
+	Status      string `json:"status"`
+	Message     string `json:"message,omitempty"`
 	ID_pengirim int64  `json:"id_pengirim,omitempty"`
 	ID_penerima int64  `json:"id_penerima,omitempty"`
-	Is_private  bool   `json:"is_private,omitempty"`
-	Message     string `json:"message,omitempty"`
+	Is_private  bool   `json:"is_private"`
 }
 
 type Response2 struct {
-	Status  int     `json:"status"`
+	Status  string  `json:"status"`
 	Message string  `json:"message"`
 	Data    []Teman `json:"data"`
 }
 
 type Response3 struct {
-	Status     int      `json:"status"`
+	Status     string   `json:"status"`
 	Message    string   `json:"message"`
 	JumlahData int      `json:"jml_data"`
 	Data       []Member `json:"data"`
 }
 
 type Response4 struct {
-	Status  int    `json:"status"`
+	Status  string `json:"status"`
 	Message string `json:"message"`
 }

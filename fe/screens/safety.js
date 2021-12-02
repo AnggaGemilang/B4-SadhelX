@@ -4,99 +4,109 @@ import {
   Text,
   StyleSheet,
   View,
-  FlatList,
   TextInput,
   ActivityIndicator,
-  Alert,
-  Touchable,
+  Dimensions,
   TouchableOpacity,
-  Button,
-  Image,
-  ImageBackground,
+  Image
 } from 'react-native';
+
+import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
  
+import axios from 'axios'
+
 export default class Friendlist extends Component {
+
   constructor(props) {
     super(props);
-    //setting default state
-    this.state = { isLoading: true, text: '' };
-    this.arrayholder = [];
+    this.state = { 
+      isLoading: true, 
+      jumlahData: 0,
+      dataProvider: new DataProvider((r1, r2) => r1 !== r2),
+      arrayholder: []
+    };
   }
  
-  componentDidMount() {
-    return fetch('https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/')
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState(
-          {
-            isLoading: false,
-            dataSource: responseJson
-          },
-          function() {
-            this.arrayholder = responseJson;
-          }
-        );
+  layoutProvider = new LayoutProvider( (index) => {
+    return index
+  }, (type, dim) => {
+    dim.width = Dimensions.get('window').width
+    dim.height = 95
+  })
+
+  fetchData = async (text) => {
+    try {
+      let response
+      if(text == null) {
+        response = await axios.get('http://192.168.1.8:8080/api/follower/2');
+      } else {
+        response = await axios.get('http://192.168.1.8:8080/api/follower/2/' + text);
+      }
+
+      this.setState({
+        isLoading: false,
+        jumlahData: response.data.jml_data,
+        dataProvider: this.state.dataProvider.cloneWithRows([
+          ...this.state.arrayholder,
+          ...response.data.data
+        ]),
+        arrayholder: [
+          ...this.state.arrayholder,
+          ...response.data.data
+        ]
       })
-      .catch(error => {
-        console.error(error);
-      });
+    } catch (error) {
+      console.error(error);
+    }
   }
+
+  componentDidMount = () => {
+    this.fetchData()
+  }
+
   SearchFilterFunction(text) {
-    //passing the inserted text in textinput
-    const newData = this.arrayholder.filter(function(item) {
-      //applying filter for the inserted text in search bar
-      const itemData = item.username  ? item.username.toUpperCase() : ''.toUpperCase();
-      // const nick = item.firstname      ? item.firstname.toUpperCase() : ''.toUpperCase();
-      // const gambar = item.image_file  ? item.image_file.toUpperCase() : ''.toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-      // return nick.indexOf(textData) > -1;
-    });
-    this.setState({
-      //setting the filtered newData on datasource
-      //After setting the data it will automatically re-render the view
-      dataSource: newData,
-      text: text,
-    });
+    this.fetchData(text)
   }
-  ListViewItemSeparator = () => {
-    //Item sparator view
+
+  rowRenderer = (type, item) => {
     return (
-      <View
-        style={{
-          height: 0.3,
-          width: '90%',
-          backgroundColor: '#080808',
-        }}
-      />
-    );
-  };
+      <TouchableOpacity>
+        <View flexDirection="row">
+          <Image source={{uri:item.image_file}} style={styles.gambar} />
+          <View justifyContent="center">
+            <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
+            <Text style={styles.textburik}>@{item.username}</Text> 
+          </View>
+        </View>      
+      </TouchableOpacity>
+    )
+  }
+
   render() {
+    //Loading cenah
     if (this.state.isLoading) {
-      //Loading cenah
       return (
         <View style={{ flex: 1, paddingTop: 20 }}>
           <ActivityIndicator />
         </View>
       );
     }
+    
     return (
       //ListView to show with textinput used as search bar
       <View style={styles.viewStyle}>
-          <Text
+        <Text
           style = {{
             fontSize: 30,
             fontWeight: 'bold'
-          }}
-          >
-            All Friend
-          </Text>
-              <View
-                style={{
-                  borderBottomColor: 'black',
-                  borderBottomWidth: 1,
-                }}
-              />
+          }} >
+          All Friend
+        </Text>
+        <View
+          style={{
+            borderBottomColor: 'black',
+            borderBottomWidth: 1,
+          }} />
         <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
@@ -106,67 +116,57 @@ export default class Friendlist extends Component {
         />
         <Text
           style = {{
-            top: 25,
-            marginHorizontal: 10,
-          }}
-        >
-          96 Teman
+            marginLeft: 3,
+            marginTop: 30,
+            marginBottom: 15
+          }} >
+          {this.state.jumlahData} Teman
         </Text>
-        <FlatList
-          data={this.state.dataSource}
-          ItemSeparatorComponent={this.ListViewItemSeparator}
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-            <Image source={{uri:item.image_file}} style={styles.gambar} />
-               <Text style={styles.textStyle}>{item.username}</Text>
-               <Text style={styles.textburik}>{item.firstname}</Text>
-                
-            </TouchableOpacity>
-           
-          )}
-          enableEmptySections={true}
-          style={{ marginTop: 30 }}
-          keyExtractor={(item, index) => index.toString()}
-        />
+
+        <RecyclerListView
+          dataProvider={this.state.dataProvider}
+          layoutProvider={this.layoutProvider}
+          rowRenderer={this.rowRenderer} />
+
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
+
   viewStyle: {
     justifyContent: 'center',
     flex: 1,
     marginTop: 40,
     padding: 16,
   },
+
   textStyle: {
-    padding: 5,
-    marginHorizontal: 5,
-    fontWeight: '900',
-    left: 60
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 5
   },
+  
   textburik: {
-    fontWeight: '500',
-    padding: 10,
-     left: 60
+    fontSize: 15,
+    fontWeight: '500'
   },
 
   gambar: {
-    top: 10,
-    padding: 15,
-    width: 50,
-    height:50,
-    borderRadius: 40,
-    position: 'absolute'
-
+    width: 70,
+    height:70,
+    marginEnd: 20,
+    borderRadius: 40
   },
+
   textInputStyle: {
-    height: 40,
+    height: 50,
     top: 20,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 15,
+    borderRadius: 10,
   },
 });
