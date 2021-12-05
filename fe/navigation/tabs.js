@@ -1,13 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Feed from '../screens/feed';
 import Profil from '../screens/profil';
 import Safety from '../screens/safety';
 import Search from '../screens/search';
 import Toolbar from '../screens/toolbar';
+import Friendlist from '../screens/friendlist'
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const Tabs = () => {
     return (
@@ -107,6 +110,19 @@ const Tabs = () => {
             }} />
         </Tab.Navigator>
     );
+}
+
+const Pencarian = () =>{
+    returm (
+        <Stack.Navigator>
+            <Stack.Screen
+             name="Friendlist"
+            component={Friendlist}
+            options={{headerShown: false, animationEnabled: false}}
+
+            />
+        </Stack.Navigator>
+    )
 }
 
 export default Tabs;

@@ -4,7 +4,10 @@ import {
   View,
   TouchableOpacity,
   Text,
+  Button,
 } from 'react-native'
+
+
 
 
 export default class Follow extends Component {
@@ -12,7 +15,7 @@ export default class Follow extends Component {
   state = {
     toggle:true
   }
-
+  
   Followed(){
     const newState = !this.state.toggle;
     this.setState({toggle:newState});
@@ -44,11 +47,13 @@ export default class Follow extends Component {
         console.log(response)
     })
   }
-  render() {
+  render( ) {
     
     const {toggle} = this.state;
     const Teman = toggle?"Follow":this.state.textValue;
     const TombolBg = toggle? "#16C79C":"#808080";
+    
+    const { navigate } = this.props.navigation;
     
 
     return (
@@ -108,6 +113,7 @@ export default class Follow extends Component {
 
 
            {/* Status atas */}
+           
             <View
                 style = {{
                     position: 'absolute',
@@ -117,13 +123,21 @@ export default class Follow extends Component {
                     
                 }}
             >
-                <Text
+               <TouchableOpacity
+               
+                onPress={() => this.props.navigation.navigate("Safety")}
+               >
+                   <Text
                     style = {{
                         fontSize: 20
                     }}
                 >
                     Jumlah Polower
                 </Text>
+               </TouchableOpacity>
+               
+         
+                
             </View>     
         
                     {/* PP */}
@@ -329,6 +343,8 @@ export default class Follow extends Component {
 
   
 }
+
+
 const styles = StyleSheet.create({
     container: {
       // position: 'absolute',
