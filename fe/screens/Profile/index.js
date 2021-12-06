@@ -54,7 +54,7 @@ export default class Member extends Component {
     const Teman = toggle?"Follow":this.state.textValue;
     const TombolBg = toggle? "#16C79C":"#808080";
     
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     
 
     return (
@@ -119,26 +119,46 @@ export default class Member extends Component {
                 style = {{
                     position: 'absolute',
                     paddingVertical: 150,
-                    left: 210,
+                    left: 180,
                     flex: 1,
                     
                 }}
             >
                <TouchableOpacity
                
-                // onPress={() => this.props.navigation('Friendlist')}
+                onPress={() => this.props.navigation.navigate('Followers')}
                >
                    <Text
                     style = {{
                         fontSize: 20
                     }}
                 >
-                    Jumlah Polower
+                    Polower
                 </Text>
-               </TouchableOpacity>
+               </TouchableOpacity>                
+            </View> 
+
+                        <View
+                style = {{
+                    position: 'absolute',
+                    paddingVertical: 150,
+                    left: 300,
+                    flex: 1,
+                    
+                }}
+            >
+               <TouchableOpacity
                
-         
-                
+                onPress={() => this.props.navigation.navigate('Following')}
+               >
+                   <Text
+                    style = {{
+                        fontSize: 20
+                    }}
+                >
+                    Polowing
+                </Text>
+               </TouchableOpacity>                
             </View>     
         
                     {/* PP */}

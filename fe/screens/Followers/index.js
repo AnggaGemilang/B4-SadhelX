@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
- 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
 import {
   Text,
   StyleSheet,
@@ -11,28 +12,33 @@ import {
   Touchable,
   TouchableOpacity,
   Button,
+  Image,
+  ImageBackground,
+  ScrollView
 } from 'react-native';
  
-export default class Friendlist extends Component {
+export default class Followers extends Component {
   constructor(props) {
     super(props);
     //setting default state
-    this.state = { isLoading: true, text: '' };
+    this.state = {data: [], isLoading: false, text: '', page: 1, };
     this.arrayholder = [];
+
   }
  
   componentDidMount() {
-    return fetch('https://jsonplaceholder.typicode.com/users')
+    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=1';
+    return fetch(url)
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
           {
             isLoading: false,
-            dataSource: responseJson
+            data: responseJson,
           },
-          function() {
-            this.arrayholder = responseJson;
-          }
+          // function() {
+          //   this.state.dataSource.concat(responseJson);
+          // }
         );
       })
       .catch(error => {
@@ -43,11 +49,12 @@ export default class Friendlist extends Component {
     //passing the inserted text in textinput
     const newData = this.arrayholder.filter(function(item) {
       //applying filter for the inserted text in search bar
-      const itemData = item.name  ? item.name.toUpperCase() : ''.toUpperCase();
-      const nick = item.username      ? item.username.toUpperCase() : ''.toUpperCase();
+      const itemData = item.username  ? item.username.toUpperCase() : ''.toUpperCase();
+      // const nick = item.firstname      ? item.firstname.toUpperCase() : ''.toUpperCase();
+      // const gambar = item.image_file  ? item.image_file.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
-      return nick.indexOf(textData) > -1;
+      // return nick.indexOf(textData) > -1;
     });
     this.setState({
       //setting the filtered newData on datasource
@@ -59,6 +66,7 @@ export default class Friendlist extends Component {
   ListViewItemSeparator = () => {
     //Item sparator view
     return (
+      
       <View
         style={{
           height: 0.3,
@@ -68,26 +76,46 @@ export default class Friendlist extends Component {
       />
     );
   };
+
+handleLoadMore = async () => {
+  await this.setState(
+    {page: this.state.page+1, isLoading: true})
+    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=' + this.state.page;
+    return fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            data: this.state.data.concat(responseJson),
+            isLoading: false
+          },
+          // function() {
+          //   this.state.dataSource.concat(responseJson);
+          // }
+        );
+      })
+}
+  footerList = () => {
+    return(
+         <View>
+      <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
+    </View>
+    )
+   
+  }
   render() {
-    if (this.state.isLoading) {
-      //Loading cenah
-      return (
-        <View style={{ flex: 1, paddingTop: 20 }}>
-          <ActivityIndicator />
-        </View>
-      );
-    }
+    // if (this.state.isLoading) {
+    //   //Loading cenah
+    //   return (
+    //     <View style={{ flex: 1, paddingTop: 20 }}>
+    //       <ActivityIndicator />
+    //     </View>
+    //   );
+    // }
     return (
       //ListView to show with textinput used as search bar
-      <View style={styles.viewStyle}>
-          <Text
-          style = {{
-            fontSize: 30,
-            fontWeight: 'bold'
-          }}
-          >
-            All Friend
-          </Text>
+      <View 
+      style={styles.viewStyle}>
               <View
                 style={{
                   borderBottomColor: 'black',
@@ -107,15 +135,19 @@ export default class Friendlist extends Component {
             marginHorizontal: 10,
           }}
         >
-          10 Teman
+          96 Teman
         </Text>
         <FlatList
-          data={this.state.dataSource}
+          data={this.state.data}
           ItemSeparatorComponent={this.ListViewItemSeparator}
+          onEndReached={this.handleLoadMore}
+          ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
             <TouchableOpacity>
+            <Image source={{uri:item.image_file}} style={styles.gambar} />
                <Text style={styles.textStyle}>{item.username}</Text>
-               <Text style={styles.textburik}>{item.name}</Text>
+               <Text style={styles.textburik}>{item.firstname}</Text>
+                
             </TouchableOpacity>
            
           )}
@@ -138,10 +170,22 @@ const styles = StyleSheet.create({
     padding: 5,
     marginHorizontal: 5,
     fontWeight: '900',
+    left: 60
   },
   textburik: {
     fontWeight: '500',
-    padding: 10
+    padding: 10,
+     left: 60
+  },
+
+  gambar: {
+    top: 10,
+    padding: 15,
+    width: 50,
+    height:50,
+    borderRadius: 40,
+    position: 'absolute'
+
   },
   textInputStyle: {
     height: 40,
