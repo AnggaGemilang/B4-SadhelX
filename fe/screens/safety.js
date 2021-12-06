@@ -22,38 +22,32 @@ export default class Friendlist extends Component {
     this.state = { 
       isLoading: true, 
       jumlahData: 0,
-      dataProvider: new DataProvider((r1, r2) => r1 !== r2),
-      arrayholder: []
+      dataProvider: new DataProvider((r1, r2) => r1 !== r2)
     };
   }
  
   layoutProvider = new LayoutProvider( (index) => {
     return index
-  }, (type, dim) => {
+  }, (_, dim) => {
     dim.width = Dimensions.get('window').width
     dim.height = 95
   })
 
   fetchData = async (text) => {
     try {
+      console.log(text)
       let response
-      if(text == null) {
-        response = await axios.get('http://192.168.1.8:8080/api/follower/2');
+      if(text != "") {
+        console.log("Kesatu")
+        response = await axios.get(`http://192.168.1.8:8080/api/follower/2/${text}`);
       } else {
-        response = await axios.get('http://192.168.1.8:8080/api/follower/2/' + text);
+        console.log("Kedua")
+        response = await axios.get('http://192.168.1.8:8080/api/follower/2');
       }
-
       this.setState({
         isLoading: false,
         jumlahData: response.data.jml_data,
-        dataProvider: this.state.dataProvider.cloneWithRows([
-          ...this.state.arrayholder,
-          ...response.data.data
-        ]),
-        arrayholder: [
-          ...this.state.arrayholder,
-          ...response.data.data
-        ]
+        dataProvider: this.state.dataProvider.cloneWithRows(response.data.data)
       })
     } catch (error) {
       console.error(error);
@@ -61,14 +55,18 @@ export default class Friendlist extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchData()
+    this.fetchData("")
+  }
+
+  componentWillUnmount = () => {
+
   }
 
   SearchFilterFunction(text) {
     this.fetchData(text)
   }
 
-  rowRenderer = (type, item) => {
+  rowRenderer = (_, item) => {
     return (
       <TouchableOpacity>
         <View flexDirection="row">
@@ -127,7 +125,6 @@ export default class Friendlist extends Component {
           dataProvider={this.state.dataProvider}
           layoutProvider={this.layoutProvider}
           rowRenderer={this.rowRenderer} />
-
       </View>
     );
   }
@@ -154,8 +151,8 @@ const styles = StyleSheet.create({
   },
 
   gambar: {
-    width: 70,
-    height:70,
+    width: 65,
+    height:65,
     marginEnd: 20,
     borderRadius: 40
   },
