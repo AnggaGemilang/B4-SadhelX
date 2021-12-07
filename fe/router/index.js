@@ -1,15 +1,19 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import Feed from '../screens/feed';
-import Profil from '../screens/profil';
 import Safety from '../screens/safety';
 import Search from '../screens/search';
 import Toolbar from '../screens/toolbar';
+import Followers from '../screens/Followers';
+import Following from '../screens/Following';
+import Profile from '../screens/Profile';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-const Tabs = () => {
+function HomeTabs ({ navigation }) {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -88,7 +92,7 @@ const Tabs = () => {
                     </View>
                 ),
             }} />
-            <Tab.Screen name="Profile" component={Profil} options={{
+            <Tab.Screen name="Profile" component={Profile} options={{
                 headerShown: false, tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
                         <Image
@@ -109,21 +113,108 @@ const Tabs = () => {
     );
 }
 
-// const Safetyy = ({navigation}) => {
-//     return (
-//         <button
-//         title = "go to friend list"
-//         onPress = {() =>
-//             navigation.navigate('Safety')
-//         }
-//         />
-//     );
-// };
+function Router ({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="SplashScreen">
+      {/* <Stack.Screen
+        name="SplashScreen"
+        component={SplashScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="WelcomeAuth"
+        component={WelcomeAuth}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{headerShown: false}}
+      /> */}
+      {/* <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{headerShown: false}}
+      /> */}
+      
+      {/* <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUpForm"
+        component={SignUpForm}
+        options={{headerShown: false}}
+      /> */}
+      {/* <Stack.Screen
+        name="CheckEmailToken"
+        component={CheckEmailToken}
+        options={{headerShown: false}}
+      /> */}
+      {/* <Stack.Screen
+        name="SuccessSignUp"
+        component={SuccessSignUp}
+        options={{headerShown: false}}
+      /> */}
+      {/* <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CheckEmailForgot"
+        component={CheckEmailForgot}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SuccessCreatePassword"
+        component={SuccessCreatePassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CreateNewPassword"
+        component={CreateNewPassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="MainApp"
+        component={MainApp}
+        options={{headerShown: false}}
+      /> */}
+      <Stack.Screen
+        name="TabNavigation"
+        component={HomeTabs}
+        options={{headerShown: false, animationEnabled: false}}
+      />
+       {/* <Stack.Screen
+        name="Following"
+        component={Safety}
+        options={{headerShown: false, animationEnabled: false}}
+      /> */}
+        <Stack.Screen
+        name="Followers"
+        component={Followers}
+        options={{
+          headerShown: true, 
+          animationEnabled: false,
+          headerTransparent: true,
+        }}
+         />
 
-// const ProfileScreen = ({ navigation, route }) => {
-//   return <Text>This is {route.params.name}'s profile</Text>;
-// };
+        <Stack.Screen
+        name="Following"
+        component={Following}
+        options={{
+          headerShown: true, 
+          animationEnabled: false,
+          headerTransparent: true,
+        }}
+         />
+    </Stack.Navigator>
+  );
+};
 
-export default Tabs;
+export default Router;
 
 const styles = StyleSheet.create({})
