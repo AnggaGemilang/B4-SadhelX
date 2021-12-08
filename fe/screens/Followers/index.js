@@ -8,138 +8,136 @@ import {
   FlatList,
   TextInput,
   ActivityIndicator,
+  Alert,
+  Touchable,
   TouchableOpacity,
+  Button,
   Image,
+  ImageBackground,
+  ScrollView
 } from 'react-native';
-
-import axios from 'axios'
  
 export default class Followers extends Component {
-
   constructor(props) {
     super(props);
     //setting default state
-    this.state = {
-      data: [], 
-      isLoading: false,
-      page: 1,
-      jumlahPage: 0,
-      jumlahData: 0,
-    };
+    this.state = {data: [], isLoading: false, text: '', page: 1, };
+    this.arrayholder = [];
+
   }
  
-  fetchData = async (text) => {
-    try {
-      console.log("ISI TEKS : " + text)
-      let response
-      if(text != "") {
-        console.log("Kesatu")
-        response = await axios.get(`http://192.168.1.8:8080/api/follower/2/${text}?limit=6&page=1`);
-      } else {
-        console.log("Kedua")
-        response = await axios.get(`http://192.168.1.8:8080/api/follower/2?limit=6&page=${this.state.page}`);
-      }
-
-      if(this.state.page == 1) {
-        this.setState({
-          isLoading: false,
-          jumlahData: response.data.total_jml_data,
-          data: response.data.data,
-          jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
-        }, function(){
-          console.log("Ini dari page ke: " + this.state.page)
-          console.log(response.data.message)
-        })
-      } else {
-        this.setState({
-          isLoading: false,
-          jumlahData: response.data.total_jml_data,
-          data: this.state.data.concat(response.data.data)
-        }, function () {
-          console.log("Ini dari page ke: " + this.state.page)
-          console.log(response.data.message)
-        })
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  componentDidMount() {
+    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=1';
+    return fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            isLoading: false,
+            data: responseJson,
+          },
+          // function() {
+          //   this.state.dataSource.concat(responseJson);
+          // }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
-
-  componentDidMount = () => {
-    this.fetchData("")
-  }  
-
   SearchFilterFunction(text) {
-    this.fetchData(text)
+    //passing the inserted text in textinput
+    const newData = this.arrayholder.filter(function(item) {
+      //applying filter for the inserted text in search bar
+      const itemData = item.username  ? item.username.toUpperCase() : ''.toUpperCase();
+      // const nick = item.firstname      ? item.firstname.toUpperCase() : ''.toUpperCase();
+      // const gambar = item.image_file  ? item.image_file.toUpperCase() : ''.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+      // return nick.indexOf(textData) > -1;
+    });
+    this.setState({
+      //setting the filtered newData on datasource
+      //After setting the data it will automatically re-render the view
+      dataSource: newData,
+      text: text,
+    });
   }
-
   ListViewItemSeparator = () => {
     //Item sparator view
     return (
+      
       <View
         style={{
           height: 0.3,
+          width: '90%',
           backgroundColor: '#080808',
-          marginBottom: 20,
-          marginTop: 15,
         }}
       />
     );
   };
-  
-  handleLoadMore = async () => {
 
-    if(this.state.page != this.state.jumlahPage){
-      await this.setState({
-        page: this.state.page+1, 
-        isLoading: true
+handleLoadMore = async () => {
+  await this.setState(
+    {page: this.state.page+1, isLoading: true})
+    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=' + this.state.page;
+    return fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            data: this.state.data.concat(responseJson),
+            isLoading: false
+          },
+          // function() {
+          //   this.state.dataSource.concat(responseJson);
+          // }
+        );
       })
-      this.fetchData("")
-    }
-
-  }
-
+}
   footerList = () => {
-
-    if(this.state.page != this.state.jumlahPage){
-      return(
-        <View style={{ marginTop: 20 }}>
-          <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
-        </View>
-      )
-    } else {
-      return (
-        <View></View>
-      )
-    }
-
+    return(
+         <View>
+      <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
+    </View>
+    )
+   
   }
-
   render() {
+    // if (this.state.isLoading) {
+    //   //Loading cenah
+    //   return (
+    //     <View style={{ flex: 1, paddingTop: 20 }}>
+    //       <ActivityIndicator />
+    //     </View>
+    //   );
+    // }
     return (
       //ListView to show with textinput used as search bar
-      <View style={styles.viewStyle}>
-        <View
-          style={{
-            borderBottomColor: 'black',
-            borderBottomWidth: 1,
-          }} />
+      <View 
+      style={styles.viewStyle}>
+              <View
+                style={{
+                  borderBottomColor: 'black',
+                  borderBottomWidth: 1,
+                }}
+              />
         <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
           value={this.state.text}
           underlineColorAndroid="transparent"
-          placeholder="Cari Teman" />
-        
+          placeholder="Cari Teman"
+          clearButtonMode='always'
+        />
         <Text
           style = {{
-            marginLeft: 3,
-            fontSize: 14,
-            marginTop: 10
-          }} >
-          {this.state.jumlahData} Teman
+            top: 25,
+            marginHorizontal: 10,
+          }}
+        >
+          96 Teman
         </Text>
-
         <FlatList
           data={this.state.data}
           ItemSeparatorComponent={this.ListViewItemSeparator}
@@ -147,14 +145,12 @@ export default class Followers extends Component {
           ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
             <TouchableOpacity>
-              <View flexDirection="row">
-                <Image source={{uri:item.image_file}} style={styles.gambar} />
-                <View justifyContent="center">
-                  <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-                  <Text style={styles.textburik}>@{item.username}</Text> 
-                </View>
-              </View>      
+            <Image source={{uri:item.image_file}} style={styles.gambar} />
+               <Text style={styles.textStyle}>{item.username}</Text>
+               <Text style={styles.textburik}>{item.firstname}</Text>
+                
             </TouchableOpacity>
+           
           )}
           enableEmptySections={true}
           style={{ marginTop: 30 }}
@@ -171,32 +167,34 @@ const styles = StyleSheet.create({
     marginTop: 40,
     padding: 16,
   },
-
   textStyle: {
-    fontSize: 18,
-    fontWeight: '700',
-    marginBottom: 5
+    padding: 5,
+    marginHorizontal: 5,
+    fontWeight: '900',
+    left: 60
   },
-  
   textburik: {
-    fontSize: 15,
-    fontWeight: '500'
+    fontWeight: '500',
+    padding: 10,
+     left: 60
   },
 
   gambar: {
-    width: 65,
-    height:65,
-    marginEnd: 20,
-    borderRadius: 40
-  },
+    top: 10,
+    padding: 15,
+    width: 50,
+    height:50,
+    borderRadius: 40,
+    position: 'absolute'
 
+  },
   textInputStyle: {
-    height: 50,
-    marginTop: 20,
+    height: 40,
+    top: 20,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
+    borderRadius: 15,
   },
 });

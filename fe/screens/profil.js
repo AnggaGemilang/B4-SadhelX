@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Text,
   Button,
-  Image
 } from 'react-native'
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -55,7 +54,7 @@ export default class Member extends Component {
     const Teman = toggle?"Follow":this.state.textValue;
     const TombolBg = toggle? "#16C79C":"#808080";
     
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     
 
     return (
@@ -120,51 +119,31 @@ export default class Member extends Component {
                 style = {{
                     position: 'absolute',
                     paddingVertical: 150,
-                    left: 180,
+                    left: 210,
                     flex: 1,
                     
                 }}
             >
                <TouchableOpacity
                
-                onPress={() => this.props.navigation.navigate('Followers')}
+                // onPress={() => this.props.navigation('Friendlist')}
                >
                    <Text
                     style = {{
                         fontSize: 20
                     }}
                 >
-                    Polower
+                    Jumlah Polower
                 </Text>
-               </TouchableOpacity>                
-            </View> 
-
-                        <View
-                style = {{
-                    position: 'absolute',
-                    paddingVertical: 150,
-                    left: 300,
-                    flex: 1,
-                    
-                }}
-            >
-               <TouchableOpacity
+               </TouchableOpacity>
                
-                onPress={() => this.props.navigation.navigate('Following')}
-               >
-                   <Text
-                    style = {{
-                        fontSize: 20
-                    }}
-                >
-                    Polowing
-                </Text>
-               </TouchableOpacity>                
+         
+                
             </View>     
         
                     {/* PP */}
             
-            <View
+            {/* <View
                 style={{
                     position: 'absolute',
                     marginVertical: 100,
@@ -174,13 +153,13 @@ export default class Member extends Component {
                 }}
             >
                 <Image
-                    source = {require('../Profile/pp.png')}
+                    source = {require('./assets/pp.png')}
                     style ={{
                         width: 120,
                         height: 120,
                     }}
                 />
-            </View>
+            </View> */}
 
                     {/* nick */}
             <View

@@ -1,7 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Feed from '../screens/feed';
 import Safety from '../screens/safety';
 import Search from '../screens/search';
@@ -9,6 +10,7 @@ import Toolbar from '../screens/toolbar';
 import Followers from '../screens/Followers';
 import Following from '../screens/Following';
 import Profile from '../screens/Profile';
+import FindFriends from '../screens/FindFriends';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,7 +24,7 @@ function HomeTabs ({ navigation }) {
                     backgroundColor: '#ffffff',
                     borderTopLeftRadius: 30,
                     borderTopRightRadius: 30,
-                    height: 70
+                    height: 72
                 }
             }}
         >
@@ -211,10 +213,21 @@ function Router ({ navigation }) {
           headerTransparent: true,
         }}
          />
+        <Stack.Screen
+        name="FindFriends"
+        component={FindFriends}
+        options={{
+          headerShown: true, 
+          animationEnabled: false,
+          headerTransparent: true,
+        }}
+         />
     </Stack.Navigator>
   );
 };
 
 export default Router;
+
+
 
 const styles = StyleSheet.create({})
