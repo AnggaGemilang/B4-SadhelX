@@ -68,8 +68,12 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 
 	var list_member []datastruct.Member
+	var limited_member []datastruct.Member
 	var getAPIMember string
+
+	message := ""
 	jmlData := 0
+	batasAkhir := 0
 
 	params := mux.Vars(r)
 
@@ -77,8 +81,16 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 
 	id, err := strconv.Atoi(params["id"])
 
-	if err != nil {
-		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	limit, limitErr := strconv.Atoi(r.URL.Query().Get("limit"))
+
+	if limitErr != nil {
+		limit = 0
+	}
+
+	page, pageErr := strconv.Atoi(r.URL.Query().Get("page"))
+
+	if pageErr != nil {
+		page = 0
 	}
 
 	list_teman, err := service.TampilkanTeman(int64(id), path[2])
@@ -115,6 +127,30 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		jmlData++
 	}
 
+	if page != 0 && limit != 0 {
+		if page == 1 {
+			for i := 0; i < page*limit; i++ {
+				if i < jmlData {
+					limited_member = append(limited_member, list_member[i])
+					batasAkhir = i + 1
+				} else {
+					break
+				}
+			}
+			message = fmt.Sprintf("1 - %d data ditampilkan", batasAkhir)
+		} else if page > 1 {
+			for i := (page * limit) - limit; i < page*limit; i++ {
+				if i < jmlData {
+					limited_member = append(limited_member, list_member[i])
+					batasAkhir = i + 1
+				} else {
+					break
+				}
+			}
+			message = fmt.Sprintf("%d - %d data ditampilkan", (page*limit)-limit, batasAkhir)
+		}
+	}
+
 	if path[2] == "following" {
 		logging.Log(fmt.Sprintf("%d menampilkan data following", id))
 	} else {
@@ -123,10 +159,16 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 
 	var response datastruct.Response3
 	response.Status = "Berhasil"
-	response.Message = fmt.Sprintf("%d buah data telah diambil", jmlData)
-	response.JumlahData = jmlData
-	response.Data = list_member
-
+	response.TotalData = jmlData
+	response.Limit = limit
+	response.Page = page
+	if limit == 0 || page == 0 {
+		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+		response.Data = list_member
+	} else {
+		response.Message = message
+		response.Data = limited_member
+	}
 	json.NewEncoder(w).Encode(response)
 }
 
@@ -134,8 +176,14 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 	var list_member []datastruct.Member
 	var selected_member []datastruct.Member
+	var limited_member []datastruct.Member
+
 	var getAPIMember string
+
+	message := ""
 	jmlData := 0
+	batasAkhir := 0
+
 	path := strings.Split(r.URL.Path, "/")
 	params := mux.Vars(r)
 
@@ -143,6 +191,18 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	}
+
+	limit, limitErr := strconv.Atoi(r.URL.Query().Get("limit"))
+
+	if limitErr != nil {
+		limit = 0
+	}
+
+	page, pageErr := strconv.Atoi(r.URL.Query().Get("page"))
+
+	if pageErr != nil {
+		page = 0
 	}
 
 	list_teman, err := service.TampilkanTeman(int64(id), path[2])
@@ -185,6 +245,30 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	if page != 0 && limit != 0 {
+		if page == 1 {
+			for i := 0; i < page*limit; i++ {
+				if i < jmlData {
+					limited_member = append(limited_member, selected_member[i])
+					batasAkhir = i + 1
+				} else {
+					break
+				}
+			}
+			message = fmt.Sprintf("1 - %d data ditampilkan", batasAkhir)
+		} else if page > 1 {
+			for i := (page * limit) - limit; i < page*limit; i++ {
+				if i < jmlData {
+					limited_member = append(limited_member, selected_member[i])
+					batasAkhir = i + 1
+				} else {
+					break
+				}
+			}
+			message = fmt.Sprintf("%d - %d data ditampilkan", (page*limit)-limit, batasAkhir)
+		}
+	}
+
 	if path[2] == "following" {
 		logging.Log(fmt.Sprintf("%d mencari data following dengan kata kunci '%s'", id, params["query"]))
 	} else {
@@ -193,9 +277,16 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 	var response datastruct.Response3
 	response.Status = "Berhasil"
-	response.Message = fmt.Sprintf("%d buah data telah diambil", jmlData)
-	response.JumlahData = jmlData
-	response.Data = selected_member
+	response.TotalData = jmlData
+	response.Limit = limit
+	response.Page = page
+	if limit == 0 || page == 0 {
+		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+		response.Data = selected_member
+	} else {
+		response.Message = message
+		response.Data = limited_member
+	}
 
 	json.NewEncoder(w).Encode(response)
 }

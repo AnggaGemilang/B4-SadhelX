@@ -47,10 +47,12 @@ type Response2 struct {
 }
 
 type Response3 struct {
-	Status     string   `json:"status"`
-	Message    string   `json:"message"`
-	JumlahData int      `json:"jml_data"`
-	Data       []Member `json:"data"`
+	Status    string   `json:"status"`
+	Message   string   `json:"message"`
+	TotalData int      `json:"total_jml_data"`
+	Limit     int      `json:"limit,omitempty"`
+	Page      int      `json:"page,omitempty"`
+	Data      []Member `json:"data"`
 }
 
 type Response4 struct {
