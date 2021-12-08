@@ -128,6 +128,7 @@ handleLoadMore = async () => {
           value={this.state.text}
           underlineColorAndroid="transparent"
           placeholder="Cari Teman"
+          clearButtonMode='always'
         />
         <Text
           style = {{

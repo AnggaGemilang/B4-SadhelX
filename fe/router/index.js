@@ -10,6 +10,7 @@ import Toolbar from '../screens/toolbar';
 import Followers from '../screens/Followers';
 import Following from '../screens/Following';
 import Profile from '../screens/Profile';
+import FindFriends from '../screens/FindFriends';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -206,6 +207,15 @@ function Router ({ navigation }) {
         <Stack.Screen
         name="Following"
         component={Following}
+        options={{
+          headerShown: true, 
+          animationEnabled: false,
+          headerTransparent: true,
+        }}
+         />
+        <Stack.Screen
+        name="FindFriends"
+        component={FindFriends}
         options={{
           headerShown: true, 
           animationEnabled: false,
