@@ -225,8 +225,11 @@ function Router ({ navigation }) {
           headerShown: true, 
           animationEnabled: false,
           headerTransparent: true,
-          
+          headerStyle: {
+            height:90,
+          }
         }}
+        
          />
     </Stack.Navigator>
   );
