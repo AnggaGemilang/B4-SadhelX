@@ -43,7 +43,7 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 
 	teman.Requested_at = logging.GetDateTimeNowInString()
 	teman.Responded_at = logging.GetDateTimeNowInString()
-	if member.Isprivate {
+	if member.Is_private {
 		teman.Status = "pending"
 	} else {
 		teman.Status = "approved"
@@ -58,7 +58,7 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 		Message:     "Data teman telah ditambahkan",
 		ID_pengirim: teman.Pengirim_id,
 		ID_penerima: teman.Penerima_id,
-		Is_private:  member.Isprivate,
+		Is_private:  member.Is_private,
 	}
 
 	w.WriteHeader(201)
@@ -558,4 +558,29 @@ func AcceptFollowRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(res)
+}
+
+func GtMultipleMember(w http.ResponseWriter, r *http.Request) {
+
+	var list_member []datastruct.Member
+	var getMember datastruct.GetMember
+
+	err := json.NewDecoder(r.Body).Decode(&getMember)
+	if err != nil {
+		log.Fatalf("Tidak bisa mendecode dari request body.  %v", err)
+	}
+
+	list_member, err1 := service.GetMultipleMember(getMember.IdMember)
+
+	if err1 != nil {
+		log.Fatalf("Tidak bisa mengambil data. %v", err)
+	}
+
+	res := datastruct.GetMember{
+		IdMember: getMember.IdMember,
+		Data:     list_member,
+	}
+
+	json.NewEncoder(w).Encode(res)
+
 }

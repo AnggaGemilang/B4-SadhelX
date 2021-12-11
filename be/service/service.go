@@ -3,8 +3,56 @@ package service
 import (
 	"be/config"
 	"be/datastruct"
+	"fmt"
 	"log"
+	"strings"
 )
+
+func GetMultipleMember(idMember []int) ([]datastruct.Member, error) {
+
+	db := config.CreateConnection()
+
+	defer db.Close()
+
+	var list_member []datastruct.Member
+
+	s := []string{}
+
+	s = append(s, fmt.Sprintf(`SELECT * FROM member WHERE user_id = %d`, idMember[0]))
+
+	for i := 1; i < len(idMember); i++ {
+		s = append(s, fmt.Sprintf(`OR user_id = %d`, idMember[i]))
+	}
+
+	query := strings.Join(s, " ")
+
+	fmt.Println(query)
+
+	rows, err := db.Query(query)
+
+	if err != nil {
+		log.Fatalf("tidak bisa mengeksekusi query. %v", err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+
+		var member datastruct.Member
+
+		err = rows.Scan(&member.User_id, &member.Username, &member.Email, &member.Firstname, &member.Lastname, &member.Phonenumber, &member.Password, &member.Email_verified, &member.Image_file, &member.Identity_type, &member.Identity_no, &member.Address_ktp, &member.Domisili, &member.Token_hash, &member.Is_private, &member.Emergency_call, &member.Created_date, &member.Updated_date)
+
+		if err != nil {
+			log.Fatalf("tidak bisa mengambil data. %v", err)
+		}
+
+		list_member = append(list_member, member)
+	}
+
+	return list_member, err
+}
+
+// =========================================================================
 
 func TambahTeman(teman datastruct.Teman) int64 {
 

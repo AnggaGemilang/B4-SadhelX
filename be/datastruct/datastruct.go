@@ -15,7 +15,9 @@ type Teman struct {
 // User_id        int64  `json:"user_id"`
 
 type Member struct {
+	User_id        string    `json:"user_id"`
 	Username       string    `json:"username"`
+	Email          string    `json:"email"`
 	Firstname      string    `json:"firstname"`
 	Lastname       string    `json:"lastname"`
 	Phonenumber    string    `json:"phonenumber"`
@@ -24,14 +26,13 @@ type Member struct {
 	Image_file     string    `json:"image_file"`
 	Identity_type  string    `json:"identity_type"`
 	Identity_no    string    `json:"identity_no"`
-	Emergency_call string    `json:"emergency_call"`
 	Address_ktp    string    `json:"address_ktp"`
 	Domisili       string    `json:"domisili"`
-	Create_date    time.Time `json:"create_date"`
-	Update_date    time.Time `json:"update_date"`
-	Email          string    `json:"email"`
-	Isprivate      bool      `json:"isPrivate"`
-	User_id        string    `json:"user_id"`
+	Token_hash     string    `json:"token_hash"`
+	Is_private     bool      `json:"isPrivate"`
+	Emergency_call string    `json:"emergency_call"`
+	Created_date   time.Time `json:"create_date"`
+	Updated_date   time.Time `json:"update_date"`
 }
 
 type Response1 struct {
@@ -60,4 +61,11 @@ type Response3 struct {
 type Response4 struct {
 	Status  string `json:"status"`
 	Message string `json:"message"`
+}
+
+// ============================================================
+
+type GetMember struct {
+	IdMember []int    `json:"id_member"`
+	Data     []Member `json:"data"`
 }
