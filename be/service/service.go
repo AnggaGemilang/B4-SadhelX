@@ -91,6 +91,29 @@ func TampilkanTeman(id int64, path string) ([]datastruct.Teman, error) {
 	return list_teman, err
 }
 
+func UpdateTeman(pengirim int, penerima int, responded_at string) int64 {
+
+	db := config.CreateConnection()
+
+	defer db.Close()
+
+	sqlStatement := `UPDATE teman SET status = 'approved', responded_at = $3 WHERE pengirim_id = $1 AND penerima_id = $2`
+
+	res, err := db.Exec(sqlStatement, pengirim, penerima, responded_at)
+
+	if err != nil {
+		log.Fatalf("tidak bisa mengeksekusi query. %v", err)
+	}
+
+	rowsAffected, err := res.RowsAffected()
+
+	if err != nil {
+		log.Fatalf("tidak bisa mencari data. %v", err)
+	}
+
+	return rowsAffected
+}
+
 func HapusTeman(pengirim int, penerima int) int64 {
 
 	db := config.CreateConnection()
