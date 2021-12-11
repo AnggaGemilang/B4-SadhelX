@@ -12,6 +12,7 @@ func Router() *mux.Router {
 
 	router.HandleFunc("/api/following", transport.TmbhTeman).Methods("POST", "OPTIONS")
 	router.HandleFunc("/api/follower/{id}", transport.TmplknTeman).Methods("GET", "OPTIONS")
+	router.HandleFunc("/api/follower/request/{id}", transport.TmplknFollowRequest).Methods("GET", "OPTIONS")
 	router.HandleFunc("/api/following/{id}", transport.TmplknTeman).Methods("GET", "OPTIONS")
 	router.HandleFunc("/api/follower/{id}/{query}", transport.CariTeman).Methods("GET", "OPTIONS")
 	router.HandleFunc("/api/following/{id}/{query}", transport.CariTeman).Methods("GET", "OPTIONS")

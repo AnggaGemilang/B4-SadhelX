@@ -28,41 +28,47 @@ export default class Followers extends Component {
     };
   }
  
-  fetchData = async (text) => {
-    try {
-      console.log("ISI TEKS : " + text)
-      let response
-      if(text != "") {
-        console.log("Kesatu")
-        response = await axios.get(`http://192.168.1.8:8080/api/follower/2/${text}?limit=6&page=1`);
-      } else {
-        console.log("Kedua")
-        response = await axios.get(`http://192.168.1.8:8080/api/follower/2?limit=6&page=${this.state.page}`);
-      }
+  fetchData = text => {
 
-      if(this.state.page == 1) {
-        this.setState({
-          isLoading: false,
-          jumlahData: response.data.total_jml_data,
-          data: response.data.data,
-          jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
-        }, function(){
-          console.log("Ini dari page ke: " + this.state.page)
-          console.log(response.data.message)
-        })
-      } else {
-        this.setState({
-          isLoading: false,
-          jumlahData: response.data.total_jml_data,
-          data: this.state.data.concat(response.data.data)
-        }, function () {
-          console.log("Ini dari page ke: " + this.state.page)
-          console.log(response.data.message)
-        })
-      }
-    } catch (error) {
-      console.error(error);
+    let url = ""
+
+    if(text != "") {
+      console.log("Kesatu")
+      url = `http://192.168.1.8:8080/api/follower/2/${text}?limit=6&page=1`
+    } else {
+      console.log("Kedua")
+      url = `http://192.168.1.8:8080/api/follower/2?limit=6&page=${this.state.page}`
     }
+
+
+    fetch(url)
+      .then( response => response.json() )
+      .then( response => {
+        if(this.state.page == 1) {
+          this.setState({
+            isLoading: false,
+            jumlahData: response.data.total_jml_data,
+            data: response.data.data,
+            jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
+          }, function(){
+            console.log("Ini dari page ke: " + this.state.page)
+            console.log(response.data.message)
+          })
+        } else {
+          this.setState({
+            isLoading: false,
+            jumlahData: response.data.total_jml_data,
+            data: this.state.data.concat(response.data.data)
+          }, function () {
+            console.log("Ini dari page ke: " + this.state.page)
+            console.log(response.data.message)
+          })
+        }
+      })
+      .catch( response => {
+          this.state = true
+          console.log(response)
+      })
   }
 
   componentDidMount = () => {
