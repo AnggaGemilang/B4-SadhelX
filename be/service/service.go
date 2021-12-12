@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func GetMultipleMember(idMember []int) ([]datastruct.Member, error) {
+func GetMultipleMember(idMember []int64) ([]datastruct.Member, error) {
 
 	db := config.CreateConnection()
 
@@ -25,8 +25,6 @@ func GetMultipleMember(idMember []int) ([]datastruct.Member, error) {
 	}
 
 	query := strings.Join(s, " ")
-
-	fmt.Println(query)
 
 	rows, err := db.Query(query)
 

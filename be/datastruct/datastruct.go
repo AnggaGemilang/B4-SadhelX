@@ -66,6 +66,10 @@ type Response4 struct {
 // ============================================================
 
 type GetMember struct {
-	IdMember []int    `json:"id_member"`
+	IdMember []int64  `json:"id_member"`
 	Data     []Member `json:"data"`
+}
+
+type RequestMember struct {
+	IdMember []int64 `json:"id_member"`
 }

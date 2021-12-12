@@ -5,6 +5,7 @@ import (
 	"be/logging"
 	"be/service"
 
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -15,6 +16,33 @@ import (
 
 	"github.com/gorilla/mux"
 )
+
+func GtMultipleMember(w http.ResponseWriter, r *http.Request) {
+
+	var list_member []datastruct.Member
+	var getMember datastruct.GetMember
+
+	err := json.NewDecoder(r.Body).Decode(&getMember)
+	if err != nil {
+		log.Fatalf("Tidak bisa mendecode dari request body.  %v", err)
+	}
+
+	list_member, err1 := service.GetMultipleMember(getMember.IdMember)
+
+	if err1 != nil {
+		log.Fatalf("Tidak bisa mengambil data. %v", err)
+	}
+
+	res := datastruct.GetMember{
+		IdMember: getMember.IdMember,
+		Data:     list_member,
+	}
+
+	json.NewEncoder(w).Encode(res)
+
+}
+
+// ==================================================================
 
 func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 
@@ -69,7 +97,8 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 
 	var list_member []datastruct.Member
 	var limited_member []datastruct.Member
-	var getAPIMember string
+	var id_member []int64
+	var getMember datastruct.GetMember
 
 	message := ""
 	jmlData := 0
@@ -100,32 +129,45 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, element := range list_teman {
-
-		var member datastruct.Member
-
 		if path[2] == "following" {
-			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
+			id_member = append(id_member, element.Penerima_id)
 		} else {
-			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Pengirim_id)
+			id_member = append(id_member, element.Pengirim_id)
 		}
-
-		response, _ := http.Get(getAPIMember)
-		if response.StatusCode != 200 {
-			w.WriteHeader(response.StatusCode)
-			w.Write([]byte("Not found"))
-			return
-		}
-
-		responseData, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		json.Unmarshal(responseData, &member)
-
-		list_member = append(list_member, member)
 		jmlData++
 	}
+
+	requestData := datastruct.RequestMember{
+		IdMember: id_member,
+	}
+
+	jsonPayload, err := json.Marshal(requestData)
+
+	requestMember, _ := http.NewRequest("GET", "http://localhost:8080/api/member", bytes.NewBuffer(jsonPayload))
+
+	requestMember.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	client := &http.Client{}
+	responseMember, error := client.Do(requestMember)
+	if error != nil {
+		panic(error)
+	}
+	defer responseMember.Body.Close()
+
+	if responseMember.StatusCode != 200 {
+		w.WriteHeader(responseMember.StatusCode)
+		w.Write([]byte("Not found"))
+		return
+	}
+
+	responseData, err := ioutil.ReadAll(responseMember.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	json.Unmarshal(responseData, &getMember)
+
+	list_member = getMember.Data
 
 	if page != 0 && limit != 0 {
 		if page == 1 {
@@ -558,29 +600,4 @@ func AcceptFollowRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(res)
-}
-
-func GtMultipleMember(w http.ResponseWriter, r *http.Request) {
-
-	var list_member []datastruct.Member
-	var getMember datastruct.GetMember
-
-	err := json.NewDecoder(r.Body).Decode(&getMember)
-	if err != nil {
-		log.Fatalf("Tidak bisa mendecode dari request body.  %v", err)
-	}
-
-	list_member, err1 := service.GetMultipleMember(getMember.IdMember)
-
-	if err1 != nil {
-		log.Fatalf("Tidak bisa mengambil data. %v", err)
-	}
-
-	res := datastruct.GetMember{
-		IdMember: getMember.IdMember,
-		Data:     list_member,
-	}
-
-	json.NewEncoder(w).Encode(res)
-
 }
