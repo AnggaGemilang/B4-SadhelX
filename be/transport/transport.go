@@ -47,31 +47,53 @@ func GtMultipleMember(w http.ResponseWriter, r *http.Request) {
 func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 
 	var teman datastruct.Teman
-	var member datastruct.Member
+	var getMember datastruct.GetMember
+	var list_member []datastruct.Member
+	var id_member []int64
 
 	err := json.NewDecoder(r.Body).Decode(&teman)
 	if err != nil {
 		log.Fatalf("Tidak bisa mendecode dari request body.  %v", err)
 	}
 
-	getApiMember := fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", teman.Penerima_id)
-	response, _ := http.Get(getApiMember)
-	if response.StatusCode != 200 {
-		w.WriteHeader(response.StatusCode)
+	id_member = append(id_member, teman.Penerima_id)
+
+	requestData := datastruct.RequestMember{
+		IdMember: id_member,
+	}
+
+	jsonPayload, err := json.Marshal(requestData)
+
+	requestMember, _ := http.NewRequest("GET", "http://localhost:8080/api/member", bytes.NewBuffer(jsonPayload))
+
+	requestMember.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	client := &http.Client{}
+	responseMember, error := client.Do(requestMember)
+	if error != nil {
+		panic(error)
+	}
+	defer responseMember.Body.Close()
+
+	if responseMember.StatusCode != 200 {
+		w.WriteHeader(responseMember.StatusCode)
 		w.Write([]byte("Not found"))
 		return
 	}
 
-	responseData, err := ioutil.ReadAll(response.Body)
+	responseData, err := ioutil.ReadAll(responseMember.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	json.Unmarshal(responseData, &member)
+	json.Unmarshal(responseData, &getMember)
+
+	list_member = getMember.Data
 
 	teman.Requested_at = logging.GetDateTimeNowInString()
 	teman.Responded_at = logging.GetDateTimeNowInString()
-	if member.Is_private {
+
+	if list_member[0].Is_private {
 		teman.Status = "pending"
 	} else {
 		teman.Status = "approved"
@@ -86,7 +108,7 @@ func TmbhTeman(w http.ResponseWriter, r *http.Request) {
 		Message:     "Data teman telah ditambahkan",
 		ID_pengirim: teman.Pengirim_id,
 		ID_penerima: teman.Penerima_id,
-		Is_private:  member.Is_private,
+		Is_private:  list_member[0].Is_private,
 	}
 
 	w.WriteHeader(201)
@@ -223,8 +245,8 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 	var list_member []datastruct.Member
 	var selected_member []datastruct.Member
 	var limited_member []datastruct.Member
-
-	var getAPIMember string
+	var id_member []int64
+	var getMember datastruct.GetMember
 
 	message := ""
 	jmlData := 0
@@ -258,36 +280,51 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, element := range list_teman {
-
-		var member datastruct.Member
-
 		if path[2] == "following" {
-			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Penerima_id)
+			id_member = append(id_member, element.Penerima_id)
 		} else {
-			getAPIMember = fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Pengirim_id)
+			id_member = append(id_member, element.Pengirim_id)
 		}
-
-		response, _ := http.Get(getAPIMember)
-		if response.StatusCode != 200 {
-			w.WriteHeader(response.StatusCode)
-			w.Write([]byte("Not found"))
-			return
-		}
-
-		responseData, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		json.Unmarshal(responseData, &member)
-
-		list_member = append(list_member, member)
 	}
+
+	requestData := datastruct.RequestMember{
+		IdMember: id_member,
+	}
+
+	jsonPayload, err := json.Marshal(requestData)
+
+	requestMember, _ := http.NewRequest("GET", "http://localhost:8080/api/member", bytes.NewBuffer(jsonPayload))
+
+	requestMember.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	client := &http.Client{}
+	responseMember, error := client.Do(requestMember)
+	if error != nil {
+		panic(error)
+	}
+	defer responseMember.Body.Close()
+
+	if responseMember.StatusCode != 200 {
+		w.WriteHeader(responseMember.StatusCode)
+		w.Write([]byte("Not found"))
+		return
+	}
+
+	responseData, err := ioutil.ReadAll(responseMember.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	json.Unmarshal(responseData, &getMember)
+
+	list_member = getMember.Data
 
 	for _, element := range list_member {
 		if strings.Contains(element.Username, params["query"]) || strings.Contains(element.Firstname, params["query"]) || strings.Contains(element.Lastname, params["query"]) {
 			selected_member = append(selected_member, element)
+			fmt.Println(element.Username)
 			jmlData++
+			fmt.Println(jmlData)
 		}
 	}
 
@@ -375,6 +412,8 @@ func TmplknFollowRequest(w http.ResponseWriter, r *http.Request) {
 
 	var list_member []datastruct.Member
 	var limited_member []datastruct.Member
+	var id_member []int64
+	var getMember datastruct.GetMember
 
 	message := ""
 	jmlData := 0
@@ -403,27 +442,41 @@ func TmplknFollowRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, element := range list_teman {
-
-		var member datastruct.Member
-
-		response, _ := http.Get(fmt.Sprintf("https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member/%d", element.Pengirim_id))
-
-		if response.StatusCode != 200 {
-			w.WriteHeader(response.StatusCode)
-			w.Write([]byte("Not found"))
-			return
-		}
-
-		responseData, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		json.Unmarshal(responseData, &member)
-
-		list_member = append(list_member, member)
+		id_member = append(id_member, element.Pengirim_id)
 		jmlData++
 	}
+
+	requestData := datastruct.RequestMember{
+		IdMember: id_member,
+	}
+
+	jsonPayload, err := json.Marshal(requestData)
+
+	requestMember, _ := http.NewRequest("GET", "http://localhost:8080/api/member", bytes.NewBuffer(jsonPayload))
+
+	requestMember.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	client := &http.Client{}
+	responseMember, error := client.Do(requestMember)
+	if error != nil {
+		panic(error)
+	}
+	defer responseMember.Body.Close()
+
+	if responseMember.StatusCode != 200 {
+		w.WriteHeader(responseMember.StatusCode)
+		w.Write([]byte("Not found"))
+		return
+	}
+
+	responseData, err := ioutil.ReadAll(responseMember.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	json.Unmarshal(responseData, &getMember)
+
+	list_member = getMember.Data
 
 	if page != 0 && limit != 0 {
 		if page == 1 {

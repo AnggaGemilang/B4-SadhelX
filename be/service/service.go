@@ -102,6 +102,7 @@ func TampilkanFollowRequest(id int64) ([]datastruct.Teman, error) {
 }
 
 func TampilkanTeman(id int64, path string) ([]datastruct.Teman, error) {
+
 	db := config.CreateConnection()
 
 	defer db.Close()
