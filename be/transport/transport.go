@@ -319,8 +319,10 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 
 	list_member = getMember.Data
 
+	keyword := strings.ToLower(params["query"])
+
 	for _, element := range list_member {
-		if strings.Contains(element.Username, params["query"]) || strings.Contains(element.Firstname, params["query"]) || strings.Contains(element.Lastname, params["query"]) {
+		if strings.Contains(strings.ToLower(element.Username), keyword) || strings.Contains(strings.ToLower(element.Firstname), keyword) || strings.Contains(strings.ToLower(element.Lastname), keyword) {
 			selected_member = append(selected_member, element)
 			fmt.Println(element.Username)
 			jmlData++

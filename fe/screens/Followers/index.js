@@ -25,6 +25,7 @@ export default class Followers extends Component {
       page: 1,
       jumlahPage: 0,
       jumlahData: 0,
+      text: ""
     };
   }
  
@@ -34,10 +35,10 @@ export default class Followers extends Component {
       let response
       if(text != "") {
         console.log("Kesatu")
-        response = await axios.get(`http://192.168.1.8:8080/api/follower/2/${text}?limit=6&page=1`);
+        response = await axios.get(`http://192.168.1.8:8080/api/follower/8/${text}?limit=8&page=${this.state.page}`);
       } else {
         console.log("Kedua")
-        response = await axios.get(`http://192.168.1.8:8080/api/follower/2?limit=6&page=${this.state.page}`);
+        response = await axios.get(`http://192.168.1.8:8080/api/follower/8?limit=8&page=${this.state.page}`);
       }
       if(this.state.page == 1) {
         this.setState({
@@ -65,11 +66,18 @@ export default class Followers extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchData("")
+    this.fetchData(this.state.text)
   }  
 
-  SearchFilterFunction(text) {
-    this.fetchData(text)
+  SearchFilterFunction(value) {
+    this.setState({
+      text: value,
+      page: 1
+    }, function() {
+      console.log(value)
+      console.log(this.state.text)
+      this.fetchData(this.state.text)
+    })
   }
 
   ListViewItemSeparator = () => {
@@ -89,11 +97,15 @@ export default class Followers extends Component {
   handleLoadMore = async () => {
 
     if(this.state.page != this.state.jumlahPage){
-      await this.setState({
-        page: this.state.page+1, 
+      this.setState({
+        page: this.state.page+1,
         isLoading: true
+      }, function(){
+        console.log("YANG INI " + this.state.text)
+        console.log("PAGE KE " + this.state.page)
+        console.log("========================")
+        this.fetchData(this.state.text)
       })
-      this.fetchData("")
     }
 
   }
@@ -123,19 +135,21 @@ export default class Followers extends Component {
             borderBottomColor: 'black',
             borderBottomWidth: 1,
           }} />
+
         <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
           value={this.state.text}
           underlineColorAndroid="transparent"
-          placeholder="Cari Teman" />
-        
+          placeholder="Cari Teman"
+          clearButtonMode='always'
+        />
         <Text
           style = {{
-            marginLeft: 3,
-            fontSize: 14,
-            marginTop: 10
-          }} >
+            top: 25,
+            marginHorizontal: 10,
+          }}
+        >
           {this.state.jumlahData} Teman
         </Text>
 
@@ -190,12 +204,12 @@ const styles = StyleSheet.create({
   },
 
   textInputStyle: {
-    height: 50,
-    marginTop: 20,
+    height: 40,
+    top: 20,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
+    borderRadius: 15,
   },
 });

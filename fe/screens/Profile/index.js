@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   Button,
+  Image
 } from 'react-native'
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -48,7 +49,6 @@ export default class Member extends Component {
         console.log(response)
     })
   }
-
   render( ) {
     
     const {toggle} = this.state;
@@ -57,6 +57,7 @@ export default class Member extends Component {
     
     // const { navigate } = this.props.navigation;
     
+
     return (
      <View>
 
@@ -163,7 +164,7 @@ export default class Member extends Component {
         
                     {/* PP */}
             
-            {/* <View
+            <View
                 style={{
                     position: 'absolute',
                     marginVertical: 100,
@@ -173,13 +174,13 @@ export default class Member extends Component {
                 }}
             >
                 <Image
-                    source = {require('./assets/pp.png')}
+                    source = {require('../Profile/pp.png')}
                     style ={{
                         width: 120,
                         height: 120,
                     }}
                 />
-            </View> */}
+            </View>
 
                     {/* nick */}
             <View
