@@ -30,13 +30,10 @@ export default class Following extends Component {
  
   fetchData = async (text) => {
     try {
-      console.log("ISI TEKS : " + text)
       let response
       if(text != "") {
-        console.log("Kesatu")
         response = await axios.get(`http://192.168.1.8:8080/api/following/8/${text}?limit=8&page=${this.state.page}`);
       } else {
-        console.log("Kedua")
         response = await axios.get(`http://192.168.1.8:8080/api/following/8?limit=8&page=${this.state.page}`);
       }
 
@@ -47,7 +44,6 @@ export default class Following extends Component {
           data: response.data.data,
           jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
         }, function(){
-          console.log("Ini dari page ke: " + this.state.page)
           console.log(response.data.message)
         })
       } else {
@@ -56,7 +52,6 @@ export default class Following extends Component {
           jumlahData: response.data.total_jml_data,
           data: this.state.data.concat(response.data.data)
         }, function () {
-          console.log("Ini dari page ke: " + this.state.page)
           console.log(response.data.message)
         })
       }
@@ -74,8 +69,6 @@ export default class Following extends Component {
       text: value,
       page: 1
     }, function() {
-      console.log(value)
-      console.log(this.state.text)
       this.fetchData(this.state.text)
     })
   }
@@ -101,9 +94,6 @@ export default class Following extends Component {
         page: this.state.page+1,
         isLoading: true
       }, function(){
-        console.log("YANG INI " + this.state.text)
-        console.log("PAGE KE " + this.state.page)
-        console.log("========================")
         this.fetchData(this.state.text)
       })
     }

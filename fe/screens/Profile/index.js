@@ -34,7 +34,7 @@ export default class Member extends Component {
         })  
     };
 
-    fetch( 'http://192.168.1.9:8080/api/teman', options)
+    fetch( 'http://192.168.1.8:8080/api/following', options)
     .then( response => response.json() )
     .then( response => {
         console.log(response)
@@ -57,7 +57,6 @@ export default class Member extends Component {
     
     // const { navigate } = this.props.navigation;
     
-
     return (
      <View>
 
