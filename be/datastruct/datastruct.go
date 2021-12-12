@@ -1,5 +1,7 @@
 package datastruct
 
+import "time"
+
 type Teman struct {
 	Pengirim_id  int64  `json:"pengirim_id"`
 	Penerima_id  int64  `json:"penerima_id"`
@@ -13,23 +15,24 @@ type Teman struct {
 // User_id        int64  `json:"user_id"`
 
 type Member struct {
-	Username       string `json:"username"`
-	Firstname      string `json:"firstname"`
-	Lastname       string `json:"lastname"`
-	Phonenumber    string `json:"phonenumber"`
-	Password       string `json:"password"`
-	Email_verified string `json:"email_verified"`
-	Image_file     string `json:"image_file"`
-	Identity_type  string `json:"identity_type"`
-	Identity_no    string `json:"identity_no"`
-	Emergency_call string `json:"emergency_call"`
-	Address_ktp    string `json:"address_ktp"`
-	Domisili       string `json:"domisili"`
-	Create_date    string `json:"create_date"`
-	Update_date    string `json:"update_date"`
-	Email          string `json:"email"`
-	Isprivate      bool   `json:"isPrivate"`
-	User_id        string `json:"user_id"`
+	User_id        string    `json:"user_id"`
+	Username       string    `json:"username"`
+	Email          string    `json:"email"`
+	Firstname      string    `json:"firstname"`
+	Lastname       string    `json:"lastname"`
+	Phonenumber    string    `json:"phonenumber"`
+	Password       string    `json:"password"`
+	Email_verified string    `json:"email_verified"`
+	Image_file     string    `json:"image_file"`
+	Identity_type  string    `json:"identity_type"`
+	Identity_no    string    `json:"identity_no"`
+	Address_ktp    string    `json:"address_ktp"`
+	Domisili       string    `json:"domisili"`
+	Token_hash     string    `json:"token_hash"`
+	Is_private     bool      `json:"isPrivate"`
+	Emergency_call string    `json:"emergency_call"`
+	Created_date   time.Time `json:"create_date"`
+	Updated_date   time.Time `json:"update_date"`
 }
 
 type Response1 struct {
@@ -58,4 +61,15 @@ type Response3 struct {
 type Response4 struct {
 	Status  string `json:"status"`
 	Message string `json:"message"`
+}
+
+// ============================================================
+
+type GetMember struct {
+	IdMember []int64  `json:"id_member"`
+	Data     []Member `json:"data"`
+}
+
+type RequestMember struct {
+	IdMember []int64 `json:"id_member"`
 }

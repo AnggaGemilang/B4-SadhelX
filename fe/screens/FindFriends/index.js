@@ -4,8 +4,6 @@ import { View, Text, FlatList, Image, TextInput, StyleSheet} from 'react-native'
 import PropTypes from 'prop-types';
 import { Card, SearchBar } from 'react-native-elements';
 
-
-
 const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
 
  const processExhibit = results => {
@@ -22,7 +20,7 @@ const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
 
 export default class FindFriends extends Component {
 
-  constructor (props: {}) {
+  constructor (props) {
     super(props);
 
     this.state = {
@@ -30,7 +28,6 @@ export default class FindFriends extends Component {
         isLoading: true,
         dataSource: [],
         refreshing: true,
-        
     };
   }
 
@@ -42,27 +39,19 @@ export default class FindFriends extends Component {
 
     const { page, search } = this.state;
 
-    
-    const url =
-            `https://api.harvardartmuseums.org/object?apikey=${apiKey}` +
-            `&title=${search}`+
-            `&fields=objectnumber,dated,century,division,primaryimageurl,title` +
-            `&sort=totalpageviews` +
-            `&page=${page}` +
-            `&size=44` +
-            `&hasimage=1` +
-            `&sortorder=desc`;
+    const url = `http://192.168.1.8:8080/api/follower/8/a?limit=8&page=1`
+    // const url = `http://192.168.1.8:8080/api/follower/8/${search}?limit=8&page=${page}`    
     setTimeout(() => {
       fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const results = processExhibit(responseJson);
-        this.setState({
-          isLoading: false,
-          dataSource: results,
-          refreshing: false
-        });
-       
+      .then(response => response.json())
+      .then(response => {
+        // const results = processExhibit(response);
+        // this.setState({
+        //   isLoading: false,
+        //   dataSource: results,
+        //   refreshing: false
+        // })
+        console.log(response)       
       });
     }, 1500);
 
