@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 import { View, Text, FlatList, Image, TextInput, StyleSheet} from 'react-native';
-import { Card } from 'react-native-elements';
+import PropTypes from 'prop-types';
+import { Card, SearchBar } from 'react-native-elements';
 
 const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
 
