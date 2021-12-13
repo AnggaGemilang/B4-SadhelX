@@ -18,7 +18,7 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/following/{id}/{query}", transport.CariTeman).Methods("GET", "OPTIONS")
 	router.HandleFunc("/api/following/{penerima}/{pengirim}", transport.HapusTeman).Methods("DELETE", "OPTIONS")
 	router.HandleFunc("/api/follower/{penerima}/{pengirim}", transport.AcceptFollowRequest).Methods("PUT", "OPTIONS")
-
+	router.HandleFunc("/api/follower/{penerima}/{pengirim}", transport.DeclineFollowRequest).Methods("DELETE", "OPTIONS")
 	// ===============================================================
 
 	router.HandleFunc("/api/member", transport.GtMultipleMember).Methods("GET", "OPTIONS")

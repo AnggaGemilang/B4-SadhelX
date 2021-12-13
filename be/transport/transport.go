@@ -654,3 +654,31 @@ func AcceptFollowRequest(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(res)
 }
+
+func DeclineFollowRequest(w http.ResponseWriter, r *http.Request) {
+
+	params := mux.Vars(r)
+
+	id1, err := strconv.Atoi(params["pengirim"])
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	}
+
+	id2, err := strconv.Atoi(params["penerima"])
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengubah dari string ke int.  %v", err)
+	}
+
+	deletedRows := service.HapusTeman(id1, id2)
+
+	msg := fmt.Sprintf("%v data telah diupdate", deletedRows)
+	
+	res := datastruct.Response4{
+		Status:  "Berhasil",
+		Message: msg,
+	}
+
+	json.NewEncoder(w).Encode(res)
+}
