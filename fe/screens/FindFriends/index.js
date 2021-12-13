@@ -1,8 +1,10 @@
 
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, TextInput, StyleSheet} from 'react-native';
+import { View, Text, FlatList, Image, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import PropTypes from 'prop-types';
 import { Card, SearchBar } from 'react-native-elements';
+
+
 
 const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
 
@@ -20,7 +22,7 @@ const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
 
 export default class FindFriends extends Component {
 
-  constructor (props) {
+  constructor (props: {}) {
     super(props);
 
     this.state = {
@@ -28,6 +30,7 @@ export default class FindFriends extends Component {
         isLoading: true,
         dataSource: [],
         refreshing: true,
+        
     };
   }
 
@@ -39,23 +42,45 @@ export default class FindFriends extends Component {
 
     const { page, search } = this.state;
 
-    const url = `http://192.168.1.8:8080/api/follower/8/a?limit=8&page=1`
-    // const url = `http://192.168.1.8:8080/api/follower/8/${search}?limit=8&page=${page}`    
+    
+    const url =
+            `https://api.harvardartmuseums.org/object?apikey=${apiKey}` +
+            `&title=${search}`+
+            `&fields=objectnumber,dated,century,division,primaryimageurl,title` +
+            `&sort=totalpageviews` +
+            `&page=${page}` +
+            `&size=44` +
+            `&hasimage=1` +
+            `&sortorder=desc`;
     setTimeout(() => {
       fetch(url)
-      .then(response => response.json())
-      .then(response => {
-        // const results = processExhibit(response);
-        // this.setState({
-        //   isLoading: false,
-        //   dataSource: results,
-        //   refreshing: false
-        // })
-        console.log(response)       
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const results = processExhibit(responseJson);
+        this.setState({
+          isLoading: false,
+          dataSource: results,
+          refreshing: false
+        });
+       
       });
     }, 1500);
 
   }
+
+  ListViewItemSeparator = () => {
+    //Item sparator view
+    return (
+      <View
+        style={{
+          height: 0.3,
+          backgroundColor: '#080808',
+          marginBottom: 20,
+          marginTop: 15,
+        }}
+      />
+    );
+  };
 
   renderItem = ({item, index}) => {
 
@@ -64,15 +89,29 @@ export default class FindFriends extends Component {
     }
     
     return (
-      <View >
-        <Card
-          title={item.title}
-          image={{uri: item.primaryimageurl}}>
-          <Text style={{marginBottom: 10}}>
-            Made in {item.dated}
-          </Text>
-       </Card>
-      </View>
+      // <View 
+      
+      //   flexDirection="row"
+      //   >
+
+      //     <Text style={styles.textStyle}>
+      //       {item.title}
+      //     </Text>
+      //     <Text style={styles.textburik}>
+      //       {item.dated}
+      //     </Text>
+      //     <Image source={{uri:item.primaryimageurl}} style={styles.gambar} />
+
+      // </View>
+                  <TouchableOpacity>
+              <View flexDirection="row">
+                <Image source={{uri:item.primaryimageurl}} style={styles.gambar} />
+                <View justifyContent="center">
+                  <Text style={styles.textStyle}>{item.title}</Text>
+                  <Text style={styles.textburik}>@{item.dated}</Text> 
+                </View>
+              </View>      
+            </TouchableOpacity>
     );
   }
 
@@ -86,8 +125,27 @@ export default class FindFriends extends Component {
   };
 
   handleLoadMore = () => {
+    
+    this.setState({ 
+      page: this.state.page + 1,
+      isLoading: true,
+    }, this.makeRequest, )
+    
 
-    this.setState({ page: this.state.page + 1}, this.makeRequest)
+  }
+  footerList = () => {
+
+    if(this.state.page != this.state.jumlahPage){
+      return(
+        <View style={{ marginTop: 20 }}>
+          <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
+        </View>
+      )
+    } else {
+      return (
+        <View></View>
+      )
+    }
 
   }
 
@@ -129,7 +187,10 @@ export default class FindFriends extends Component {
           renderItem={this.renderItem}
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
+          ItemSeparatorComponent={this.ListViewItemSeparator}
+          ListFooterComponent={this.footerList}
           onEndThreshold={100}
+          style={{ marginTop: 30 }}
         />
       </View>
     );
@@ -138,40 +199,36 @@ export default class FindFriends extends Component {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    justifyContent: 'center',
-
-    marginTop: 20,
+    justifyContent: 'flex-start',
+    
+    marginTop: 10,
     padding: 16,
   },
   textStyle: {
     padding: 5,
     marginHorizontal: 5,
     fontWeight: '900',
-    left: 60
+
   },
   textburik: {
     fontWeight: '500',
     padding: 10,
-     left: 60
+
   },
 
   gambar: {
-    top: 10,
-    padding: 15,
-    width: 50,
-    height:50,
-    borderRadius: 40,
-    position: 'absolute'
-
+    width: 65,
+    height:65,
+    marginEnd: 20,
+    borderRadius: 40
   },
   textInputStyle: {
     height: 40,
-    top: -10,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 20,
+    borderRadius: 5,
     left: 50,
     width: 330
   },
