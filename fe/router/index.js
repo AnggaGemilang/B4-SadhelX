@@ -11,6 +11,10 @@ import Followers from '../screens/Followers';
 import Following from '../screens/Following';
 import Profile from '../screens/Profile';
 import FindFriends from '../screens/FindFriends';
+import {
+  HeaderSearchBar,
+  HeaderClassicSearchBar
+} from "react-native-header-search-bar";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -217,10 +221,15 @@ function Router ({ navigation }) {
         name="FindFriends"
         component={FindFriends}
         options={{
+          title: false,
           headerShown: true, 
           animationEnabled: false,
           headerTransparent: true,
+          headerStyle: {
+            height:90,
+          }
         }}
+        
          />
     </Stack.Navigator>
   );
@@ -230,4 +239,7 @@ export default Router;
 
 
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+    
+})
