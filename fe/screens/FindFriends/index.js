@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, Image, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import PropTypes from 'prop-types';
-import { Card, SearchBar } from 'react-native-elements';
 
 
 
@@ -171,7 +170,7 @@ export default class FindFriends extends Component {
           onChangeText={this.updateSearch}
           value={search}
           underlineColorAndroid="transparent"
-          placeholder="Find Friends"
+          placeholder="Search"
         />
         {/* <SearchBar
             placeholder="Type something here...."
