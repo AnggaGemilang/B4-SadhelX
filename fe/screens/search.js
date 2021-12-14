@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, Button, Image } from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 
-export default class Search extends Component{
-    render(){
-        return(
+export default class Search extends Component {
+    render() {
+        return (
             <View>
-            <TouchableOpacity
-                 onPress={() => this.props.navigation.navigate('FindFriends')}>
-                 <View
-                style={styles.pencarian}>
-                <Text style={styles.teksPencarian}>Search</Text>
-                    <Image source={require('../assets/icons/sear.png')} style={styles.icon}/>
-                </View>
-            </TouchableOpacity>
-               
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('FindFriends')}>
+                    <View
+                        style={styles.pencarian}>
+                        <Text style={styles.teksPencarian}>Search</Text>
+                        <Image source={require('../assets/icons/sear.png')} style={styles.icon} />
+                    </View>
+                </TouchableOpacity>
+
             </View>
         )
     }
@@ -23,7 +23,7 @@ export default class Search extends Component{
 
 
 const styles = StyleSheet.create({
-    pencarian:{
+    pencarian: {
         marginVertical: 100,
         marginHorizontal: 20,
         width: 373,
@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         borderWidth: 1,
     },
-    teksPencarian:{
+    teksPencarian: {
         position: 'absolute',
         marginVertical: 14,
         marginHorizontal: 10,
     },
-    icon:{
+    icon: {
         position: 'absolute',
         left: 333,
-        top: 15
-  },
+        top: 15,
+    },
 })
