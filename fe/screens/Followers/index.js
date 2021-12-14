@@ -149,12 +149,13 @@ export default class Followers extends Component {
           onEndReached={this.handleLoadMore}
           ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => console.log("Member")}>
               <View flexDirection="row">
-                <Image source={{uri:item.image_file}} style={styles.gambar} />
+                <Image source={{uri:item.image_file}} style={styles.gambar}  />
                 <View justifyContent="center">
-                  <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-                  <Text style={styles.textburik}>@{item.username}</Text> 
+                  <Text style={styles.textStyle} >{item.firstname + " " + item.lastname}</Text>
+                  <Text style={styles.textburik} >@{item.username}</Text> 
                 </View>
               </View>      
             </TouchableOpacity>

@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { StyleSheet, Text, View, Button, Image } from 'react-native'
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class Search extends Component{
     render(){
         return(
-            <View
-            style={styles.container}
-            >
-            <Text>PENCET PLOK</Text>
+            <View>
             <TouchableOpacity
-            style={styles.border}
-            onPress={() => this.props.navigation.navigate('FindFriends')}
-            >
-                <Text>PENCET BROOOO</Text>
+                 onPress={() => this.props.navigation.navigate('FindFriends')}>
+                 <View
+                style={styles.pencarian}>
+                <Text style={styles.teksPencarian}>Search</Text>
+                    <Image source={require('../assets/icons/sear.png')} style={styles.icon}/>
+                </View>
             </TouchableOpacity>
+               
             </View>
         )
     }
@@ -23,20 +23,24 @@ export default class Search extends Component{
 
 
 const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#8fccbbc'
+    pencarian:{
+        marginVertical: 100,
+        marginHorizontal: 20,
+        width: 373,
+        height: 50,
+        backgroundColor: '#fff',
+        borderRadius: 4,
+        borderColor: '#000',
+        borderWidth: 1,
     },
-    border: {
-        borderBottomWidth: 1,
-        padding: 5,
-        backgroundColor: '#ff1694',
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        borderColor: '#ff1694',
-        position: 'relative',
-        borderRadius: 10
-  }
+    teksPencarian:{
+        position: 'absolute',
+        marginVertical: 14,
+        marginHorizontal: 10,
+    },
+    icon:{
+        position: 'absolute',
+        left: 333,
+        top: 15
+  },
 })

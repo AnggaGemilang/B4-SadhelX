@@ -223,7 +223,7 @@ function Router ({ navigation }) {
         options={{
           title: false,
           headerShown: true, 
-          animationEnabled: false,
+          animationEnabled: true,
           headerTransparent: true,
           headerStyle: {
             height:90,
