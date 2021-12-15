@@ -183,3 +183,46 @@ func HapusTeman(pengirim int, penerima int) int64 {
 
 	return rowsAffected
 }
+
+func SuggestMember(id int64) ([]int64, int, error) {
+
+	db := config.CreateConnection()
+
+	defer db.Close()
+
+	var pengirim_id_list []int64
+	jmlData := 0
+
+	sqlStatement := `	
+		SELECT pengirim_id FROM teman
+		WHERE pengirim_id != $1 AND penerima_id IN (
+		SELECT penerima_id FROM teman
+		WHERE pengirim_id = $1 AND status = 'approved'	
+		) GROUP BY pengirim_id
+		ORDER BY RANDOM()
+		LIMIT 5;
+	`
+	rows, err := db.Query(sqlStatement, id)
+
+	if err != nil {
+		log.Fatalf("tidak bisa mengeksekusi query. %v", err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var pengirim_id int64
+
+		err = rows.Scan(&pengirim_id)
+
+		if err != nil {
+			log.Fatalf("tidak bisa mengambil data. %v", err)
+		}
+
+		jmlData = jmlData + 1
+
+		pengirim_id_list = append(pengirim_id_list, pengirim_id)
+	}
+
+	return pengirim_id_list, jmlData, err
+}
