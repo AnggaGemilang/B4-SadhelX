@@ -195,7 +195,7 @@ func SuggestMember(id int64) ([]int64, int, error) {
 
 	sqlStatement := `	
 		SELECT pengirim_id FROM teman
-		WHERE penerima_id IN (
+		WHERE pengirim_id != $1 AND penerima_id IN (
 		SELECT penerima_id FROM teman
 		WHERE pengirim_id = $1 AND status = 'approved'	
 		) GROUP BY pengirim_id
