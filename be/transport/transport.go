@@ -639,3 +639,78 @@ func DeclineFollowRequest(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(res)
 }
+
+func MencariMemberGlobal(w http.ResponseWriter, r *http.Request) {
+
+	var selected_member []datastruct.Member
+	var limited_member []datastruct.Member
+
+	message := ""
+	jmlData := 0
+	batasAkhir := 0
+
+	params := mux.Vars(r)
+
+	limit, limitErr := strconv.Atoi(r.URL.Query().Get("limit"))
+
+	if limitErr != nil {
+		limit = 0
+	}
+
+	page, pageErr := strconv.Atoi(r.URL.Query().Get("page"))
+
+	if pageErr != nil {
+		page = 0
+	}
+
+	selected_member, jmlData, err := service.MencariMemberGlobal(params["query"])
+
+	if err != nil {
+		log.Fatalf("Tidak bisa mengambil data. %v", err)
+	}
+
+	if page != 0 && limit != 0 {
+		if page == 1 {
+			for i := 0; i < page*limit; i++ {
+				if i < jmlData {
+					limited_member = append(limited_member, selected_member[i])
+					batasAkhir = i + 1
+				} else {
+					break
+				}
+			}
+			message = fmt.Sprintf("1 - %d data ditampilkan", batasAkhir)
+		} else if page > 1 {
+			for i := (page * limit) - limit; i < page*limit; i++ {
+				if i < jmlData {
+					limited_member = append(limited_member, selected_member[i])
+					batasAkhir = i + 1
+				} else {
+					break
+				}
+			}
+			if limited_member == nil {
+				message = "0 - 0 data ditampilkan"
+			} else {
+				message = fmt.Sprintf("%d - %d data ditampilkan", (page*limit)-limit, batasAkhir)
+			}
+		}
+	}
+
+	logging.Log(fmt.Sprintf("mencari data member dengan kata kunci '%s'", params["query"]))
+
+	var response datastruct.Response3
+	response.Status = "Berhasil"
+	response.TotalData = jmlData
+	response.Limit = limit
+	response.Page = page
+	if limit == 0 || page == 0 {
+		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+		response.Data = selected_member
+	} else {
+		response.Message = message
+		response.Data = limited_member
+	}
+
+	json.NewEncoder(w).Encode(response)
+}
