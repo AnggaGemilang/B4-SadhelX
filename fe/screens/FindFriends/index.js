@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
+import { View, Text, FlatList, Image, TextInput, StyleSheet, Button, TouchableOpacity, ActivityIndicator} from 'react-native';
 import axios from 'axios'
+import { insertNewRecent, deleteRecentData, queryRecentLists } from '../../databases/index'
+// import realm from '../../databases/index'
 
 export default class FindFriends extends Component {
 
@@ -14,12 +16,38 @@ export default class FindFriends extends Component {
         jumlahPage: 0,
         jumlahData: 0,
         text: "",        
-        dataSource: []
+        dataSource: [],
+        isRecent: true,
     };
   }
 
+  loadDataRecent = () => {
+    queryRecentLists().then((recentLists) => {
+      if(recentLists == undefined){
+        this.setState({ 
+          isLoading: false,
+          page: -1,
+          jumlahPage: -1,
+          isRecent: true,
+        });
+      } else{
+        this.setState({
+          dataSource: recentLists, 
+          isLoading: false,
+          page: -1,
+          jumlahPage: -1,
+          isRecent: true,
+        }, function() {
+          console.log(recentLists)
+        });
+      }
+    }).catch((error) => {
+      this.setState({ isLoading: false, dataSource: [] });
+    });
+  }
+
   componentDidMount () {
-    this.makeRequest("");
+    this.loadDataRecent()
   }
 
   makeRequest = async (text) => {
@@ -32,6 +60,7 @@ export default class FindFriends extends Component {
             isLoading: false,
             jumlahData: response.data.total_jml_data,
             dataSource: response.data.data,
+            isRecent: false,
             jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
           }, function(){
             console.log(response.data.message)
@@ -48,7 +77,7 @@ export default class FindFriends extends Component {
           })
         }
       } else {
-
+        this.loadDataRecent()
       }
     } catch (error) {
       console.error(error);
@@ -70,30 +99,70 @@ export default class FindFriends extends Component {
   };
 
   renderItem = ({item}) => {
-
-    return (
-      <TouchableOpacity
-        onPress={() => console.log("Search")}>
-        <View flexDirection="row">
-          <Image source={{uri:item.image_file}} style={styles.gambar} />
-          <View justifyContent="center">
-            <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-            <Text style={styles.textburik}>@{item.username}</Text> 
-          </View>
-        </View>      
-      </TouchableOpacity>
-    );
+    if (this.state.isRecent) {
+      return (
+        <TouchableOpacity
+          onPress={() => {
+            console.log("Dipencet")
+          }}>
+          <View flexDirection="row">
+            <Image source={{uri:item.image_file}} style={styles.gambar} />
+              <View justifyContent="center">
+                <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
+                <Text style={styles.textburik}>@{item.username}</Text> 
+              </View>
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    deleteRecentData(item.id).then().catch(error => {
+                      alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
+                    });
+                    this.loadDataRecent()
+                  }} >
+                    <Text>Hapus</Text>
+                </TouchableOpacity>
+              </View>
+          </View>      
+        </TouchableOpacity>
+      );            
+    } else {
+      return (
+        <TouchableOpacity
+          onPress={() => {
+            const newRecent = {
+              id: Number(item.user_id),
+              username : item.username,
+              firstname : item.firstname,
+              lastname : item.lastname,
+              image_file : item.image_file,
+              created_at : new Date()
+            };
+            insertNewRecent(newRecent).then().catch((error) => {
+              console.log(`Insert new todoList error ${error}`);
+            });
+          }}>
+          <View flexDirection="row">
+            <Image source={{uri:item.image_file}} style={styles.gambar} />
+            <View justifyContent="center">
+              <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
+              <Text style={styles.textburik}>@{item.username}</Text> 
+            </View>
+          </View>      
+        </TouchableOpacity>
+      ); 
+    }
   }
 
   updateSearch(value) {
     this.setState({
       text: value,
-      page: 1
+      page: 1,
+      jmlPage: 0,
+      dataSource: []
     }, function() {
       this.makeRequest(this.state.text)
     })
   }
-  
 
   handleLoadMore = async () => {
     if(this.state.page != this.state.jumlahPage){
@@ -113,7 +182,7 @@ export default class FindFriends extends Component {
           <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
         </View>
       )
-    } else {
+    } else if(this.state.page == this.state.jumlahPage || this.state.page == -1 && this.state.jumlahPage == -1) {
       return (
         <View></View>
       )

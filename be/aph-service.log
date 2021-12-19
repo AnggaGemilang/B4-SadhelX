@@ -1443,3 +1443,96 @@
 [LOG] [2021-12-19 15:52:42] mencari data member dengan kata kunci 'A'
 [LOG] [2021-12-19 15:52:50] mencari data member dengan kata kunci 'A'
 [LOG] [2021-12-19 15:52:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:52:20] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:53:28] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:53:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:53:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 20:45:56] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 21:00:47] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 21:06:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:41:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:46:57] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:47:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:50:45] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:50:48] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:50:51] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:51:43] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:51:49] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:59:11] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:59:21] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:59:25] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:01:08] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:01:11] mencari data member dengan kata kunci 'Ah'
+[LOG] [2021-12-19 23:01:24] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:03:22] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:03:26] 8 menampilkan data follower
+[LOG] [2021-12-19 23:03:29] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:03:51] 8 menampilkan data follower
+[LOG] [2021-12-19 23:04:07] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:04:09] 8 menampilkan data follower
+[LOG] [2021-12-19 23:04:11] 8 mencari data follower dengan kata kunci 'B'
+[LOG] [2021-12-19 23:04:20] 8 menampilkan data follower
+[LOG] [2021-12-19 23:05:20] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:05:22] 8 menampilkan data follower
+[LOG] [2021-12-19 23:05:24] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:05:26] 8 menampilkan data follower
+[LOG] [2021-12-19 23:05:41] 8 menampilkan data following
+[LOG] [2021-12-19 23:05:44] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:05:46] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:10] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:21] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:24] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:26] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:29] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:31] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:34] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:42] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:43] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:45] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:47] 8 menampilkan data follower
+[LOG] [2021-12-19 23:06:48] 8 menampilkan data follower
+[LOG] [2021-12-19 23:07:02] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:04] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:05] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:16] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:18] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:20] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:26] 8 menampilkan data follower
+[LOG] [2021-12-19 23:07:28] 8 menampilkan data follower
+[LOG] [2021-12-19 23:07:43] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-19 23:07:46] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-19 23:07:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:07:57] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:00] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:02] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:04] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:07] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:42:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:42:48] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:42:51] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:50:38] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:50:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:51:31] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:51:37] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:54:40] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:02:26] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:08:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:09:03] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:36:39] mencari data member dengan kata kunci 'G'
+[LOG] [2021-12-20 06:39:31] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:39:44] mencari data member dengan kata kunci 'H'
+[LOG] [2021-12-20 06:40:20] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:40:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:01] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:07] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:16] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:50] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:42:01] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:48:26] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:49:01] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:49:09] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:49:50] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:50:17] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:50:46] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:50:55] mencari data member dengan kata kunci 'A'

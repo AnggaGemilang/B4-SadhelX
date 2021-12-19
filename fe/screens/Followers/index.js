@@ -67,7 +67,8 @@ export default class Followers extends Component {
   SearchFilterFunction(value) {
     this.setState({
       text: value,
-      page: 1
+      page: 1,
+      data: []
     }, function() {
       this.fetchData(this.state.text)
     })
