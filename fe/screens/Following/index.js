@@ -110,7 +110,7 @@ export default class Following extends Component {
       )
     } else {
       return (
-        <View></View>
+        <View><Text>Null</Text></View>
       )
     }
 
@@ -149,7 +149,8 @@ export default class Following extends Component {
           onEndReached={this.handleLoadMore}
           ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => console.log("Member")}>
               <View flexDirection="row">
                 <Image source={{uri:item.image_file}} style={styles.gambar} />
                 <View justifyContent="center">

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 
 
+
 const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
 
  const processExhibit = results => {
@@ -84,7 +85,7 @@ export default class FindFriends extends Component {
   renderItem = ({item, index}) => {
 
     if (!item) {
-      return null
+      return (null)
     }
     
     return (
@@ -102,7 +103,8 @@ export default class FindFriends extends Component {
       //     <Image source={{uri:item.primaryimageurl}} style={styles.gambar} />
 
       // </View>
-                  <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => console.log("Search")}>
               <View flexDirection="row">
                 <Image source={{uri:item.primaryimageurl}} style={styles.gambar} />
                 <View justifyContent="center">
@@ -132,21 +134,7 @@ export default class FindFriends extends Component {
     
 
   }
-  footerList = () => {
 
-    if(this.state.page != this.state.jumlahPage){
-      return(
-        <View style={{ marginTop: 20 }}>
-          <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
-        </View>
-      )
-    } else {
-      return (
-        <View></View>
-      )
-    }
-
-  }
 
   handleRefresh = () => {
 
@@ -158,7 +146,7 @@ export default class FindFriends extends Component {
     () =>
       this.makeRequest();
   }
- 
+  
 
   render () {
     const { search } = this.state;
@@ -170,8 +158,9 @@ export default class FindFriends extends Component {
           onChangeText={this.updateSearch}
           value={search}
           underlineColorAndroid="transparent"
-          placeholder="Search"
+          placeholder= {"Search"}
         />
+        {/* <Image source={require('../../assets/icons/sear.png')} style={styles.icon}/> */}
         {/* <SearchBar
             placeholder="Type something here...."
             onChangeText={this.updateSearch}
@@ -187,7 +176,7 @@ export default class FindFriends extends Component {
           refreshing={this.state.refreshing}
           onEndReached={this.handleLoadMore}
           ItemSeparatorComponent={this.ListViewItemSeparator}
-          ListFooterComponent={this.footerList}
+
           onEndThreshold={100}
           style={{ marginTop: 30 }}
         />
@@ -198,8 +187,7 @@ export default class FindFriends extends Component {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    justifyContent: 'flex-start',
-    
+    justifyContent: 'center',
     marginTop: 10,
     padding: 16,
   },
@@ -227,8 +215,15 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 5,
+    borderRadius: 8,
     left: 50,
-    width: 330
+    width: 330,
+
+    
   },
+  icon:{
+    position: 'absolute',
+    left: 78,
+    top: 26
+  }
 });

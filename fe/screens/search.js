@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { StyleSheet, Text, View, Button, Image } from 'react-native'
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 
-export default class Search extends Component{
-    render(){
-        return(
-            <View
-            style={styles.container}
-            >
-            <Text>PENCET PLOK</Text>
-            <TouchableOpacity
-            style={styles.border}
-            onPress={() => this.props.navigation.navigate('FindFriends')}
-            >
-                <Text>PENCET BROOOO</Text>
-            </TouchableOpacity>
+
+export default class Search extends Component {
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+
+                <View style={styles.borderP}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('FindFriends')}>
+                        <View
+                            style={styles.pencarian}>
+                            <Text style={styles.teksPencarian}>Search</Text>
+                            <Image source={require('../assets/icons/sear.png')} style={styles.icon} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+
             </View>
         )
     }
@@ -23,20 +28,26 @@ export default class Search extends Component{
 
 
 const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#8fccbbc'
+    pencarian: {
+        width: 373,
+        height: 50,
+        borderWidth: 1,
+        borderRadius: 8
     },
-    border: {
-        borderBottomWidth: 1,
-        padding: 5,
-        backgroundColor: '#ff1694',
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        borderColor: '#ff1694',
-        position: 'relative',
-        borderRadius: 10
-  }
+    teksPencarian: {
+        position: 'absolute',
+        marginVertical: 14,
+        marginHorizontal: 10,
+    },
+    icon: {
+        position: 'absolute',
+        left: 333,
+        top: 15,
+    },
+    borderP: {
+        width: 373,
+        height: 50,
+        top: 100,
+        left: 20,
+    }
 })
