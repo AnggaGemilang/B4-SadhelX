@@ -29,6 +29,9 @@ export default class Following extends Component {
   }
  
   fetchData = async (text) => {
+    this.setState({
+      isLoading: true
+    })
     try {
       let response
       if(text != "") {
@@ -67,7 +70,8 @@ export default class Following extends Component {
   SearchFilterFunction(value) {
     this.setState({
       text: value,
-      page: 1
+      page: 1,
+      data: []
     }, function() {
       this.fetchData(this.state.text)
     })
@@ -91,8 +95,7 @@ export default class Following extends Component {
 
     if(this.state.page != this.state.jumlahPage){
       this.setState({
-        page: this.state.page+1,
-        isLoading: true
+        page: this.state.page+1
       }, function(){
         this.fetchData(this.state.text)
       })
