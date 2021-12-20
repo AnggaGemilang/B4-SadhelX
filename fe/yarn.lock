@@ -1641,6 +1641,13 @@ ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+alert@^5.0.10:
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/alert/-/alert-5.0.10.tgz#de34f3e48c050334d7ec8b5d91c25dd39b501249"
+  integrity sha512-veNmvhw+wPry802GoKfpXlqAeJ6JAF5JQ7C0Sw/ukMZ+KINvQITHFQO8IIaXjqJ/TBpQnp5A/y0bBknI50/LZQ==
+  dependencies:
+    is-program-installed "2.2.0"
+
 anser@^1.4.9:
   version "1.4.10"
   resolved "https://registry.npmjs.org/anser/-/anser-1.4.10.tgz"
@@ -4286,6 +4293,11 @@ is-potential-custom-element-name@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/is-potential-custom-element-name/-/is-potential-custom-element-name-1.0.1.tgz"
   integrity sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==
+
+is-program-installed@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/is-program-installed/-/is-program-installed-2.2.0.tgz#d8af27a6e7630c9f093d5f248ae9507461d9da8b"
+  integrity sha512-QMtzB/n6+G0iXDfi4ErIn1mZEZgoTLQxjgBdvMG2iPN/xWmjjXT53XOfaqcCT9At4B7QiMBY3Hvf8N4DB7MNtA==
 
 is-regex@^1.1.4:
   version "1.1.4"
