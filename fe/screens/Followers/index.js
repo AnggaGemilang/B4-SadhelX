@@ -8,120 +8,125 @@ import {
   FlatList,
   TextInput,
   ActivityIndicator,
-  Alert,
-  Touchable,
   TouchableOpacity,
-  Button,
   Image,
-  ImageBackground,
-  ScrollView
 } from 'react-native';
+
+import axios from 'axios'
  
 export default class Followers extends Component {
+
   constructor(props) {
     super(props);
     //setting default state
-    this.state = {data: [], isLoading: false, text: '', page: 1, };
-    this.arrayholder = [];
-
+    this.state = {
+      data: [], 
+      isLoading: false,
+      page: 1,
+      jumlahPage: 0,
+      jumlahData: 0,
+      text: ""
+    };
   }
  
-  componentDidMount() {
-    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=1';
-    return fetch(url)
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState(
-          {
-            isLoading: false,
-            data: responseJson,
-          },
-          // function() {
-          //   this.state.dataSource.concat(responseJson);
-          // }
-        );
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  fetchData = async (text) => {
+    try {
+      let response
+      if(text != "") {
+        response = await axios.get(`http://192.168.1.8:8080/api/follower/8/${text}?limit=8&page=${this.state.page}`);
+      } else {
+        response = await axios.get(`http://192.168.1.8:8080/api/follower/8?limit=8&page=${this.state.page}`);
+      }
+      if(this.state.page == 1) {
+        this.setState({
+          isLoading: false,
+          jumlahData: response.data.total_jml_data,
+          data: response.data.data,
+          jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
+        }, function(){
+          console.log(response.data.message)
+        })
+      } else {
+        this.setState({
+          isLoading: false,
+          jumlahData: response.data.total_jml_data,
+          data: this.state.data.concat(response.data.data)
+        }, function () {
+          console.log(response.data.message)
+        })
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
-  SearchFilterFunction(text) {
-    //passing the inserted text in textinput
-    const newData = this.arrayholder.filter(function(item) {
-      //applying filter for the inserted text in search bar
-      const itemData = item.username  ? item.username.toUpperCase() : ''.toUpperCase();
-      // const nick = item.firstname      ? item.firstname.toUpperCase() : ''.toUpperCase();
-      // const gambar = item.image_file  ? item.image_file.toUpperCase() : ''.toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-      // return nick.indexOf(textData) > -1;
-    });
+
+  componentDidMount = () => {
+    this.fetchData(this.state.text)
+  }  
+
+  SearchFilterFunction(value) {
     this.setState({
-      //setting the filtered newData on datasource
-      //After setting the data it will automatically re-render the view
-      dataSource: newData,
-      text: text,
-    });
+      text: value,
+      page: 1,
+      data: []
+    }, function() {
+      this.fetchData(this.state.text)
+    })
   }
+
   ListViewItemSeparator = () => {
     //Item sparator view
     return (
-      
       <View
         style={{
           height: 0.3,
-          width: '90%',
           backgroundColor: '#080808',
+          marginBottom: 20,
+          marginTop: 15,
         }}
       />
     );
   };
+  
+  handleLoadMore = async () => {
 
-handleLoadMore = async () => {
-  await this.setState(
-    {page: this.state.page+1, isLoading: true})
-    const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=10&page=' + this.state.page;
-    return fetch(url)
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState(
-          {
-            data: this.state.data.concat(responseJson),
-            isLoading: false
-          },
-          // function() {
-          //   this.state.dataSource.concat(responseJson);
-          // }
-        );
+    if(this.state.page != this.state.jumlahPage){
+      this.setState({
+        page: this.state.page+1,
+        isLoading: true
+      }, function(){
+        this.fetchData(this.state.text)
       })
-}
-  footerList = () => {
-    return(
-         <View>
-      <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
-    </View>
-    )
-   
+    }
+
   }
+
+  footerList = () => {
+
+    if(this.state.page != this.state.jumlahPage){
+      return(
+        <View style={{ marginTop: 20 }}>
+          <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
+        </View>
+      )
+    } else {
+      return (
+        <View></View>
+      )
+    }
+
+  }
+
   render() {
-    // if (this.state.isLoading) {
-    //   //Loading cenah
-    //   return (
-    //     <View style={{ flex: 1, paddingTop: 20 }}>
-    //       <ActivityIndicator />
-    //     </View>
-    //   );
-    // }
     return (
       //ListView to show with textinput used as search bar
-      <View 
-      style={styles.viewStyle}>
-              <View
-                style={{
-                  borderBottomColor: 'black',
-                  borderBottomWidth: 1,
-                }}
-              />
+      <View style={styles.viewStyle}>
+        <View
+          style={{
+            borderBottomColor: 'black',
+            borderBottomWidth: 1,
+          }} />
+
         <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
@@ -136,21 +141,25 @@ handleLoadMore = async () => {
             marginHorizontal: 10,
           }}
         >
-          96 Teman
+          {this.state.jumlahData} Teman
         </Text>
+
         <FlatList
           data={this.state.data}
           ItemSeparatorComponent={this.ListViewItemSeparator}
           onEndReached={this.handleLoadMore}
           ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
-            <TouchableOpacity>
-            <Image source={{uri:item.image_file}} style={styles.gambar} />
-               <Text style={styles.textStyle}>{item.username}</Text>
-               <Text style={styles.textburik}>{item.firstname}</Text>
-                
+            <TouchableOpacity
+            onPress={() => console.log("Member")}>
+              <View flexDirection="row">
+                <Image source={{uri:item.image_file}} style={styles.gambar}  />
+                <View justifyContent="center">
+                  <Text style={styles.textStyle} >{item.firstname + " " + item.lastname}</Text>
+                  <Text style={styles.textburik} >@{item.username}</Text> 
+                </View>
+              </View>      
             </TouchableOpacity>
-           
           )}
           enableEmptySections={true}
           style={{ marginTop: 30 }}
@@ -167,27 +176,25 @@ const styles = StyleSheet.create({
     marginTop: 40,
     padding: 16,
   },
+
   textStyle: {
-    padding: 5,
-    marginHorizontal: 5,
-    fontWeight: '900',
-    left: 60
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 5
   },
+  
   textburik: {
-    fontWeight: '500',
-    padding: 10,
-     left: 60
+    fontSize: 15,
+    fontWeight: '500'
   },
 
   gambar: {
-    top: 10,
-    padding: 15,
-    width: 50,
-    height:50,
-    borderRadius: 40,
-    position: 'absolute'
-
+    width: 65,
+    height:65,
+    marginEnd: 20,
+    borderRadius: 40
   },
+
   textInputStyle: {
     height: 40,
     top: 20,

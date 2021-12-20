@@ -60,6 +60,7 @@ export default class Search extends Component{
         return (
             <View>
                 <ActivityIndicator loading={this.state.isLoading} size={"large"}/>
+
             </View>
         )
     }
@@ -276,4 +277,5 @@ const styles = StyleSheet.create({
     //     borderRadius: 10,
     //     elevation: 5, 
     // }    
+
 })
