@@ -25,7 +25,7 @@ export const insertNewRecent = newRecent => new Promise((resolve, reject) => {
         if (data != null) {
             realm.write(() => {
                 let updatingItem = realm.objectForPrimaryKey(MEMBER_SCHEMA, newRecent.id);   
-                updatingItem.created_at = newRecent.updatingItem;    
+                updatingItem.created_at = newRecent.created_at;    
                 resolve();     
             });
         } else {
@@ -49,7 +49,7 @@ export const deleteRecentData = recentId => new Promise((resolve, reject) => {
 
 export const queryRecentLists = () => new Promise((resolve, reject) => {    
     Realm.open(databaseOptions).then(realm => {        
-        let allRecentLists = realm.objects(MEMBER_SCHEMA)
+        let allRecentLists = realm.objects(MEMBER_SCHEMA).sorted('created_at', true);
         resolve(allRecentLists)
     }).catch((error) => {
         reject(error)
