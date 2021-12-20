@@ -27,8 +27,7 @@
     "react-native-ui-xg": "^0.0.6",
     "react-native-vector-icons": "^9.0.0",
     "realm": "^10.10.1",
-    "recyclerlistview": "^3.0.5",
-    "save": "^2.4.0"
+    "recyclerlistview": "^3.0.5
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
