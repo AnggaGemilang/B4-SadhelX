@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, TextInput, StyleSheet, Button, TouchableOpacity, ActivityIndicator} from 'react-native';
+import { View, Text, FlatList, Image, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import axios from 'axios'
 import { insertNewRecent, deleteRecentData, queryRecentLists } from '../../databases/index'
 // import realm from '../../databases/index'

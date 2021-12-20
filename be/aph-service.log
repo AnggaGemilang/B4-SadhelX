@@ -1546,3 +1546,72 @@
 [LOG] [2021-12-20 06:59:09] mencari data member dengan kata kunci 'An'
 [LOG] [2021-12-20 06:59:09] mencari data member dengan kata kunci 'A'
 [LOG] [2021-12-20 06:59:15] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 15:26:00] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:29:05] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:30:25] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:30:57] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:31:42] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:33:10] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:33:38] 8 data telah dihapus
+[LOG] [2021-12-20 15:36:49] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:38:08] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:41:27] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:42:16] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:42:38] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:43:18] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:43:21] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:44:09] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:45:13] 8 data telah dihapus
+[LOG] [2021-12-20 15:49:07] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:49:20] 1 data telah dihapus
+[LOG] [2021-12-20 16:28:28] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 16:32:41] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 16:32:51] 1 data telah dihapus
+[LOG] [2021-12-20 18:30:08] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:30:17] 1 data telah dihapus
+[LOG] [2021-12-20 18:30:29] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:30:34] 1 data telah dihapus
+[LOG] [2021-12-20 18:30:40] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:30:51] 1 data telah dihapus
+[LOG] [2021-12-20 18:31:06] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 18:31:13] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 18:36:43] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:36:50] 1 data telah dihapus
+[LOG] [2021-12-20 18:36:52] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:36:54] 1 data telah dihapus
+[LOG] [2021-12-20 18:36:55] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:36:58] 1 data telah dihapus
+[LOG] [2021-12-20 19:26:02] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:26:14] 1 data telah dihapus
+[LOG] [2021-12-20 19:26:59] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:27:04] 1 data telah dihapus
+[LOG] [2021-12-20 19:27:07] 8 menampilkan data follower
+[LOG] [2021-12-20 19:27:10] 8 menampilkan data follower
+[LOG] [2021-12-20 19:29:08] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-20 19:29:17] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:29:26] 1 data telah dihapus
+[LOG] [2021-12-20 19:31:41] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:31:52] mencari data member dengan kata kunci 'V'
+[LOG] [2021-12-20 19:31:55] mencari data member dengan kata kunci 'Co'
+[LOG] [2021-12-20 19:31:55] mencari data member dengan kata kunci 'Corl'
+[LOG] [2021-12-20 19:31:55] mencari data member dengan kata kunci 'Cor'
+[LOG] [2021-12-20 19:31:57] mencari data member dengan kata kunci 'Corli'
+[LOG] [2021-12-20 19:31:57] mencari data member dengan kata kunci 'C'
+[LOG] [2021-12-20 19:32:03] mencari data member dengan kata kunci 'Corl'
+[LOG] [2021-12-20 19:32:04] mencari data member dengan kata kunci 'Co'
+[LOG] [2021-12-20 19:32:05] mencari data member dengan kata kunci 'Cor'
+[LOG] [2021-12-20 19:32:08] mencari data member dengan kata kunci 'C'
+[LOG] [2021-12-20 19:32:15] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:32:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:32:27] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:32:42] 8 menampilkan data follower
+[LOG] [2021-12-20 19:32:43] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:16] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:21] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:28] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:35] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:42] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:59] 8 menampilkan data following
+[LOG] [2021-12-20 19:34:02] 8 menampilkan data following
+[LOG] [2021-12-20 19:34:12] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:34:16] 1 data telah dihapus
