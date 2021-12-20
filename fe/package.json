@@ -26,6 +26,7 @@
     "react-native-screens": "^3.10.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-ui-xg": "^0.0.6",
+    "react-native-vector-icons": "^9.0.0",
     "save": "^2.4.0"
   },
   "devDependencies": {
