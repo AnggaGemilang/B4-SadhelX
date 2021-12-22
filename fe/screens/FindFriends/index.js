@@ -5,6 +5,20 @@ import axios from 'axios'
 // import { insertNewRecent, deleteRecentData, queryRecentLists } from '../../databases/index'
 // import realm from '../../databases/index'
 
+const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
+
+const processExhibit = results => {
+  const processed =
+
+    results.records.map(r => ({
+      ...r,
+
+      id: r.objectnumber
+    }))
+
+  return processed;
+};
+
 export default class FindFriends extends Component {
 
   constructor(props) {
@@ -236,7 +250,6 @@ const styles = StyleSheet.create({
     padding: 5,
     marginHorizontal: 5,
     fontWeight: '900',
-
   },
   textburik: {
     fontWeight: '500',
