@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-firebase/app": "^13.0.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/material-top-tabs": "^6.0.6",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@react-navigation/stack": "^6.0.11",
@@ -23,11 +24,14 @@
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^2.0.0",
     "react-native-header-search-bar": "^0.1.10",
+    "react-native-pager-view": "^5.4.9",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.0",
     "react-native-svg-transformer": "^0.14.3",
+    "react-native-tab-view": "^3.1.1",
     "react-native-ui-xg": "^0.0.6",
     "react-native-vector-icons": "^9.0.0",
+    "react-native-webview": "^11.15.0",
     "recyclerlistview": "^3.0.5",
     "save": "^2.4.0"
   },

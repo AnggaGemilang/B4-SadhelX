@@ -1,53 +1,29 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, View, Button, Image } from 'react-native'
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
+import React, { Component } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import HeaderNavigation from './HeaderNavigator';
+import SuggestnAccept from './SuggestnAccept';
+
+const Tab = createNativeStackNavigator();
+
+const Search = () => {
+
+    return (
+        <Tab.Navigator
+            style={{
+                flex: 1
+            }}
+
+        >
+            <Tab.Screen
+                name="Friends"
+                component={SuggestnAccept}
+                options={{ headerShown: false }}
+            />
 
 
-export default class Search extends Component {
-    render() {
-        return (
-            <View style={{ flex: 1 }}>
-
-                <View style={styles.borderP}>
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('FindFriends')}>
-                        <View
-                            style={styles.pencarian}>
-                            <Text style={styles.teksPencarian}>Search</Text>
-                            <Image source={require('../assets/icons/sear.png')} style={styles.icon} />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-
-
-            </View>
-        )
-    }
+        </Tab.Navigator>
+    );
 }
 
-
-
-const styles = StyleSheet.create({
-    pencarian: {
-        width: 373,
-        height: 50,
-        borderWidth: 1,
-        borderRadius: 8
-    },
-    teksPencarian: {
-        position: 'absolute',
-        marginVertical: 14,
-        marginHorizontal: 10,
-    },
-    icon: {
-        position: 'absolute',
-        left: 333,
-        top: 15,
-    },
-    borderP: {
-        width: 373,
-        height: 50,
-        top: 100,
-        left: 20,
-    }
-})
+export default Search;
