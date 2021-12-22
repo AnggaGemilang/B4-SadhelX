@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HeaderNavigation from '../HeaderNavigator';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
     Text,
     StyleSheet,
@@ -106,99 +107,103 @@ export default class SuggestnAccept extends Component {
         // const Teman = toggle?"Follow":this.state.textValue;
         // const TombolBg = toggle? "#16C79C":"#808080";
         return (
-            <View
-                style={styles.container}>
+
+            <ScrollView
+                style={styles.container}
+            >
                 <Text style={styles.headerT}>Search</Text>
                 <HeaderNavigation />
-                <View
-
+                {/* <Text>PENCET PLOK</Text> */}
+                <TouchableOpacity
+                    style={styles.border}
+                    onPress={() => this.props.navigation.navigate('FindFriends')}
                 >
-
-                    {/* <Text>PENCET PLOK</Text> */}
-                    <TouchableOpacity
-                        style={styles.border}
-                        onPress={() => this.props.navigation.navigate('FindFriends')}
-                    >
-                        <Text style={styles.tsearch}>Search</Text>
-                        <Image
-                            source={require('../../assets/icons/searchA.png')}
-                            resizeMode='contain'
-                            style={styles.isearch}
-                        />
-                        {/* <Icon name="search" style={styles.isearch} size={30} color="#808080" /> */}
-                    </TouchableOpacity>
-
-                    <Text
-                        style={styles.title}
-                    >
-                        Follow Request
-                    </Text>
-                    {/* <FlatList
+                    <Text style={styles.tsearch}>Search</Text>
+                    <Image
+                        source={require('../../assets/icons/searchA.png')}
+                        resizeMode='contain'
+                        style={styles.isearch}
+                    />
+                    {/* <Icon name="search" style={styles.isearch} size={30} color="#808080" /> */}
+                </TouchableOpacity>
+                <Text
+                    style={styles.title}
+                >
+                    Follow Request
+                </Text>
+                <FlatList
                     data={this.state.data}
                     ItemSeparatorComponent={this.ListViewItemSeparator}
-                    // onEndReached={this.handleLoadMore}
-                    ListFooterComponent={this.footerList}
+                    onEndReached={this.handleLoadMore}
+                    // ListFooterComponent={this.footerList}
                     renderItem={({ item }) => (
-                        <TouchableOpacity>
-                            <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                            <Text style={styles.userName}>{item.username}</Text>
-                            <Text style={styles.name}>@{item.firstname}</Text>
-                            <TouchableOpacity style={styles.bfollow}>
-                                <Text style={styles.tfollow}>
-                                    Follow
-                                </Text>
-                            </TouchableOpacity>
+                        <ScrollView>
                             <TouchableOpacity>
-                                <Image
-                                    source={require('../../assets/icons/delete-64.png')}
-                                    resizeMode='contain'
-                                    style={styles.delete}
-                                />
+
+                                <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                                <Text style={styles.userName}>{item.username}</Text>
+                                <Text style={styles.name}>@{item.firstname}</Text>
+                                <TouchableOpacity style={styles.bfollow}>
+                                    <Text style={styles.tfollow}>
+                                        Follow
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Image
+                                        source={require('../../assets/icons/delete-64.png')}
+                                        resizeMode='contain'
+                                        style={styles.delete}
+                                    />
+                                </TouchableOpacity>
                             </TouchableOpacity>
-                        </TouchableOpacity>
+                        </ScrollView>
+
                     )}
                     enableEmptySections={true}
-                    style={{ marginTop: 5 }}
+                    style={{ marginTop: 130, flexGrow: 1 }}
                     keyExtractor={(item, index) => index.toString()}
-                /> */}
+                />
 
 
-                    <Text
-                        style={styles.title}
-                    >
-                        Suggestion For You
-                    </Text>
+                <Text
+                    style={styles.title}
+                >
+                    Suggestion For You
+                </Text>
 
-                    {/* <FlatList
+                <FlatList
                     data={this.state.data}
                     ItemSeparatorComponent={this.ListViewItemSeparator}
-                    // onEndReached={this.handleLoadMore}
-                    ListFooterComponent={this.footerList}
+                    onEndReached={this.handleLoadMore}
+                    // ListFooterComponent={this.footerList}
                     renderItem={({ item }) => (
-                        <TouchableOpacity>
-                            <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                            <Text style={styles.userName}>{item.username}</Text>
-                            <Text style={styles.name}>@{item.firstname}</Text>
-                            <TouchableOpacity style={styles.bfollow}>
-                                <Text style={styles.tfollow}>
-                                    Follow
-                                </Text>
-                            </TouchableOpacity>
+                        <ScrollView>
                             <TouchableOpacity>
-                                <Image
-                                    source={require('../../assets/icons/delete-64.png')}
-                                    resizeMode='contain'
-                                    style={styles.delete}
-                                />
+
+                                <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                                <Text style={styles.userName}>{item.username}</Text>
+                                <Text style={styles.name}>@{item.firstname}</Text>
+                                <TouchableOpacity style={styles.bfollow}>
+                                    <Text style={styles.tfollow}>
+                                        Follow
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Image
+                                        source={require('../../assets/icons/delete-64.png')}
+                                        resizeMode='contain'
+                                        style={styles.delete}
+                                    />
+                                </TouchableOpacity>
                             </TouchableOpacity>
-                        </TouchableOpacity>
+                        </ScrollView>
+
                     )}
                     enableEmptySections={true}
-                    style={{ marginTop: 5 }}
+                    style={{ marginTop: 130, flexGrow: 1 }}
                     keyExtractor={(item, index) => index.toString()}
-                /> */}
-                </View>
-            </View>
+                />
+            </ScrollView>
 
         )
     }
@@ -206,9 +211,8 @@ export default class SuggestnAccept extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
-        flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        flex: 1
     },
     border: {
         top: 110,
@@ -258,10 +262,10 @@ const styles = StyleSheet.create({
         //marginHorizontal: 5,
         //marginVertical: 5,
         fontWeight: '500',
-        left: 60
+        left: 80
     },
     name: {
-        left: 65,
+        left: 85,
         marginVertical: 8
     },
     bfollow: {
@@ -280,7 +284,7 @@ const styles = StyleSheet.create({
     delete: {
         //flexDirection: 'row',
         position: 'absolute',
-        right: 12,
+        right: 25,
         //top: 0,
         width: 20,
         bottom: -1,
