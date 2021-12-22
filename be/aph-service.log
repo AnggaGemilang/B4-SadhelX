@@ -1364,3 +1364,254 @@
 [LOG] [2021-12-12 14:31:59] 1 mengirimkan pertemanan ke 2
 [LOG] [2021-12-12 14:47:08] 8 menampilkan data follower
 [LOG] [2021-12-12 14:47:21] 8 menampilkan data following
+[LOG] [2021-12-13 12:30:54] 6 menampilkan data follow request
+[LOG] [2021-12-13 12:31:00] 6 menampilkan data follow request
+[LOG] [2021-12-13 12:31:34] 1 data telah diupdate
+[LOG] [2021-12-13 12:31:36] 1 data telah diupdate
+[LOG] [2021-12-13 12:31:36] 1 data telah diupdate
+[LOG] [2021-12-13 12:31:37] 1 data telah diupdate
+[LOG] [2021-12-13 12:31:37] 1 data telah diupdate
+[LOG] [2021-12-15 07:15:23] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:21:25] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:21:32] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:21:34] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:21:36] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:21:38] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:21:39] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:22:07] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:23:08] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:59:46] 8 menampilkan data suggest member
+[LOG] [2021-12-15 07:59:48] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:14:32] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:16:11] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:16:41] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:16:42] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:16:56] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:06] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:07] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:08] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:08] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:09] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:10] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:17:10] 8 menampilkan data suggest member
+[LOG] [2021-12-15 08:18:57] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:16:08] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:13] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:14] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:16] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:17] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:18] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:19] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:20] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:21] 8 menampilkan data suggest member
+[LOG] [2021-12-15 09:19:24] 8 menampilkan data suggest member
+[LOG] [2021-12-18 14:33:35] mencari data member dengan kata kunci 'a'
+[LOG] [2021-12-18 14:36:27] mencari data member dengan kata kunci 'bbewlie0'
+[LOG] [2021-12-18 15:19:07] mencari data member dengan kata kunci 'a'
+[LOG] [2021-12-18 15:37:05] mencari data member dengan kata kunci 'a'
+[LOG] [2021-12-18 15:37:48] mencari data member dengan kata kunci 'er'
+[LOG] [2021-12-18 15:39:02] mencari data member dengan kata kunci 'er'
+[LOG] [2021-12-19 12:23:35] mencari data member dengan kata kunci 'a'
+[LOG] [2021-12-19 12:58:24] 8 menampilkan data follower
+[LOG] [2021-12-19 12:58:28] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 12:58:40] 8 menampilkan data following
+[LOG] [2021-12-19 12:58:43] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 12:58:45] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 12:58:47] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 15:25:18] mencari data member dengan kata kunci 'a'
+[LOG] [2021-12-19 15:26:05] 8 menampilkan data follower
+[LOG] [2021-12-19 15:39:39] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 15:40:47] 8 menampilkan data follower
+[LOG] [2021-12-19 15:40:53] 8 menampilkan data follower
+[LOG] [2021-12-19 15:40:55] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 15:41:02] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 15:41:18] 8 mencari data follower dengan kata kunci 'G'
+[LOG] [2021-12-19 15:42:02] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:42:18] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:43:26] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:43:50] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:44:18] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:45:11] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:45:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:46:47] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:47:24] mencari data member dengan kata kunci 'Q'
+[LOG] [2021-12-19 15:48:25] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:49:26] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:49:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:51:52] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:51:59] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:52:42] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:52:50] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 15:52:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:52:20] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:53:28] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:53:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 19:53:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 20:45:56] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 21:00:47] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 21:06:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:41:29] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:46:57] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:47:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:50:45] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:50:48] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:50:51] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:51:43] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:51:49] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:59:11] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:59:21] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 22:59:25] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:01:08] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:01:11] mencari data member dengan kata kunci 'Ah'
+[LOG] [2021-12-19 23:01:24] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:03:22] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:03:26] 8 menampilkan data follower
+[LOG] [2021-12-19 23:03:29] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:03:51] 8 menampilkan data follower
+[LOG] [2021-12-19 23:04:07] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:04:09] 8 menampilkan data follower
+[LOG] [2021-12-19 23:04:11] 8 mencari data follower dengan kata kunci 'B'
+[LOG] [2021-12-19 23:04:20] 8 menampilkan data follower
+[LOG] [2021-12-19 23:05:20] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:05:22] 8 menampilkan data follower
+[LOG] [2021-12-19 23:05:24] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-19 23:05:26] 8 menampilkan data follower
+[LOG] [2021-12-19 23:05:41] 8 menampilkan data following
+[LOG] [2021-12-19 23:05:44] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:05:46] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:10] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:21] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:24] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:26] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:29] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:31] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:34] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2021-12-19 23:06:42] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:43] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:45] 8 menampilkan data following
+[LOG] [2021-12-19 23:06:47] 8 menampilkan data follower
+[LOG] [2021-12-19 23:06:48] 8 menampilkan data follower
+[LOG] [2021-12-19 23:07:02] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:04] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:05] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:16] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:18] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:20] 8 menampilkan data following
+[LOG] [2021-12-19 23:07:26] 8 menampilkan data follower
+[LOG] [2021-12-19 23:07:28] 8 menampilkan data follower
+[LOG] [2021-12-19 23:07:43] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-19 23:07:46] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-19 23:07:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:07:57] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:00] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:02] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:04] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-19 23:08:07] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:42:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:42:48] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:42:51] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:50:38] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:50:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:51:31] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:51:37] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 05:54:40] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:02:26] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:08:44] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:09:03] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:36:39] mencari data member dengan kata kunci 'G'
+[LOG] [2021-12-20 06:39:31] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:39:44] mencari data member dengan kata kunci 'H'
+[LOG] [2021-12-20 06:40:20] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:40:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:01] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:07] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:16] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:50] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:41:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:42:01] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:48:26] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:49:01] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:49:09] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:49:50] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:50:17] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:50:46] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:50:55] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:55:52] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:56:02] mencari data member dengan kata kunci 'B'
+[LOG] [2021-12-20 06:56:10] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:56:23] mencari data member dengan kata kunci 'Au'
+[LOG] [2021-12-20 06:56:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:56:28] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:58:59] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:59:09] mencari data member dengan kata kunci 'An'
+[LOG] [2021-12-20 06:59:09] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 06:59:15] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 15:26:00] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:29:05] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:30:25] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:30:57] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:31:42] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:33:10] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:33:38] 8 data telah dihapus
+[LOG] [2021-12-20 15:36:49] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:38:08] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:41:27] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:42:16] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:42:38] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:43:18] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:43:21] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:44:09] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:45:13] 8 data telah dihapus
+[LOG] [2021-12-20 15:49:07] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 15:49:20] 1 data telah dihapus
+[LOG] [2021-12-20 16:28:28] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 16:32:41] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 16:32:51] 1 data telah dihapus
+[LOG] [2021-12-20 18:30:08] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:30:17] 1 data telah dihapus
+[LOG] [2021-12-20 18:30:29] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:30:34] 1 data telah dihapus
+[LOG] [2021-12-20 18:30:40] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:30:51] 1 data telah dihapus
+[LOG] [2021-12-20 18:31:06] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 18:31:13] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 18:36:43] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:36:50] 1 data telah dihapus
+[LOG] [2021-12-20 18:36:52] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:36:54] 1 data telah dihapus
+[LOG] [2021-12-20 18:36:55] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 18:36:58] 1 data telah dihapus
+[LOG] [2021-12-20 19:26:02] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:26:14] 1 data telah dihapus
+[LOG] [2021-12-20 19:26:59] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:27:04] 1 data telah dihapus
+[LOG] [2021-12-20 19:27:07] 8 menampilkan data follower
+[LOG] [2021-12-20 19:27:10] 8 menampilkan data follower
+[LOG] [2021-12-20 19:29:08] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2021-12-20 19:29:17] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:29:26] 1 data telah dihapus
+[LOG] [2021-12-20 19:31:41] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:31:52] mencari data member dengan kata kunci 'V'
+[LOG] [2021-12-20 19:31:55] mencari data member dengan kata kunci 'Co'
+[LOG] [2021-12-20 19:31:55] mencari data member dengan kata kunci 'Corl'
+[LOG] [2021-12-20 19:31:55] mencari data member dengan kata kunci 'Cor'
+[LOG] [2021-12-20 19:31:57] mencari data member dengan kata kunci 'Corli'
+[LOG] [2021-12-20 19:31:57] mencari data member dengan kata kunci 'C'
+[LOG] [2021-12-20 19:32:03] mencari data member dengan kata kunci 'Corl'
+[LOG] [2021-12-20 19:32:04] mencari data member dengan kata kunci 'Co'
+[LOG] [2021-12-20 19:32:05] mencari data member dengan kata kunci 'Cor'
+[LOG] [2021-12-20 19:32:08] mencari data member dengan kata kunci 'C'
+[LOG] [2021-12-20 19:32:15] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:32:23] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:32:27] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-20 19:32:42] 8 menampilkan data follower
+[LOG] [2021-12-20 19:32:43] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:16] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:21] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:28] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:35] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:42] 8 menampilkan data follower
+[LOG] [2021-12-20 19:33:59] 8 menampilkan data following
+[LOG] [2021-12-20 19:34:02] 8 menampilkan data following
+[LOG] [2021-12-20 19:34:12] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-20 19:34:16] 1 data telah dihapus

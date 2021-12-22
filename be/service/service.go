@@ -8,6 +8,39 @@ import (
 	"strings"
 )
 
+func MencariMemberGlobal(nama string) ([]datastruct.Member, int, error) {
+
+	db := config.CreateConnection()
+
+	defer db.Close()
+
+	var list_member []datastruct.Member
+	jumlahData := 0
+
+	sqlStatement := `SELECT * FROM member WHERE username LIKE $1 OR firstname LIKE $1 OR lastname LIKE $1`
+
+	rows, err := db.Query(sqlStatement, "%"+nama+"%")
+
+	if err != nil {
+		log.Fatalf("tidak bisa mengeksekusi query. %v", err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var member datastruct.Member
+
+		err = rows.Scan(&member.User_id, &member.Username, &member.Email, &member.Firstname, &member.Lastname, &member.Phonenumber, &member.Password, &member.Email_verified, &member.Image_file, &member.Identity_type, &member.Identity_no, &member.Address_ktp, &member.Domisili, &member.Token_hash, &member.Is_private, &member.Emergency_call, &member.Created_date, &member.Updated_date)
+
+		if err != nil {
+			log.Fatalf("tidak bisa mengambil data. %v", err)
+		}
+		jumlahData++
+		list_member = append(list_member, member)
+	}
+	return list_member, jumlahData, err
+}
+
 func GetMultipleMember(idMember []int64) ([]datastruct.Member, error) {
 
 	db := config.CreateConnection()
@@ -182,4 +215,47 @@ func HapusTeman(pengirim int, penerima int) int64 {
 	}
 
 	return rowsAffected
+}
+
+func SuggestMember(id int64) ([]int64, int, error) {
+
+	db := config.CreateConnection()
+
+	defer db.Close()
+
+	var pengirim_id_list []int64
+	jmlData := 0
+
+	sqlStatement := `	
+		SELECT pengirim_id FROM teman
+		WHERE pengirim_id != $1 AND penerima_id IN (
+		SELECT penerima_id FROM teman
+		WHERE pengirim_id = $1 AND status = 'approved'	
+		) GROUP BY pengirim_id
+		ORDER BY RANDOM()
+		LIMIT 5;
+	`
+	rows, err := db.Query(sqlStatement, id)
+
+	if err != nil {
+		log.Fatalf("tidak bisa mengeksekusi query. %v", err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var pengirim_id int64
+
+		err = rows.Scan(&pengirim_id)
+
+		if err != nil {
+			log.Fatalf("tidak bisa mengambil data. %v", err)
+		}
+
+		jmlData = jmlData + 1
+
+		pengirim_id_list = append(pengirim_id_list, pengirim_id)
+	}
+
+	return pengirim_id_list, jmlData, err
 }
