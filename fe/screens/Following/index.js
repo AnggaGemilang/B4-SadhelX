@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
- 
+
 import axios from 'axios'
 
 export default class Following extends Component {
@@ -19,7 +19,7 @@ export default class Following extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [], 
+      data: [],
       isLoading: false,
       page: 1,
       jumlahPage: 0,
@@ -27,26 +27,26 @@ export default class Following extends Component {
       text: ""
     };
   }
- 
+
   fetchData = async (text) => {
     this.setState({
       isLoading: true
     })
     try {
       let response
-      if(text != "") {
+      if (text != "") {
         response = await axios.get(`http://192.168.1.8:8080/api/following/8/${text}?limit=8&page=${this.state.page}`);
       } else {
         response = await axios.get(`http://192.168.1.8:8080/api/following/8?limit=8&page=${this.state.page}`);
       }
 
-      if(this.state.page == 1) {
+      if (this.state.page == 1) {
         this.setState({
           isLoading: false,
           jumlahData: response.data.total_jml_data,
           data: response.data.data,
           jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
-        }, function(){
+        }, function () {
           console.log(response.data.message)
         })
       } else {
@@ -65,7 +65,7 @@ export default class Following extends Component {
 
   componentDidMount = () => {
     this.fetchData(this.state.text)
-  }  
+  }
 
   SearchFilterFunction(value) {
     this.setState({
@@ -90,10 +90,10 @@ export default class Following extends Component {
       />
     );
   };
-  
+
   handleLoadMore = async () => {
 
-    if(this.state.page != this.state.jumlahPage){
+    if (this.state.page != this.state.jumlahPage) {
       this.setState({
         page: this.state.page+1
       }, function(){
@@ -105,10 +105,10 @@ export default class Following extends Component {
 
   footerList = () => {
 
-    if(this.state.page != this.state.jumlahPage){
-      return(
+    if (this.state.page != this.state.jumlahPage) {
+      return (
         <View style={{ marginTop: 20 }}>
-          <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
+          <ActivityIndicator loading={this.state.isLoading} size={"small"} />
         </View>
       )
     } else {
@@ -138,7 +138,7 @@ export default class Following extends Component {
           clearButtonMode='always'
         />
         <Text
-          style = {{
+          style={{
             top: 25,
             marginHorizontal: 10,
           }}
@@ -153,14 +153,14 @@ export default class Following extends Component {
           ListFooterComponent={this.footerList}
           renderItem={({ item }) => (
             <TouchableOpacity
-            onPress={() => console.log("Member")}>
+              onPress={() => console.log("Member")}>
               <View flexDirection="row">
-                <Image source={{uri:item.image_file}} style={styles.gambar} />
+                <Image source={{ uri: item.image_file }} style={styles.gambar} />
                 <View justifyContent="center">
                   <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-                  <Text style={styles.textburik}>@{item.username}</Text> 
+                  <Text style={styles.textburik}>@{item.username}</Text>
                 </View>
-              </View>      
+              </View>
             </TouchableOpacity>
           )}
           enableEmptySections={true}
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 5
   },
-  
+
   textburik: {
     fontSize: 15,
     fontWeight: '500'
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
 
   gambar: {
     width: 65,
-    height:65,
+    height: 65,
     marginEnd: 20,
     borderRadius: 40
   },
