@@ -1,9 +1,7 @@
-
 import React, { Component } from 'react';
 import { View, Text, FlatList, Image, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import axios from 'axios'
 import { insertNewRecent, deleteRecentData, queryRecentLists } from '../../databases/index'
-// import realm from '../../databases/index'
 
 export default class FindFriends extends Component {
 
@@ -23,21 +21,22 @@ export default class FindFriends extends Component {
 
   loadDataRecent = () => {
     queryRecentLists().then((recentLists) => {
-      if(recentLists == undefined){
-        this.setState({ 
-          isLoading: false,
-          page: -1,
-          jumlahPage: -1,
-          isRecent: true,
-        });
-      } else{
+      if (recentLists == undefined) {
         this.setState({
           dataSource: recentLists, 
           isLoading: false,
           page: -1,
           jumlahPage: -1,
           isRecent: true,
-        }, function() {
+        });
+      } else {
+        this.setState({
+          dataSource: recentLists,
+          isLoading: false,
+          page: -1,
+          jumlahPage: -1,
+          isRecent: true,
+        }, function () {
           console.log(recentLists)
         });
       }
@@ -98,7 +97,7 @@ export default class FindFriends extends Component {
     );
   };
 
-  renderItem = ({item}) => {
+  renderItem = ({ item }) => {
     if (this.state.isRecent) {
       return (
         <TouchableOpacity
@@ -131,25 +130,25 @@ export default class FindFriends extends Component {
           onPress={() => {
             const newRecent = {
               id: Number(item.user_id),
-              username : item.username,
-              firstname : item.firstname,
-              lastname : item.lastname,
-              image_file : item.image_file,
-              created_at : new Date()
+              username: item.username,
+              firstname: item.firstname,
+              lastname: item.lastname,
+              image_file: item.image_file,
+              created_at: new Date()
             };
             insertNewRecent(newRecent).then().catch((error) => {
               console.log(`Insert new todoList error ${error}`);
             });
           }}>
           <View flexDirection="row">
-            <Image source={{uri:item.image_file}} style={styles.gambar} />
+            <Image source={{ uri: item.image_file }} style={styles.gambar} />
             <View justifyContent="center">
               <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-              <Text style={styles.textburik}>@{item.username}</Text> 
+              <Text style={styles.textburik}>@{item.username}</Text>
             </View>
-          </View>      
+          </View>
         </TouchableOpacity>
-      ); 
+      );
     }
   }
 
@@ -165,11 +164,11 @@ export default class FindFriends extends Component {
   }
 
   handleLoadMore = async () => {
-    if(this.state.page != this.state.jumlahPage){
+    if (this.state.page != this.state.jumlahPage) {
       this.setState({
-        page: this.state.page+1,
+        page: this.state.page + 1,
         isLoading: true
-      }, function(){
+      }, function () {
         this.makeRequest(this.state.text)
       })
     }
@@ -188,18 +187,18 @@ export default class FindFriends extends Component {
       )
     }
   }
-  
-  render () {
+
+  render() {
     const { search } = this.state;
     return (
-     
+
       <View style={styles.viewStyle}>
         <TextInput
           style={styles.textInputStyle}
-          onChangeText={ text => this.updateSearch(text)}
+          onChangeText={text => this.updateSearch(text)}
           value={search}
           underlineColorAndroid="transparent"
-          placeholder= {"Search"}
+          placeholder={"Search"}
         />
         {/* <Image source={require('../../assets/icons/sear.png')} style={styles.icon}/> */}
         {/* <SearchBar
@@ -236,7 +235,6 @@ const styles = StyleSheet.create({
     padding: 5,
     marginHorizontal: 5,
     fontWeight: '900',
-
   },
   textburik: {
     fontWeight: '500',
@@ -246,7 +244,7 @@ const styles = StyleSheet.create({
 
   gambar: {
     width: 65,
-    height:65,
+    height: 65,
     marginEnd: 20,
     borderRadius: 40
   },
@@ -260,9 +258,9 @@ const styles = StyleSheet.create({
     left: 50,
     width: 330,
 
-    
+
   },
-  icon:{
+  icon: {
     position: 'absolute',
     left: 78,
     top: 26
