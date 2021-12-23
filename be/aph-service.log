@@ -1615,3 +1615,10 @@
 [LOG] [2021-12-20 19:34:02] 8 menampilkan data following
 [LOG] [2021-12-20 19:34:12] 1 mengirimkan pertemanan ke 2
 [LOG] [2021-12-20 19:34:16] 1 data telah dihapus
+[LOG] [2021-12-23 22:05:10] 8 menampilkan data follower
+[LOG] [2021-12-23 22:05:54] 8 menampilkan data follower
+[LOG] [2021-12-23 22:07:59] 1 mengirimkan pertemanan ke 2
+[LOG] [2021-12-23 22:08:02] 1 data telah dihapus
+[LOG] [2021-12-23 22:22:38] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-23 22:22:43] mencari data member dengan kata kunci 'A'
+[LOG] [2021-12-23 22:23:29] 8 menampilkan data follower

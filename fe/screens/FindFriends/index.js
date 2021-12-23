@@ -1,37 +1,21 @@
-
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, TextInput, StyleSheet, Button, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, Image, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
 import axios from 'axios'
-// import { insertNewRecent, deleteRecentData, queryRecentLists } from '../../databases/index'
-// import realm from '../../databases/index'
-
-const apiKey = 'a40093f0-53ec-11ea-850a-fbf5bb8990ef';
-
-const processExhibit = results => {
-  const processed =
-
-    results.records.map(r => ({
-      ...r,
-
-      id: r.objectnumber
-    }))
-
-  return processed;
-};
+import { insertNewRecent, deleteRecentData, queryRecentLists } from '../../databases/index'
 
 export default class FindFriends extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.state = {
-      isLoading: false,
-      page: 1,
-      jumlahPage: 0,
-      jumlahData: 0,
-      text: "",
-      dataSource: [],
-      isRecent: true,
+        isLoading: false,
+        page: 1,
+        jumlahPage: 0,
+        jumlahData: 0,
+        text: "",        
+        dataSource: [],
+        isRecent: true,
     };
   }
 
@@ -39,6 +23,7 @@ export default class FindFriends extends Component {
     queryRecentLists().then((recentLists) => {
       if (recentLists == undefined) {
         this.setState({
+          dataSource: recentLists, 
           isLoading: false,
           page: -1,
           jumlahPage: -1,
@@ -60,23 +45,23 @@ export default class FindFriends extends Component {
     });
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.loadDataRecent()
   }
 
   makeRequest = async (text) => {
     try {
       let response
-      if (text != "") {
+      if(text != "") {
         response = await axios.get(`http://192.168.1.8:8080/api/member/cari/${text}?limit=8&page=${this.state.page}`);
-        if (this.state.page == 1) {
+        if(this.state.page == 1) {
           this.setState({
             isLoading: false,
             jumlahData: response.data.total_jml_data,
             dataSource: response.data.data,
             isRecent: false,
             jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
-          }, function () {
+          }, function(){
             console.log(response.data.message)
             console.log(this.state.dataSource)
           })
@@ -120,25 +105,25 @@ export default class FindFriends extends Component {
             console.log("Dipencet")
           }}>
           <View flexDirection="row">
-            <Image source={{ uri: item.image_file }} style={styles.gambar} />
-            <View justifyContent="center">
-              <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-              <Text style={styles.textburik}>@{item.username}</Text>
-            </View>
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  deleteRecentData(item.id).then().catch(error => {
-                    alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
-                  });
-                  this.loadDataRecent()
-                }} >
-                <Text>Hapus</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+            <Image source={{uri:item.image_file}} style={styles.gambar} />
+              <View justifyContent="center">
+                <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
+                <Text style={styles.textburik}>@{item.username}</Text> 
+              </View>
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    deleteRecentData(item.id).then().catch(error => {
+                      alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
+                    });
+                    this.loadDataRecent()
+                  }} >
+                    <Text>Hapus</Text>
+                </TouchableOpacity>
+              </View>
+          </View>      
         </TouchableOpacity>
-      );
+      );            
     } else {
       return (
         <TouchableOpacity
@@ -173,7 +158,7 @@ export default class FindFriends extends Component {
       page: 1,
       jmlPage: 0,
       dataSource: []
-    }, function () {
+    }, function() {
       this.makeRequest(this.state.text)
     })
   }
@@ -190,13 +175,13 @@ export default class FindFriends extends Component {
   }
 
   footerList = () => {
-    if (this.state.page != this.state.jumlahPage) {
-      return (
+    if(this.state.page != this.state.jumlahPage){
+      return(
         <View style={{ marginTop: 20 }}>
-          <ActivityIndicator loading={this.state.isLoading} size={"small"} />
+          <ActivityIndicator loading={this.state.isLoading} size={"small"}/>
         </View>
       )
-    } else if (this.state.page == this.state.jumlahPage || this.state.page == -1 && this.state.jumlahPage == -1) {
+    } else if(this.state.page == this.state.jumlahPage || this.state.page == -1 && this.state.jumlahPage == -1) {
       return (
         <View></View>
       )

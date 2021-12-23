@@ -72,7 +72,7 @@ export default class Following extends Component {
       text: value,
       page: 1,
       data: []
-    }, function () {
+    }, function() {
       this.fetchData(this.state.text)
     })
   }
@@ -95,8 +95,8 @@ export default class Following extends Component {
 
     if (this.state.page != this.state.jumlahPage) {
       this.setState({
-        page: this.state.page + 1
-      }, function () {
+        page: this.state.page+1
+      }, function(){
         this.fetchData(this.state.text)
       })
     }
@@ -198,12 +198,12 @@ const styles = StyleSheet.create({
   },
 
   textInputStyle: {
-    height: 40,
+    height: 45,
     top: 20,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 15,
+    borderRadius: 10,
   },
 });

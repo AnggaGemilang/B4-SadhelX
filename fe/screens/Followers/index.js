@@ -69,7 +69,7 @@ export default class Followers extends Component {
       text: value,
       page: 1,
       data: []
-    }, function () {
+    }, function() {
       this.fetchData(this.state.text)
     })
   }
@@ -196,12 +196,12 @@ const styles = StyleSheet.create({
   },
 
   textInputStyle: {
-    height: 40,
+    height: 45,
     top: 20,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',
     backgroundColor: '#FFFFFF',
-    borderRadius: 15,
+    borderRadius: 10,
   },
 });

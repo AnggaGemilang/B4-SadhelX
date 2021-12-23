@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import HeaderNavigation from '../HeaderNavigator';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
     Text,
     StyleSheet,
     View,
     FlatList,
-    TextInput,
     ActivityIndicator,
-    Alert,
-    Touchable,
     TouchableOpacity,
-    Button,
     Image,
-    ImageBackground,
     ScrollView
 } from 'react-native';
 
@@ -126,20 +120,20 @@ export default class SuggestnAccept extends Component {
                     />
                     {/* <Icon name="search" style={styles.isearch} size={30} color="#808080" /> */}
                 </TouchableOpacity>
+
                 <Text
                     style={styles.title}
                 >
                     Follow Request
                 </Text>
+
                 <FlatList
                     data={this.state.data}
                     ItemSeparatorComponent={this.ListViewItemSeparator}
                     onEndReached={this.handleLoadMore}
                     // ListFooterComponent={this.footerList}
                     renderItem={({ item }) => (
-                        <ScrollView>
                             <TouchableOpacity>
-
                                 <Image source={{ uri: item.image_file }} style={styles.gambar} />
                                 <Text style={styles.userName}>{item.username}</Text>
                                 <Text style={styles.name}>@{item.firstname}</Text>
@@ -156,14 +150,11 @@ export default class SuggestnAccept extends Component {
                                     />
                                 </TouchableOpacity>
                             </TouchableOpacity>
-                        </ScrollView>
-
                     )}
                     enableEmptySections={true}
                     style={{ marginTop: 130, flexGrow: 1 }}
                     keyExtractor={(item, index) => index.toString()}
                 />
-
 
                 <Text
                     style={styles.title}
@@ -177,9 +168,7 @@ export default class SuggestnAccept extends Component {
                     onEndReached={this.handleLoadMore}
                     // ListFooterComponent={this.footerList}
                     renderItem={({ item }) => (
-                        <ScrollView>
                             <TouchableOpacity>
-
                                 <Image source={{ uri: item.image_file }} style={styles.gambar} />
                                 <Text style={styles.userName}>{item.username}</Text>
                                 <Text style={styles.name}>@{item.firstname}</Text>
@@ -196,15 +185,12 @@ export default class SuggestnAccept extends Component {
                                     />
                                 </TouchableOpacity>
                             </TouchableOpacity>
-                        </ScrollView>
-
                     )}
                     enableEmptySections={true}
                     style={{ marginTop: 130, flexGrow: 1 }}
                     keyExtractor={(item, index) => index.toString()}
                 />
             </ScrollView>
-
         )
     }
 }

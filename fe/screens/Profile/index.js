@@ -4,56 +4,94 @@ import {
     View,
     TouchableOpacity,
     Text,
-    Button,
+    Alert,
     Image
 } from 'react-native'
 
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-
 export default class Member extends Component {
 
-    state = {
-        toggle: true
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            toggle: false
+        }
     }
 
-    Followed() {
-        const newState = !this.state.toggle;
-        this.setState({ toggle: newState });
+    requestAPI = link => {
 
-        const options = {
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                pengirim_id: 1,
-                penerima_id: 2
-            })
-        };
+        let options = {}
 
-        fetch('http://192.168.1.8:8080/api/following', options)
+        if(!this.state.toggle){
+            options = {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    pengirim_id: 1,
+                    penerima_id: 2
+                })
+            };
+
+            fetch(link, options)
             .then(response => response.json())
             .then(response => {
                 console.log(response)
                 if (response.is_private) {
-                    this.setState({ textValue: "Requested" })
+                    this.setState({ 
+                        textValue: "Requested",
+                        toggle: true
+                     })
                 } else {
-                    this.setState({ textValue: "Followed" })
+                    this.setState({ 
+                        textValue: "Followed",
+                        toggle: true
+                     })
                 }
             })
             .catch(response => {
                 this.state = true
                 console.log(response)
             })
+        } else {
+            options = {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'DELETE'
+            };
+
+            fetch(link, options)
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                if (response.is_private) {
+                    this.setState({ 
+                        textValue: "Requested",
+                        toggle: false
+                     })
+                } else {
+                    this.setState({ 
+                        textValue: "Followed",
+                        toggle: false
+                     })
+                }
+            })
+            .catch(response => {
+                this.state = true
+                console.log(response)
+            })
+        }
     }
+
     render() {
 
         const { toggle } = this.state;
-        const Teman = toggle ? "Follow" : this.state.textValue;
-        const TombolBg = toggle ? "#16C79C" : "#808080";
+        const Teman = toggle ? this.state.textValue : "Follow";
+        const TombolBg = toggle ? "#808080" : "#16C79C";
 
         // const { navigate } = this.props.navigation;
 
@@ -254,7 +292,28 @@ export default class Member extends Component {
                             borderRadius: 10,
                             elevation: 5,
                         }}
-                        onPress={() => this.Followed()}
+                        onPress={() => {
+                            if (!this.state.toggle){
+                                this.requestAPI('http://192.168.1.8:8080/api/following')
+                            } else {
+                                return Alert.alert(
+                                    "Are your sure?",
+                                    "You can't follow him/her anymore",
+                                    [
+                                        {
+                                            text: "Yes",
+                                            onPress: () => {
+                                                console.log("asdasdasd")
+                                                this.requestAPI('http://192.168.1.8:8080/api/following/2/1')
+                                            },
+                                        },
+                                        {
+                                            text: "No",
+                                        },
+                                    ]
+                                );
+                            }
+                        }}
 
                     >
                         <Text
@@ -355,17 +414,11 @@ export default class Member extends Component {
                         </Text>
                     </TouchableOpacity>
 
-
-
-
                 </View>
-
-
 
             </View>
         )
     }
-
 
 }
 
