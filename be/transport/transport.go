@@ -225,19 +225,36 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		logging.Log(fmt.Sprintf("%d menampilkan data follower", id))
 	}
 
-	var response datastruct.Response3
-	response.Status = "Berhasil"
-	response.TotalData = jmlData
-	response.Limit = limit
-	response.Page = page
 	if limit == 0 || page == 0 {
-		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
-		response.Data = list_member
+		if list_member != nil {
+			var response datastruct.Response3
+			response.Status = "Berhasil"
+			response.TotalData = jmlData
+			response.Limit = limit
+			response.Page = page
+			response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+			response.Data = list_member
+			json.NewEncoder(w).Encode(response)
+		} else {
+			var response datastruct.Response4
+			response.Status = "Gagal"
+			response.Message = "Data Tidak Ditemukan"
+			json.NewEncoder(w).Encode(response)
+		}
 	} else {
-		response.Message = message
-		response.Data = limited_member
+		if limited_member != nil {
+			var response datastruct.Response3
+			response.Status = "Berhasil"
+			response.TotalData = jmlData
+			response.Limit = limit
+			response.Page = page
+			response.Message = message
+			response.Data = limited_member
+			json.NewEncoder(w).Encode(response)
+		} else {
+
+		}
 	}
-	json.NewEncoder(w).Encode(response)
 }
 
 func CariTeman(w http.ResponseWriter, r *http.Request) {

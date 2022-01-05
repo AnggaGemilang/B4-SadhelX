@@ -10,10 +10,6 @@ type Teman struct {
 	Status       string `json:"status"`
 }
 
-// Identity_no    int64  `json:"identity_no"`
-// Emergency_call int64  `json:"emergency_call"`
-// User_id        int64  `json:"user_id"`
-
 type Member struct {
 	User_id        string    `json:"user_id"`
 	Username       string    `json:"username"`
