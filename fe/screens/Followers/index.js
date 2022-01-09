@@ -203,4 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
   },
+  commit: {
+    top: 99,
+  },
 });
