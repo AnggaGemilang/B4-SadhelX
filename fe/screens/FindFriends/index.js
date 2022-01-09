@@ -53,7 +53,7 @@ export default class FindFriends extends Component {
     try {
       let response
       if(text != "") {
-        response = await axios.get(`http://192.168.1.8:8080/api/member/cari/${text}?limit=8&page=${this.state.page}`);
+        response = await axios.get(`http://192.168.1.8:8080/api/member/cari/8/${text}?limit=8&page=${this.state.page}`);
         if(this.state.page == 1) {
           this.setState({
             isLoading: false,
