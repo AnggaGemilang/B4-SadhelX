@@ -1758,3 +1758,10 @@
 [LOG] [2022-01-09 19:51:05] 1 menampilkan data suggest member
 [LOG] [2022-01-09 19:54:09] mencari data member dengan kata kunci 'a'
 [LOG] [2022-01-09 19:54:24] mencari data member dengan kata kunci 'xyz'
+[LOG] [2022-01-09 21:08:11] 8 menampilkan data follower
+[LOG] [2022-01-09 21:08:53] 8 menampilkan data following
+[LOG] [2022-01-09 21:08:56] 8 menampilkan data following
+[LOG] [2022-01-09 21:09:06] 8 menampilkan data follower
+[LOG] [2022-01-09 21:53:28] 8 menampilkan data follower
+[LOG] [2022-01-09 21:58:18] 8 menampilkan data following
+[LOG] [2022-01-09 21:59:16] mencari data member dengan kata kunci 'A'
