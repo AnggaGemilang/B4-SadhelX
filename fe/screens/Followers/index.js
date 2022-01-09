@@ -205,5 +205,6 @@ const styles = StyleSheet.create({
   },
   commit: {
     top: 99,
+    bottom: 100,
   },
 });
