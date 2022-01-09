@@ -8,14 +8,13 @@ import (
 	"strings"
 )
 
-func MencariMemberGlobal(nama string) ([]datastruct.Member, int, error) {
+func MencariMemberGlobal(nama string) ([]datastruct.Member, error) {
 
 	db := config.CreateConnection()
 
 	defer db.Close()
 
 	var list_member []datastruct.Member
-	jumlahData := 0
 
 	sqlStatement := `SELECT * FROM member WHERE username LIKE $1 OR firstname LIKE $1 OR lastname LIKE $1`
 
@@ -35,10 +34,9 @@ func MencariMemberGlobal(nama string) ([]datastruct.Member, int, error) {
 		if err != nil {
 			log.Fatalf("tidak bisa mengambil data. %v", err)
 		}
-		jumlahData++
 		list_member = append(list_member, member)
 	}
-	return list_member, jumlahData, err
+	return list_member, err
 }
 
 func GetMultipleMember(idMember []int64) ([]datastruct.Member, error) {
@@ -217,7 +215,7 @@ func HapusTeman(pengirim int, penerima int) int64 {
 	return rowsAffected
 }
 
-func SuggestMember(id int64) ([]int64, int, error) {
+func SuggestMember(id int64, keyword string, type_ string) ([]int64, int, error) {
 
 	db := config.CreateConnection()
 
@@ -225,8 +223,10 @@ func SuggestMember(id int64) ([]int64, int, error) {
 
 	var pengirim_id_list []int64
 	jmlData := 0
+	var sqlStatement = ""
 
-	sqlStatement := `	
+	if keyword == "" && type_ == "random" {
+		sqlStatement = `	
 		SELECT pengirim_id FROM teman
 		WHERE pengirim_id != $1 AND penerima_id IN (
 		SELECT penerima_id FROM teman
@@ -235,6 +235,16 @@ func SuggestMember(id int64) ([]int64, int, error) {
 		ORDER BY RANDOM()
 		LIMIT 5;
 	`
+	} else {
+		sqlStatement = `	
+		SELECT pengirim_id FROM teman
+		WHERE pengirim_id != $1 AND penerima_id IN (
+		SELECT penerima_id FROM teman
+		WHERE pengirim_id = $1 AND status = 'approved'	
+		) GROUP BY pengirim_id;
+	`
+	}
+
 	rows, err := db.Query(sqlStatement, id)
 
 	if err != nil {
@@ -252,7 +262,7 @@ func SuggestMember(id int64) ([]int64, int, error) {
 			log.Fatalf("tidak bisa mengambil data. %v", err)
 		}
 
-		jmlData = jmlData + 1
+		jmlData++
 
 		pengirim_id_list = append(pengirim_id_list, pengirim_id)
 	}
