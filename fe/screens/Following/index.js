@@ -84,8 +84,8 @@ export default class Following extends Component {
         style={{
           height: 0.3,
           backgroundColor: '#080808',
-          marginBottom: 20,
           marginTop: 15,
+          marginBottom: 15,
         }}
       />
     );

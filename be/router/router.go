@@ -20,7 +20,7 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/follower/{penerima}/{pengirim}", transport.AcceptFollowRequest).Methods("PUT", "OPTIONS")
 	router.HandleFunc("/api/follower/{penerima}/{pengirim}", transport.DeclineFollowRequest).Methods("DELETE", "OPTIONS")
 	router.HandleFunc("/api/member/suggest/{id}", transport.SggstMember).Methods("GET", "OPTIONS")
-	router.HandleFunc("/api/member/cari/{query}", transport.MencariMemberGlobal).Methods("GET", "OPTIONS")
+	router.HandleFunc("/api/member/cari/{id}/{query}", transport.MencariMemberGlobal).Methods("GET", "OPTIONS")
 	// ===============================================================
 
 	router.HandleFunc("/api/member", transport.GtMultipleMember).Methods("GET", "OPTIONS")

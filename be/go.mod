@@ -24,10 +24,6 @@ replace be/config => ./config
 
 replace be/router => ./router
 
-require (
-	github.com/go-kit/kit v0.12.0 // indirect
-	github.com/joho/godotenv v1.4.0 // indirect
-	github.com/lib/pq v1.10.3 // indirect
-)
+require github.com/go-kit/kit v0.12.0 // indirect
 
 go 1.13
