@@ -33,12 +33,17 @@ func GtMultipleMember(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Tidak bisa mengambil data. %v", err)
 	}
 
-	res := datastruct.GetMember{
-		IdMember: getMember.IdMember,
-		Data:     list_member,
-	}
+	if list_member == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+	} else {
+		res := datastruct.GetMember{
+			IdMember: getMember.IdMember,
+			Data:     list_member,
+		}
 
-	json.NewEncoder(w).Encode(res)
+		json.NewEncoder(w).Encode(res)
+	}
 
 }
 
@@ -225,8 +230,11 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		logging.Log(fmt.Sprintf("%d menampilkan data follower", id))
 	}
 
-	if limit == 0 || page == 0 {
-		if list_member != nil {
+	if list_member == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+	} else {
+		if limit == 0 || page == 0 {
 			var response datastruct.Response3
 			response.Status = "Berhasil"
 			response.TotalData = jmlData
@@ -236,13 +244,6 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 			response.Data = list_member
 			json.NewEncoder(w).Encode(response)
 		} else {
-			var response datastruct.Response4
-			response.Status = "Gagal"
-			response.Message = "Data Tidak Ditemukan"
-			json.NewEncoder(w).Encode(response)
-		}
-	} else {
-		if limited_member != nil {
 			var response datastruct.Response3
 			response.Status = "Berhasil"
 			response.TotalData = jmlData
@@ -251,8 +252,6 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 			response.Message = message
 			response.Data = limited_member
 			json.NewEncoder(w).Encode(response)
-		} else {
-
 		}
 	}
 }
@@ -379,20 +378,25 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 		logging.Log(fmt.Sprintf("%d mencari data follower dengan kata kunci '%s'", id, params["query"]))
 	}
 
-	var response datastruct.Response3
-	response.Status = "Berhasil"
-	response.TotalData = jmlData
-	response.Limit = limit
-	response.Page = page
-	if limit == 0 || page == 0 {
-		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
-		response.Data = selected_member
+	if limited_member == nil && selected_member == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
 	} else {
-		response.Message = message
-		response.Data = limited_member
-	}
+		var response datastruct.Response3
+		response.Status = "Berhasil"
+		response.TotalData = jmlData
+		response.Limit = limit
+		response.Page = page
+		if limit == 0 || page == 0 {
+			response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+			response.Data = selected_member
+		} else {
+			response.Message = message
+			response.Data = limited_member
+		}
 
-	json.NewEncoder(w).Encode(response)
+		json.NewEncoder(w).Encode(response)
+	}
 }
 
 func HapusTeman(w http.ResponseWriter, r *http.Request) {
@@ -525,19 +529,24 @@ func TmplknFollowRequest(w http.ResponseWriter, r *http.Request) {
 
 	logging.Log(fmt.Sprintf("%d menampilkan data follow request", id))
 
-	var response datastruct.Response3
-	response.Status = "Berhasil"
-	response.TotalData = jmlData
-	response.Limit = limit
-	response.Page = page
-	if limit == 0 || page == 0 {
-		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
-		response.Data = list_member
+	if limited_member == nil && list_member == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
 	} else {
-		response.Message = message
-		response.Data = limited_member
+		var response datastruct.Response3
+		response.Status = "Berhasil"
+		response.TotalData = jmlData
+		response.Limit = limit
+		response.Page = page
+		if limit == 0 || page == 0 {
+			response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+			response.Data = list_member
+		} else {
+			response.Message = message
+			response.Data = limited_member
+		}
+		json.NewEncoder(w).Encode(response)
 	}
-	json.NewEncoder(w).Encode(response)
 }
 
 func SggstMember(w http.ResponseWriter, r *http.Request) {
