@@ -164,6 +164,12 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		jmlData++
 	}
 
+	if list_teman == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+		return
+	}
+
 	requestData := datastruct.RequestMember{
 		IdMember: id_member,
 	}
@@ -232,25 +238,19 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		logging.Log(fmt.Sprintf("%d menampilkan data follower", id))
 	}
 
-	if list_member == nil {
-		w.WriteHeader(404)
-		w.Write([]byte("Data Tidak Ditemukan"))
+	var response datastruct.Response3
+	response.Status = "Berhasil"
+	response.TotalData = jmlData
+	response.Limit = limit
+	response.Page = page
+	if limit == 0 || page == 0 {
+		response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
+		response.Data = list_member
+		json.NewEncoder(w).Encode(response)
 	} else {
-		var response datastruct.Response3
-		response.Status = "Berhasil"
-		response.TotalData = jmlData
-		response.Limit = limit
-		response.Page = page
-		if limit == 0 || page == 0 {
-			response.Message = fmt.Sprintf("%d data ditampilkan", jmlData)
-			response.Data = list_member
-			json.NewEncoder(w).Encode(response)
-		} else {
-			var response datastruct.Response3
-			response.Message = message
-			response.Data = limited_member
-			json.NewEncoder(w).Encode(response)
-		}
+		response.Message = message
+		response.Data = limited_member
+		json.NewEncoder(w).Encode(response)
 	}
 }
 
@@ -299,6 +299,12 @@ func CariTeman(w http.ResponseWriter, r *http.Request) {
 		} else {
 			id_member = append(id_member, element.Pengirim_id)
 		}
+	}
+
+	if list_teman == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+		return
 	}
 
 	requestData := datastruct.RequestMember{
@@ -468,6 +474,12 @@ func TmplknFollowRequest(w http.ResponseWriter, r *http.Request) {
 		jmlData++
 	}
 
+	if list_teman == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+		return
+	}
+
 	requestData := datastruct.RequestMember{
 		IdMember: id_member,
 	}
@@ -567,6 +579,12 @@ func SggstMember(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id_member, jmlData, err = service.SuggestMember(int64(id), "", "random")
+
+	if id_member == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+		return
+	}
 
 	requestData := datastruct.RequestMember{
 		IdMember: id_member,
@@ -703,6 +721,12 @@ func MencariMemberGlobal(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id_member, jmlData, err = service.SuggestMember(int64(id), "", "keyword")
+
+	if id_member == nil {
+		w.WriteHeader(404)
+		w.Write([]byte("Data Tidak Ditemukan"))
+		return
+	}
 
 	requestData := datastruct.RequestMember{
 		IdMember: id_member,

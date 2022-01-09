@@ -206,7 +206,7 @@ function Router({ navigation }) {
         component={Followers}
         options={{
           headerShown: true,
-          animationEnabled: false,
+          animationEnabled: true,
           headerTransparent: true,
         }}
       />
@@ -216,7 +216,7 @@ function Router({ navigation }) {
         component={Following}
         options={{
           headerShown: true,
-          animationEnabled: false,
+          animationEnabled: true,
           headerTransparent: true,
         }}
       />

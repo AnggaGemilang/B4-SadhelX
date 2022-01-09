@@ -4,8 +4,6 @@ import Router from './router';
 import Profile from './screens/Profile';
 import HomeTab from './router'
 
-
-
 const App = () => {
   return (
     <NavigationContainer>

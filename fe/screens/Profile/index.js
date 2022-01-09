@@ -93,63 +93,10 @@ export default class Member extends Component {
         const Teman = toggle ? this.state.textValue : "Follow";
         const TombolBg = toggle ? "#808080" : "#16C79C";
 
-        // const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;
 
         return (
             <View>
-
-                {/* <View
-            style = {{
-                position: 'absolute',
-                backgroundColor: '#D8d8d8',
-                width: 450,
-                height: 450,
-                top: 50,
-                left: 20,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 40,
-                
-                
-            }}
-        >
-        
-
-        </View>
-
-        <View
-            style = {{            
-                // alignContent: 'center',
-                position: 'absolute',
-                 flexDirection: 'row',
-                //  margin: 30,
-                paddingVertical: 60,
-                //  top: 60,
-                paddingHorizontal: 400,
-                flex: 1,
-
-
-            }}>
-            <TouchableOpacity
-            onPress={() => console.log('pesan')}
-            >
-            <Image
-                source = {require('./assets/pesan.png')}
-                style= {{
-                    marginRight: 10,
-                    
-                }}
-                
-                />
-            </TouchableOpacity>
-
-
-            
-            <Image 
-                source = {require('./assets/keranjang.png')}
-            />
-        </View> */}
-
 
                 {/* Status atas */}
 
@@ -273,7 +220,6 @@ export default class Member extends Component {
 
                     }}
                 >
-
 
                     {/* Follow */}
                     <TouchableOpacity
@@ -419,9 +365,7 @@ export default class Member extends Component {
             </View>
         )
     }
-
 }
-
 
 const styles = StyleSheet.create({
     container: {

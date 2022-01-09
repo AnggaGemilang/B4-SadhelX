@@ -18,7 +18,6 @@ export default class Followers extends Component {
 
   constructor(props) {
     super(props);
-    //setting default state
     this.state = {
       data: [],
       isLoading: false,
@@ -81,8 +80,8 @@ export default class Followers extends Component {
         style={{
           height: 0.3,
           backgroundColor: '#080808',
-          marginBottom: 20,
           marginTop: 15,
+          marginBottom: 15,
         }}
       />
     );
