@@ -1623,3 +1623,11 @@
 [LOG] [2021-12-23 22:22:43] mencari data member dengan kata kunci 'A'
 [LOG] [2021-12-23 22:23:29] 8 menampilkan data follower
 [LOG] [2021-12-23 22:44:50] 98 mengirimkan pertemanan ke 2
+[LOG] [2022-01-09 15:31:11] 8 mencari data follower dengan kata kunci 'a'
+[LOG] [2022-01-09 15:31:18] 8 mencari data follower dengan kata kunci 'xyz'
+[LOG] [2022-01-09 15:31:24] 8 mencari data follower dengan kata kunci 'xyz'
+[LOG] [2022-01-09 15:31:29] 8 mencari data follower dengan kata kunci 'xyz'
+[LOG] [2022-01-09 15:31:38] 8 mencari data following dengan kata kunci 'a'
+[LOG] [2022-01-09 15:31:44] 8 mencari data following dengan kata kunci 'xyz'
+[LOG] [2022-01-09 15:31:47] 8 mencari data following dengan kata kunci 'xyz'
+[LOG] [2022-01-09 15:31:51] 8 mencari data following dengan kata kunci 'xyz'
