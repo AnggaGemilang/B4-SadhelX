@@ -126,18 +126,10 @@ export default class FindFriends extends Component {
               console.log(`Insert new todoList error ${error}`);
             });
           }}>
-          <TouchableOpacity
-            onPress={() => {
-              deleteRecentData(item.id).then().catch(error => {
-                alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
-              });
-              this.loadDataRecent()
-            }} >
-            <Image source={{ uri: item.image_file }} style={styles.gambar} />
-            <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
-            <Text style={styles.name}>@{item.username}</Text>
-          </TouchableOpacity>  
-        </TouchableOpacity>
+          <Image source={{ uri: item.image_file }} style={styles.gambar} />
+          <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
+          <Text style={styles.name}>@{item.username}</Text>
+        </TouchableOpacity>  
       );
     }
   }
