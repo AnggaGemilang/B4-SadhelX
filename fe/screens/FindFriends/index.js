@@ -83,20 +83,6 @@ export default class FindFriends extends Component {
     }
   }
 
-  ListViewItemSeparator = () => {
-    //Item sparator view
-    return (
-      <View
-        style={{
-          height: 0.3,
-          backgroundColor: '#080808',
-          marginBottom: 20,
-          marginTop: 15,
-        }}
-      />
-    );
-  };
-
   renderItem = ({ item }) => {
     if (this.state.isRecent) {
       return (
@@ -104,24 +90,24 @@ export default class FindFriends extends Component {
           onPress={() => {
             console.log("Dipencet")
           }}>
-          <View flexDirection="row">
-            <Image source={{uri:item.image_file}} style={styles.gambar} />
-              <View justifyContent="center">
-                <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-                <Text style={styles.textburik}>@{item.username}</Text> 
-              </View>
-              <View>
-                <TouchableOpacity
-                  onPress={() => {
-                    deleteRecentData(item.id).then().catch(error => {
-                      alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
-                    });
-                    this.loadDataRecent()
-                  }} >
-                    <Text>Hapus</Text>
-                </TouchableOpacity>
-              </View>
-          </View>      
+          <TouchableOpacity
+            onPress={() => {
+              deleteRecentData(item.id).then().catch(error => {
+                alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
+              });
+              this.loadDataRecent()
+            }} >
+            <Image source={{ uri: item.image_file }} style={styles.gambar} />
+              <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
+              <Text style={styles.name}>@{item.username}</Text>
+              <TouchableOpacity>
+              <Image
+                source={require('../../assets/icons/delete-64.png')}
+                resizeMode='contain'
+                style={styles.delete}
+              />
+            </TouchableOpacity>
+          </TouchableOpacity>  
         </TouchableOpacity>
       );            
     } else {
@@ -140,13 +126,17 @@ export default class FindFriends extends Component {
               console.log(`Insert new todoList error ${error}`);
             });
           }}>
-          <View flexDirection="row">
+          <TouchableOpacity
+            onPress={() => {
+              deleteRecentData(item.id).then().catch(error => {
+                alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
+              });
+              this.loadDataRecent()
+            }} >
             <Image source={{ uri: item.image_file }} style={styles.gambar} />
-            <View justifyContent="center">
-              <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-              <Text style={styles.textburik}>@{item.username}</Text>
-            </View>
-          </View>
+            <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
+            <Text style={styles.name}>@{item.username}</Text>
+          </TouchableOpacity>  
         </TouchableOpacity>
       );
     }
@@ -200,22 +190,12 @@ export default class FindFriends extends Component {
           underlineColorAndroid="transparent"
           placeholder={"Search"}
         />
-        {/* <Image source={require('../../assets/icons/sear.png')} style={styles.icon}/> */}
-        {/* <SearchBar
-            placeholder="Type something here...."
-            onChangeText={this.updateSearch}
-            value={search}
-            lightTheme
-            round
-            searchIcon={{ size: 24 }}
-        /> */}
         <FlatList
           data={this.state.dataSource}
           keyExtractor={this.keyExtractor}
           ListFooterComponent={this.footerList}
           renderItem={this.renderItem}
           onEndReached={this.handleLoadMore}
-          ItemSeparatorComponent={this.ListViewItemSeparator}
           onEndThreshold={100}
           enableEmptySections={true}
           style={{ marginTop: 30 }}
@@ -231,23 +211,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 16,
   },
-  textStyle: {
-    padding: 5,
-    marginHorizontal: 5,
-    fontWeight: '900',
-  },
-  textburik: {
-    fontWeight: '500',
-    padding: 10,
-
-  },
 
   gambar: {
-    width: 65,
-    height: 65,
-    marginEnd: 20,
-    borderRadius: 40
+    top: 8,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    position: 'absolute',
+    borderWidth: 1,
+    borderColor: '#000',
+    marginHorizontal: 5,
   },
+
   textInputStyle: {
     height: 40,
     borderWidth: 1,
@@ -257,9 +232,29 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     left: 50,
     width: 330,
-
-
   },
+
+  userName: {
+    color: 'black',
+    padding: 5,
+    top: 8,
+    fontWeight: '500',
+    left: 80
+  },
+
+  name: {
+    top: -4,
+    left: 85,
+    marginVertical: 15
+  },
+
+  delete: {
+    position: 'absolute',
+    right: 25,
+    width: 20,
+    bottom: 10,
+  },
+
   icon: {
     position: 'absolute',
     left: 78,

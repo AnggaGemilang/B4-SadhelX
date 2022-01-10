@@ -30,6 +30,7 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-ui-xg": "^0.0.6",
     "react-native-vector-icons": "^9.0.0",
+    "react-native-virtualized-view": "^0.1.5",
     "react-native-webview": "^11.15.0",
     "realm": "^10.10.1",
     "recyclerlistview": "^3.0.5",

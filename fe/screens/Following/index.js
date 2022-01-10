@@ -121,14 +121,7 @@ export default class Following extends Component {
 
   render() {
     return (
-      //ListView to show with textinput used as search bar
       <View style={styles.viewStyle}>
-        <View
-          style={{
-            borderBottomColor: 'black',
-            borderBottomWidth: 1,
-          }} />
-
         <TextInput
           style={styles.textInputStyle}
           onChangeText={text => this.SearchFilterFunction(text)}
@@ -141,8 +134,7 @@ export default class Following extends Component {
           style={{
             top: 25,
             marginHorizontal: 10,
-          }}
-        >
+          }} >
           {this.state.jumlahData} Teman
         </Text>
 

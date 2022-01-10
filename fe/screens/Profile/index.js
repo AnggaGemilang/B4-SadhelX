@@ -96,11 +96,8 @@ export default class Member extends Component {
         const { navigate } = this.props.navigation;
 
         return (
-
             <View style={styles.container}>
-
-                <View style={styles.container1}>
-
+                <View style={styles.row}>
                     <View>
                         <Image
                             source={require('../../assets/icons/pp.png')}
@@ -116,10 +113,11 @@ export default class Member extends Component {
                     <View >
                         <Text
                             style={{
-                                textAlign: 'center', 
-                                fontSize: 18
+                                    textAlign: 'center', 
+                                    fontSize: 18,
+                                    fontWeight: "bold"
                             }} >
-                            129
+                            30
                         </Text>
                         <Text
                             style={{
@@ -134,16 +132,16 @@ export default class Member extends Component {
                             <Text
                                 style={{
                                     textAlign: 'center', 
-                                    fontSize: 18
+                                    fontSize: 18,
+                                    fontWeight: "bold"
                                 }} >
-                                129
+                                420
                             </Text>
                             <Text
                                 style={{
                                     fontSize: 18
-                                }}
-                            >
-                                Follower
+                                }} >
+                            Follower
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -153,50 +151,123 @@ export default class Member extends Component {
                             <Text
                                 style={{
                                     textAlign: 'center', 
-                                    fontSize: 18
+                                    fontSize: 18,
+                                    fontWeight: "bold"
                                 }} >
-                                129
+                                400
                             </Text>
                             <Text
                                 style={{
                                     fontSize: 18
-                                }}
-                            >
+                                }} >
                                 Following
                             </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
+                <View style={styles.row}>
+                    <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 10}} >Pitri Parker</Text>
+                </View>
+                <View style={styles.row}>
+                    <Text style={{fontSize: 15, marginBottom: 18}}>Personal Blog</Text>
+                </View>
+                <View style={styles.row}>
+                    {/* Follow */}
+                    <TouchableOpacity
+                        style={{
+                            width: '31%',
+                            height: 30,
+                            alignSelf: 'stretch',
+                            backgroundColor: TombolBg,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 10,
+                            elevation: 5
+                        }}
+                        onPress={() => {
+                            if (!this.state.toggle){
+                                this.requestAPI('http://192.168.1.8:8080/api/following')
+                            } else {
+                                return Alert.alert(
+                                    "Are your sure?",
+                                    "You can't follow him/her anymore",
+                                    [
+                                        {
+                                            text: "Yes",
+                                            onPress: () => {
+                                                console.log("asdasdasd")
+                                                this.requestAPI('http://192.168.1.8:8080/api/following/2/1')
+                                            },
+                                        },
+                                        {
+                                            text: "No",
+                                        },
+                                    ]
+                                );
+                            }
+                        }} >
+                        <Text
+                            style={{
+                                color: '#fff',
+                                fontWeight: 'bold'
 
+                            }} >
+                            {Teman}
+                        </Text>
+                    </TouchableOpacity>
 
+                    {/* Activity */}
+                    <TouchableOpacity
+                        style={styles.baten} >
+                        <Text
+                            style={{
+                                color: '#fff',
+                                fontWeight: 'bold'
+                            }} >
+                            Activity
+                        </Text>
+                    </TouchableOpacity>
 
+                    {/* Menus */}
+                    <TouchableOpacity
+                        style={styles.baten} >
+                        <Text
+                            style={{
+                                color: '#fff',
+                                fontWeight: 'bold'
 
-
-
-
-
-
-                
+                            }} >
+                            Menus
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    paddingTop: 45,
-    justifyContent: "space-between",
-    flexDirection: "row",
-  },
-  container1: {
-    flex: 1,
-    color: 'black',
-    alignItems: 'center',
-    paddingTop: 45,
-    marginHorizontal: 25,
-    alignContent: 'center',
-    justifyContent: "space-between",
-    flexDirection: "row",
-  }
+    container: {
+        paddingTop: 70,
+        justifyContent: "center",
+        color: 'black'
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: 'center',
+        marginTop: 5,
+        marginHorizontal: 25,
+        alignContent: 'center',
+        justifyContent: "space-between",
+    },
+    baten: {
+        width: '31%',
+        height: 30,
+        alignSelf: 'stretch',
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 5
+    }
 });
