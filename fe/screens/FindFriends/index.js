@@ -16,6 +16,7 @@ export default class FindFriends extends Component {
         text: "",        
         dataSource: [],
         isRecent: true,
+        isEmpty: false
     };
   }
 
@@ -53,7 +54,7 @@ export default class FindFriends extends Component {
     try {
       let response
       if(text != "") {
-        response = await axios.get(`http://192.168.1.8:8080/api/member/cari/8/${text}?limit=8&page=${this.state.page}`);
+        response = await axios.get(`http://192.168.1.8:8080/api/member/cari/6/${text}?limit=8&page=${this.state.page}`);
         if(this.state.page == 1) {
           this.setState({
             isLoading: false,
@@ -61,25 +62,23 @@ export default class FindFriends extends Component {
             dataSource: response.data.data,
             isRecent: false,
             jumlahPage: Math.ceil(response.data.total_jml_data / response.data.limit)
-          }, function(){
-            console.log(response.data.message)
-            console.log(this.state.dataSource)
           })
         } else {
           this.setState({
             isLoading: false,
             jumlahData: response.data.total_jml_data,
             dataSource: this.state.dataSource.concat(response.data.data)
-          }, function () {
-            console.log(response.data.message)
-            console.log(this.state.dataSource)
           })
         }
       } else {
         this.loadDataRecent()
       }
     } catch (error) {
-      console.error(error);
+      if (error.response.status == 404){
+        this.setState({
+          isEmpty: true
+        })
+      }
     }
   }
 
@@ -172,28 +171,42 @@ export default class FindFriends extends Component {
 
   render() {
     const { search } = this.state;
-    return (
-
-      <View style={styles.viewStyle}>
-        <TextInput
-          style={styles.textInputStyle}
-          onChangeText={text => this.updateSearch(text)}
-          value={search}
-          underlineColorAndroid="transparent"
-          placeholder={"Search"}
-        />
-        <FlatList
-          data={this.state.dataSource}
-          keyExtractor={this.keyExtractor}
-          ListFooterComponent={this.footerList}
-          renderItem={this.renderItem}
-          onEndReached={this.handleLoadMore}
-          onEndThreshold={100}
-          enableEmptySections={true}
-          style={{ marginTop: 30 }}
-        />
-      </View>
-    );
+    if (this.state.isEmpty == true) {
+        return (
+          <View style={styles.viewStyle}>
+            <TextInput
+              style={styles.textInputStyle}
+              onChangeText={text => this.updateSearch(text)}
+              value={search}
+              underlineColorAndroid="transparent"
+              placeholder={"Search"}
+            />
+            <Text style={{textAlign: 'center', marginTop: 50}} >Data Tidak Ditemukan</Text>
+          </View>
+        )
+    } else {
+      return (
+        <View style={styles.viewStyle}>
+          <TextInput
+            style={styles.textInputStyle}
+            onChangeText={text => this.updateSearch(text)}
+            value={search}
+            underlineColorAndroid="transparent"
+            placeholder={"Search"}
+          />
+          <FlatList
+            data={this.state.dataSource}
+            keyExtractor={this.keyExtractor}
+            ListFooterComponent={this.footerList}
+            renderItem={this.renderItem}
+            onEndReached={this.handleLoadMore}
+            onEndThreshold={100}
+            enableEmptySections={true}
+            style={{ marginTop: 30 }}
+          />
+        </View>
+      );
+    }
   }
 }
 

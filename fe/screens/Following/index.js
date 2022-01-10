@@ -108,7 +108,6 @@ export default class Followers extends Component {
   }
 
   footerList = () => {
-
     if (this.state.page != this.state.jumlahPage) {
       return (
         <View style={{ marginTop: 20 }}>
@@ -192,7 +191,6 @@ const styles = StyleSheet.create({
 
   textburik: {
     fontSize: 15,
-    fontWeight: '500'
   },
 
   gambar: {

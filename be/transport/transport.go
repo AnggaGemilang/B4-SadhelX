@@ -722,13 +722,9 @@ func MencariMemberGlobal(w http.ResponseWriter, r *http.Request) {
 		page = 0
 	}
 
-	id_member, jmlData, err = service.SuggestMember(int64(id), "", "keyword")
+	keyword := strings.ToLower(params["query"])
 
-	if id_member == nil {
-		w.WriteHeader(404)
-		w.Write([]byte("Data Tidak Ditemukan"))
-		return
-	}
+	id_member, jmlData, err = service.SuggestMember(int64(id), "", "keyword")
 
 	requestData := datastruct.RequestMember{
 		IdMember: id_member,
@@ -748,12 +744,6 @@ func MencariMemberGlobal(w http.ResponseWriter, r *http.Request) {
 	}
 	defer responseMember.Body.Close()
 
-	if responseMember.StatusCode != 200 {
-		w.WriteHeader(responseMember.StatusCode)
-		w.Write([]byte("Not found"))
-		return
-	}
-
 	responseData, err := ioutil.ReadAll(responseMember.Body)
 	if err != nil {
 		log.Fatal(err)
@@ -763,9 +753,13 @@ func MencariMemberGlobal(w http.ResponseWriter, r *http.Request) {
 
 	list_member = getMember.Data
 
-	collect_member = list_member
+	for _, element1 := range list_member {
+		if strings.Contains(strings.ToLower(element1.Username), keyword) || strings.Contains(strings.ToLower(element1.Firstname), keyword) || strings.Contains(strings.ToLower(element1.Lastname), keyword) {
+			collect_member = append(collect_member, element1)
+		}
+	}
 
-	selected_member, err := service.MencariMemberGlobal(params["query"])
+	selected_member, err := service.MencariMemberGlobal(keyword)
 
 	for _, element1 := range selected_member {
 		switching = true
@@ -776,9 +770,10 @@ func MencariMemberGlobal(w http.ResponseWriter, r *http.Request) {
 		}
 		if switching == true {
 			collect_member = append(collect_member, element1)
-			jmlData++
 		}
 	}
+
+	jmlData = len(collect_member)
 
 	if page != 0 && limit != 0 {
 		if page == 1 {

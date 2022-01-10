@@ -96,7 +96,6 @@ export default class Followers extends Component {
   };
 
   handleLoadMore = async () => {
-
     if (this.state.page != this.state.jumlahPage) {
       this.setState({
         page: this.state.page + 1,
@@ -192,7 +191,6 @@ export default class Followers extends Component {
 
     textburik: {
       fontSize: 15,
-      fontWeight: '500'
     },
 
     gambar: {
