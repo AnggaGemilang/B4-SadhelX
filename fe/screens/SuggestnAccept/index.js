@@ -10,6 +10,7 @@ import {
     Image,
 } from 'react-native';
 import { ScrollView } from 'react-native-virtualized-view';
+import axios from 'axios'
 
 export default class SuggestnAccept extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ export default class SuggestnAccept extends Component {
     }
 
     fetchData = async () => {
-
         try {
             const [respTodoOne, respTodoTwo] = await Promise.all([
                 fetch("http://192.168.1.8:8080/api/follower/request/6"),
@@ -36,12 +36,23 @@ export default class SuggestnAccept extends Component {
                 isLoading: false,
                 dataRequest:todoOne.data,
                 dataSuggest: todoTwo.data
-            }, function () {
-                console.log(todoOne.data)
-                console.log(todoTwo.data)
             })
         } catch (err) {
             throw err;
+        }
+    }
+
+    postData = async (link, tipe) => {
+        try {
+            console.log(link)
+            let response
+            if (tipe == 'accept'){
+                response = await axios.put(link);
+            } else {
+                response = await axios.delete(link);
+            }
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -125,12 +136,18 @@ export default class SuggestnAccept extends Component {
                             <Image source={{ uri: item.image_file }} style={styles.gambar} />
                             <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
                             <Text style={styles.name}>@{item.username}</Text>
-                            <TouchableOpacity style={styles.bfollow}>
+                            <TouchableOpacity style={styles.bfollow}
+                                onPress={ () =>
+                                    this.postData('http://192.168.1.8:8080/api/follower/6'+ '/' + item.user_id, 'accept')
+                                } >
                                 <Text style={styles.tfollow}>
                                     Accept
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={ () =>
+                                    this.postData('http://192.168.1.8:8080/api/follower/6'+ '/' + item.user_id, 'deny')
+                                }>
                                 <Image
                                     source={require('../../assets/icons/delete-64.png')}
                                     resizeMode='contain'

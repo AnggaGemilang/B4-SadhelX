@@ -78,7 +78,6 @@ export default class Following extends Component {
   }
 
   ListViewItemSeparator = () => {
-    //Item sparator view
     return (
       <View
         style={{
@@ -92,7 +91,6 @@ export default class Following extends Component {
   };
 
   handleLoadMore = async () => {
-
     if (this.state.page != this.state.jumlahPage) {
       this.setState({
         page: this.state.page+1
@@ -100,11 +98,9 @@ export default class Following extends Component {
         this.fetchData(this.state.text)
       })
     }
-
   }
 
   footerList = () => {
-
     if (this.state.page != this.state.jumlahPage) {
       return (
         <View style={{ marginTop: 20 }}>
@@ -116,7 +112,6 @@ export default class Following extends Component {
         <View><Text>Null</Text></View>
       )
     }
-
   }
 
   render() {
@@ -163,6 +158,7 @@ export default class Following extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   viewStyle: {
     justifyContent: 'center',

@@ -679,6 +679,8 @@ func DeclineFollowRequest(w http.ResponseWriter, r *http.Request) {
 
 	msg := fmt.Sprintf("%v data telah dihapus", deletedRows)
 
+	logging.Log(msg)
+
 	res := datastruct.Response4{
 		Status:  "Berhasil",
 		Message: msg,
