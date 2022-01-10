@@ -24,11 +24,15 @@ export default class Followers extends Component {
       page: 1,
       jumlahPage: 0,
       jumlahData: 0,
-      text: ""
+      text: "",
+      isEmpty: false
     };
   }
 
   fetchData = async (text) => {
+    this.setState({
+      isEmpty: false
+    })
     try {
       let response
       if (text != "") {
@@ -55,7 +59,11 @@ export default class Followers extends Component {
         })
       }
     } catch (error) {
-      console.error(error);
+      if (error.response.status == 404){
+        this.setState({
+          isEmpty: true
+        })
+      }
     }
   }
 
@@ -101,7 +109,6 @@ export default class Followers extends Component {
   }
 
   footerList = () => {
-
     if (this.state.page != this.state.jumlahPage) {
       return (
         <View style={{ marginTop: 20 }}>
@@ -116,86 +123,92 @@ export default class Followers extends Component {
   }
 
   render() {
-    return (
-      //ListView to show with textinput used as search bar
-      <View style={styles.viewStyle}>
+    if (this.state.isEmpty == true) {
+        return (
+          <View style={styles.viewStyle}>
+            <Text style={{textAlign: 'center'}} >Data Tidak Ditemukan</Text>
+          </View>
+        )
+    } else {
+        return (
+          <View style={styles.viewStyle}>
+            <TextInput
+              style={styles.textInputStyle}
+              onChangeText={text => this.SearchFilterFunction(text)}
+              value={this.state.text}
+              underlineColorAndroid="transparent"
+              placeholder="Cari Teman"
+              clearButtonMode='always'
+            />
+            
+            <Text
+              style={{
+                top: 25,
+                marginHorizontal: 10,
+              }} >
+              {this.state.jumlahData} Teman
+            </Text>
 
-        <TextInput
-          style={styles.textInputStyle}
-          onChangeText={text => this.SearchFilterFunction(text)}
-          value={this.state.text}
-          underlineColorAndroid="transparent"
-          placeholder="Cari Teman"
-          clearButtonMode='always'
-        />
-        
-        <Text
-          style={{
-            top: 25,
-            marginHorizontal: 10,
-          }}
-        >
-          {this.state.jumlahData} Teman
-        </Text>
-
-        <FlatList
-          data={this.state.data}
-          ItemSeparatorComponent={this.ListViewItemSeparator}
-          onEndReached={this.handleLoadMore}
-          ListFooterComponent={this.footerList}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => console.log("Member")}>
-              <View flexDirection="row">
-                <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                <View justifyContent="center">
-                  <Text style={styles.textStyle} >{item.firstname + " " + item.lastname}</Text>
-                  <Text style={styles.textburik} >@{item.username}</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          )}
-          enableEmptySections={true}
-          style={{ marginTop: 30 }}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-    );
+            <FlatList
+              data={this.state.data}
+              ItemSeparatorComponent={this.ListViewItemSeparator}
+              onEndReached={this.handleLoadMore}
+              ListFooterComponent={this.footerList}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => console.log("Member")}>
+                  <View flexDirection="row">
+                    <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                    <View justifyContent="center">
+                      <Text style={styles.textStyle} >{item.firstname + " " + item.lastname}</Text>
+                      <Text style={styles.textburik} >@{item.username}</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+              enableEmptySections={true}
+              style={{ marginTop: 30 }}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
+        );
+      }
+    }
   }
-}
-const styles = StyleSheet.create({
-  viewStyle: {
-    justifyContent: 'center',
-    flex: 1,
-    marginTop: 40,
-    padding: 16,
-  },
 
-  textStyle: {
-    fontSize: 18,
-    fontWeight: '700',
-    marginBottom: 5
-  },
+  const styles = StyleSheet.create({
+    viewStyle: {
+      justifyContent: 'center',
+      flex: 1,
+      marginTop: 40,
+      padding: 16,
+    },
 
-  textburik: {
-    fontSize: 15,
-    fontWeight: '500'
-  },
+    textStyle: {
+      fontSize: 18,
+      fontWeight: '700',
+      marginBottom: 5
+    },
 
-  gambar: {
-    width: 65,
-    height: 65,
-    marginEnd: 20,
-    borderRadius: 40
-  },
+    textburik: {
+      fontSize: 15,
+      fontWeight: '500'
+    },
 
-  textInputStyle: {
-    height: 45,
-    top: 10,
-    borderWidth: 1,
-    paddingLeft: 10,
-    borderColor: '#080808',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-  },
-});
+    gambar: {
+      width: 65,
+      height: 65,
+      marginEnd: 20,
+      borderRadius: 40
+    },
+
+    textInputStyle: {
+      height: 45,
+      top: 10,
+      borderWidth: 1,
+      paddingLeft: 10,
+      borderColor: '#080808',
+      backgroundColor: '#FFFFFF',
+      borderRadius: 10,
+    },
+  });

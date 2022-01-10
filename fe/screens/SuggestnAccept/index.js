@@ -27,7 +27,7 @@ export default class SuggestnAccept extends Component {
         try {
             const [respTodoOne, respTodoTwo] = await Promise.all([
                 fetch("http://192.168.1.8:8080/api/follower/request/6"),
-                fetch("http://192.168.1.8:8080/api/member/suggest/8")
+                fetch("http://192.168.1.8:8080/api/member/suggest/6")
             ]);
             const todoOne = await respTodoOne.json();
             const todoTwo = await respTodoTwo.json();
@@ -51,6 +51,7 @@ export default class SuggestnAccept extends Component {
             } else {
                 response = await axios.delete(link);
             }
+            this.fetchData()
         } catch (error) {
             console.error(error);
         }

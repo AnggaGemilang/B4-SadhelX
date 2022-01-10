@@ -44,7 +44,6 @@ func GtMultipleMember(w http.ResponseWriter, r *http.Request) {
 
 		json.NewEncoder(w).Encode(res)
 	}
-
 }
 
 // ==================================================================
@@ -161,7 +160,6 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 		} else {
 			id_member = append(id_member, element.Pengirim_id)
 		}
-		jmlData++
 	}
 
 	if list_teman == nil {
@@ -201,6 +199,8 @@ func TmplknTeman(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(responseData, &getMember)
 
 	list_member = getMember.Data
+
+	jmlData = len(list_member)
 
 	if page != 0 && limit != 0 {
 		if page == 1 {
