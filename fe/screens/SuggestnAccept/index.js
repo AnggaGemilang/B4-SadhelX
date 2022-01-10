@@ -44,7 +44,7 @@ export default class SuggestnAccept extends Component {
         }
     }
 
-    requestAPI = link => {
+    requestFollow = (pengirim, penerima) => {
         let options = {}
         options = {
             headers: {
@@ -53,31 +53,20 @@ export default class SuggestnAccept extends Component {
             },
             method: 'POST',
             body: JSON.stringify({
-                pengirim_id: 1,
-                penerima_id: 2
+                pengirim_id: parseInt(pengirim),
+                penerima_id: parseInt(penerima)
             })
         };
-
-        fetch(link, options)
+        fetch('http://192.168.1.8:8080/api/following', options)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
-            if (response.is_private) {
-                this.setState({ 
-                    textValue: "Requested",
-                    toggle: true
-                 })
-            } else {
-                this.setState({ 
-                    textValue: "Followed",
-                    toggle: true
-                 })
-            }
+            console.log(response.message)
+            this.fetchData()
         })
         .catch(response => {
             this.state = true
             console.log(response)
-        })        
+        }) 
     }
 
     postData = async (link, tipe) => {
@@ -124,7 +113,8 @@ export default class SuggestnAccept extends Component {
                             <Image source={{ uri: item.image_file }} style={styles.gambar} />
                             <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
                             <Text style={styles.name}>@{item.username}</Text>
-                            <TouchableOpacity style={styles.bfollow}>
+                            <TouchableOpacity style={styles.bfollow}
+                                onPress={() => this.requestFollow(6, item.user_id)} >
                                 <Text style={styles.tfollow}>
                                     Follow
                                 </Text>
