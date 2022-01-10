@@ -185,7 +185,7 @@ export default class Member extends Component {
                             fontSize: 20
                         }}
                     >
-                        Mpit
+                        Pitri Parker
                     </Text>
                 </View>
 
@@ -213,8 +213,6 @@ export default class Member extends Component {
                         marginHorizontal: 15,
                         position: 'absolute',
                         flexDirection: 'row',
-                        // alignItems: 'center',
-                        // justifyContent: 'center',
                         marginVertical: 350,
                         flex: 1,
 
@@ -227,9 +225,6 @@ export default class Member extends Component {
                         style={{
                             width: 120,
                             height: 30,
-                            // height:29,
-                            // top: 150,
-                            // bottom: 592,
                             backgroundColor: TombolBg,
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -260,7 +255,6 @@ export default class Member extends Component {
                                 );
                             }
                         }}
-
                     >
                         <Text
                             style={{
@@ -306,11 +300,6 @@ export default class Member extends Component {
                     <TouchableOpacity
                         style={{
                             width: 120,
-                            // height:29,
-                            // top: 92,
-                            //bottom: 598,
-                            // left: 220,
-                            // right: 82,
                             backgroundColor: '#000',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -335,11 +324,6 @@ export default class Member extends Component {
                     <TouchableOpacity
                         style={{
                             width: 32,
-                            // height:29,
-                            // top: 64,
-                            //bottom: 598,
-                            // left: 327,
-                            // right: 82,
                             backgroundColor: '#000',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -359,9 +343,7 @@ export default class Member extends Component {
                             V
                         </Text>
                     </TouchableOpacity>
-
                 </View>
-
             </View>
         )
     }

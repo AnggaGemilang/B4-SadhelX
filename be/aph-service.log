@@ -1765,3 +1765,255 @@
 [LOG] [2022-01-09 21:53:28] 8 menampilkan data follower
 [LOG] [2022-01-09 21:58:18] 8 menampilkan data following
 [LOG] [2022-01-09 21:59:16] mencari data member dengan kata kunci 'A'
+[LOG] [2022-01-09 22:09:06] 8 menampilkan data follower
+[LOG] [2022-01-09 22:09:21] 8 menampilkan data follower
+[LOG] [2022-01-09 22:09:37] 8 menampilkan data follower
+[LOG] [2022-01-09 22:09:41] 8 menampilkan data follower
+[LOG] [2022-01-09 22:12:45] 8 menampilkan data following
+[LOG] [2022-01-10 08:13:36] 8 menampilkan data follower
+[LOG] [2022-01-10 08:13:44] 8 menampilkan data following
+[LOG] [2022-01-10 08:31:28] 1 menampilkan data follow request
+[LOG] [2022-01-10 08:31:34] 2 menampilkan data follow request
+[LOG] [2022-01-10 08:31:51] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:32:23] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:34:33] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:34:33] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:34:38] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:34:38] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:34:45] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:34:46] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:34:46] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:34:46] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:36:48] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:36:48] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:37:50] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:37:50] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:38:17] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:38:17] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:38:20] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:38:20] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:38:28] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:38:28] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:38:55] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:38:55] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:39:07] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:39:07] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:39:23] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:39:23] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:40:21] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:40:22] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:40:31] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:40:32] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:40:33] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:40:33] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:40:43] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:40:43] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:41:03] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:41:03] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:41:05] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:41:06] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:41:48] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:42:56] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:42:56] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:02] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:02] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:08] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:08] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:10] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:11] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:12] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:13] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:27] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:27] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:33] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:43:33] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:37] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:43:37] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:44:32] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:44:32] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:44:33] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:44:33] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:44:36] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:44:36] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:44:37] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:44:37] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:44:38] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:44:38] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:44:46] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:44:46] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:10] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:11] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:11] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:11] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:18] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:18] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:20] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:21] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:26] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:28] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:28] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:28] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:35] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:36] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:40] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:40] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:41] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:41] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:44] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:44] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:45:45] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:45:45] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:46:24] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:46:24] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:46:34] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:46:34] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:46:35] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:46:36] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:47:48] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:47:48] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:47:49] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:47:49] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:47:57] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:47:57] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:01] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:01] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:08] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:09] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:11] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:11] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:23] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:23] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:35] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:35] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:41] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:41] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:46] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:46] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:50] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:51] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:48:54] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:48:54] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:49:04] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:49:04] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:49:07] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:49:07] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:49:11] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:49:11] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:49:28] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:49:28] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:49:40] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:49:40] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:50:02] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:50:03] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:50:07] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:50:07] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:50:30] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:50:30] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:50:42] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:50:42] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:50:48] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:50:48] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:15] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:15] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:51:26] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:26] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:26] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:51:27] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:51:42] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:51:42] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:43] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:51:44] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:51] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:51:51] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:55] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:51:55] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:52:31] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:52:32] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:52:39] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:52:39] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:52:42] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:52:42] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:52:52] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:52:52] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:53:09] mencari data member dengan kata kunci 'A'
+[LOG] [2022-01-10 08:53:22] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:53:22] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:53:37] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:53:38] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:54:56] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:54:56] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:55:00] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:55:01] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:55:04] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:55:04] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:55:08] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:55:08] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:55:50] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:55:51] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:56:00] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:56:01] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:56:23] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:56:23] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:56:30] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:56:30] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:56:31] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:56:32] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:56:52] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:56:53] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:56:55] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:56:55] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:57:01] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:57:01] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:57:07] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:57:07] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:57:11] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:57:11] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:57:14] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:57:15] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:57:42] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:57:42] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:57:43] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:57:43] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:58:14] 8 menampilkan data follower
+[LOG] [2022-01-10 08:58:23] 8 menampilkan data following
+[LOG] [2022-01-10 08:58:40] 1 mengirimkan pertemanan ke 2
+[LOG] [2022-01-10 08:59:36] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:59:36] 8 menampilkan data suggest member
+[LOG] [2022-01-10 08:59:40] 6 menampilkan data follow request
+[LOG] [2022-01-10 08:59:40] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:01:21] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:01:21] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:01:27] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:01:27] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:03:20] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:03:21] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:04:27] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:04:27] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:04:57] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:04:57] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:11:01] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:11:02] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:11:18] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:11:18] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:14:04] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:14:04] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:14:05] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:14:05] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:21:34] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:21:34] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:31:33] 8 menampilkan data suggest member
+[LOG] [2022-01-10 09:31:33] 6 menampilkan data follow request
+[LOG] [2022-01-10 09:31:39] 1 mengirimkan pertemanan ke 2
+[LOG] [2022-01-10 09:31:43] 2 data telah dihapus
+[LOG] [2022-01-10 09:33:56] 1 mengirimkan pertemanan ke 2
+[LOG] [2022-01-10 09:34:16] 1 data telah dihapus
+[LOG] [2022-01-10 09:34:22] 8 menampilkan data follower
+[LOG] [2022-01-10 09:34:33] 8 menampilkan data follower
+[LOG] [2022-01-10 09:34:42] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2022-01-10 09:34:47] 8 menampilkan data follower
+[LOG] [2022-01-10 09:34:51] 8 menampilkan data following
+[LOG] [2022-01-10 09:35:08] 8 menampilkan data following
+[LOG] [2022-01-10 09:36:27] mencari data member dengan kata kunci 'A'
+[LOG] [2022-01-10 09:36:56] mencari data member dengan kata kunci 'H'
+[LOG] [2022-01-10 09:37:11] mencari data member dengan kata kunci 'A'
+[LOG] [2022-01-10 09:37:12] mencari data member dengan kata kunci 'An'
