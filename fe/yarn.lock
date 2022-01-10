@@ -6670,6 +6670,11 @@ react-native-vector-icons@^9.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
+react-native-virtualized-view@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-virtualized-view/-/react-native-virtualized-view-0.1.5.tgz#d908b6adc53e6aedac9c8106767067d525a08ac0"
+  integrity sha512-GYKck4rYPpG0dg3WSv6aPPGfyArRMT98VTs6jVhD7C8MlSOsvfNuWKVjSrQmUMSdjpjLDpRc5LgJW8u1VDi44w==
+
 react-native-webview@^11.15.0:
   version "11.15.0"
   resolved "https://registry.npmjs.org/react-native-webview/-/react-native-webview-11.15.0.tgz"

@@ -8,8 +8,8 @@ import {
     ActivityIndicator,
     TouchableOpacity,
     Image,
-    ScrollView
 } from 'react-native';
+import { ScrollView } from 'react-native-virtualized-view';
 
 export default class SuggestnAccept extends Component {
     constructor(props) {
@@ -57,95 +57,93 @@ export default class SuggestnAccept extends Component {
         )
     }
 
+    BottomFlatList = () => {
+        return (
+            <View>
+                <Text style={styles.title2} >
+                    Suggestion For You
+                </Text>
+
+                <FlatList
+                    data={this.state.dataSuggest}
+                    ItemSeparatorComponent={this.ListViewItemSeparator}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity>
+                            <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                            <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
+                            <Text style={styles.name}>@{item.username}</Text>
+                            <TouchableOpacity style={styles.bfollow}>
+                                <Text style={styles.tfollow}>
+                                    Follow
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Image
+                                    source={require('../../assets/icons/delete-64.png')}
+                                    resizeMode='contain'
+                                    style={styles.delete2}
+                                />
+                            </TouchableOpacity>
+                        </TouchableOpacity>
+                    )}
+                    enableEmptySections={true}
+                    style={{ marginTop: 35, flexGrow: 1, paddingBottom: 20 }}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </View>
+        )
+    }
+
     render() {
         return (
-
             <ScrollView
                 style={styles.container} >
-
                 <Text style={styles.headerT}>Search</Text>
                 <HeaderNavigation />
                 <TouchableOpacity
                     style={styles.border}
-                    onPress={() => this.props.navigation.navigate('FindFriends')}
-                >
+                    onPress={() => this.props.navigation.navigate('FindFriends')}>
                     <Text style={styles.tsearch}>Search</Text>
                     <Image
                         source={require('../../assets/icons/searchA.png')}
                         resizeMode='contain'
                         style={styles.isearch}
                     />
-                    {/* <Icon name="search" style={styles.isearch} size={30} color="#808080" /> */}
                 </TouchableOpacity>
 
-                <Text
-                    style={styles.title}
-                >
+                <Text style={styles.title} >
                     Follow Request
                 </Text>
 
-                <View>
-                    <FlatList
-                        data={this.state.dataRequest}
-                        ItemSeparatorComponent={this.ListViewItemSeparator}
-                        onEndReached={this.handleLoadMore}
-                        renderItem={({ item }) => (
+                <FlatList
+                    data={this.state.dataRequest}
+                    ItemSeparatorComponent={this.ListViewItemSeparator}
+                    onEndReached={this.handleLoadMore}
+                    ListFooterComponent={this.BottomFlatList}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity>
+                            <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                            <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
+                            <Text style={styles.name}>@{item.username}</Text>
+                            <TouchableOpacity style={styles.bfollow}>
+                                <Text style={styles.tfollow}>
+                                    Accept
+                                </Text>
+                            </TouchableOpacity>
                             <TouchableOpacity>
-                                <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                                <Text style={styles.userName}>{item.username}</Text>
-                                <Text style={styles.name}>@{item.firstname}</Text>
-                                <TouchableOpacity style={styles.bfollow}>
-                                    <Text style={styles.tfollow}>
-                                        Follow
-                                    </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <Image
-                                        source={require('../../assets/icons/delete-64.png')}
-                                        resizeMode='contain'
-                                        style={styles.delete}
-                                    />
-                                    </TouchableOpacity>
-                                </TouchableOpacity>
-                        )}
-                        enableEmptySections={true}
-                        style={{ marginTop: 130, flexGrow: 1 }}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </View>
-
-                <Text
-                    style={styles.title2}
-                >
-                    Suggestion For You
-                </Text>
-
-                <View>
-                    <FlatList
-                        data={this.state.dataSuggest}
-                        ItemSeparatorComponent={this.ListViewItemSeparator}
-                        renderItem={({ item }) => (
-                                <TouchableOpacity>
-                                    <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                                    <Text style={styles.userName}>{item.username}</Text>
-                                    <Text style={styles.name}>@{item.firstname}</Text>
-                                    <TouchableOpacity>
-                                        <Image
-                                            source={require('../../assets/icons/delete-64.png')}
-                                            resizeMode='contain'
-                                            style={styles.delete2}
-                                        />
-                                    </TouchableOpacity>
-                                </TouchableOpacity>
-                        )}
-                        enableEmptySections={true}
-                        style={{ marginTop: 35, flexGrow: 1, paddingBottom: 20 }}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </View>
-
+                                <Image
+                                    source={require('../../assets/icons/delete-64.png')}
+                                    resizeMode='contain'
+                                    style={styles.delete}
+                                />
+                            </TouchableOpacity>
+                        </TouchableOpacity>
+                    )}
+                    enableEmptySections={true}
+                    style={{ marginTop: 130, flexGrow: 1 }}
+                    keyExtractor={(item, index) => index.toString()}
+                />
             </ScrollView>
-            
         )
     }
 }
