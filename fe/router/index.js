@@ -101,8 +101,8 @@ function HomeTabs({ navigation }) {
           </View>
         ),
       }} />
-      <Tab.Screen name="Profile" component={Profile} options={{
-        headerShown: false, tabBarIcon: ({ focused }) => (
+      <Tab.Screen name="mpit_parker02" component={Profile} options={{
+         headerShown: true, headerTransparent: true, tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
             <Image
               source={require('../assets/icons/profilA.png')}
@@ -239,10 +239,3 @@ function Router({ navigation }) {
 };
 
 export default Router;
-
-
-
-const styles = StyleSheet.create({
-
-
-})

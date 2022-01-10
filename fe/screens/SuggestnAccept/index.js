@@ -14,42 +14,39 @@ import {
 export default class SuggestnAccept extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: [], isLoading: false, text: '', page: 1, };
-        this.arrayholder = [];
+        this.state = { 
+            dataSuggest: [],
+            dataRequest: [],
+            isLoading: false, 
+            page: 1, 
+        };
+    }
+
+    fetchData = async () => {
+
+        try {
+            const [respTodoOne, respTodoTwo] = await Promise.all([
+                fetch("http://192.168.1.8:8080/api/follower/request/6"),
+                fetch("http://192.168.1.8:8080/api/member/suggest/8")
+            ]);
+            const todoOne = await respTodoOne.json();
+            const todoTwo = await respTodoTwo.json();
+
+            this.setState({
+                isLoading: false,
+                dataRequest:todoOne.data,
+                dataSuggest: todoTwo.data
+            }, function () {
+                console.log(todoOne.data)
+                console.log(todoTwo.data)
+            })
+        } catch (err) {
+            throw err;
+        }
     }
 
     componentDidMount() {
-        const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=5&page=1';
-        return fetch(url)
-            .then(response => response.json())
-            .then(responseJson => {
-                this.setState(
-                    {
-                        isLoading: false,
-                        data: responseJson,
-                    }
-                );
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
-
-    handleLoadMore = async () => {
-        await this.setState(
-            { page: this.state.page + 1, isLoading: true })
-        const url = 'https://617774f89c328300175f5973.mockapi.io/api/sadhelx/member?limit=5&page=' + this.state.page;
-        return fetch(url)
-            .then(response => response.json())
-            .then(responseJson => {
-                this.setState(
-                    {
-                        data: this.state.data.concat(responseJson),
-                        isLoading: false
-                    }
-                );
-            }
-            )
+        this.fetchData();
     }
 
     footerList = () => {
@@ -60,54 +57,14 @@ export default class SuggestnAccept extends Component {
         )
     }
 
-    // state = {
-    //     toggle:true
-    // }
-
-    // Followed(){
-    //     const newState = !this.state.toggle;
-    //     this.setState({toggle:newState});
-
-    //     const options = {
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //             pengirim_id: 1,
-    //             penerima_id: 2
-    //         })  
-    //     };
-
-    //     fetch( 'http://192.168.1.9:8080/api/teman', options)
-    //     .then( response => response.json() )
-    //     .then( response => {
-    //         console.log(response)
-    //         if(response.is_private){
-    //             this.setState({textValue:"Requested"})
-    //         } else {
-    //             this.setState({textValue:"Followed"})
-    //         }
-    //     })
-    //     .catch( response => {
-    //         this.state = true
-    //         console.log(response)
-    //     })
-    // }
-
     render() {
-        // const {toggle} = this.state;
-        // const Teman = toggle?"Follow":this.state.textValue;
-        // const TombolBg = toggle? "#16C79C":"#808080";
         return (
 
             <ScrollView
-                style={styles.container}
-            >
+                style={styles.container} >
+
                 <Text style={styles.headerT}>Search</Text>
                 <HeaderNavigation />
-                {/* <Text>PENCET PLOK</Text> */}
                 <TouchableOpacity
                     style={styles.border}
                     onPress={() => this.props.navigation.navigate('FindFriends')}
@@ -127,12 +84,12 @@ export default class SuggestnAccept extends Component {
                     Follow Request
                 </Text>
 
-                <FlatList
-                    data={this.state.data}
-                    ItemSeparatorComponent={this.ListViewItemSeparator}
-                    onEndReached={this.handleLoadMore}
-                    // ListFooterComponent={this.footerList}
-                    renderItem={({ item }) => (
+                <View>
+                    <FlatList
+                        data={this.state.dataRequest}
+                        ItemSeparatorComponent={this.ListViewItemSeparator}
+                        onEndReached={this.handleLoadMore}
+                        renderItem={({ item }) => (
                             <TouchableOpacity>
                                 <Image source={{ uri: item.image_file }} style={styles.gambar} />
                                 <Text style={styles.userName}>{item.username}</Text>
@@ -148,49 +105,47 @@ export default class SuggestnAccept extends Component {
                                         resizeMode='contain'
                                         style={styles.delete}
                                     />
+                                    </TouchableOpacity>
                                 </TouchableOpacity>
-                            </TouchableOpacity>
-                    )}
-                    enableEmptySections={true}
-                    style={{ marginTop: 130, flexGrow: 1 }}
-                    keyExtractor={(item, index) => index.toString()}
-                />
+                        )}
+                        enableEmptySections={true}
+                        style={{ marginTop: 130, flexGrow: 1 }}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                </View>
 
                 <Text
-                    style={styles.title}
+                    style={styles.title2}
                 >
                     Suggestion For You
                 </Text>
 
-                <FlatList
-                    data={this.state.data}
-                    ItemSeparatorComponent={this.ListViewItemSeparator}
-                    onEndReached={this.handleLoadMore}
-                    // ListFooterComponent={this.footerList}
-                    renderItem={({ item }) => (
-                            <TouchableOpacity>
-                                <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                                <Text style={styles.userName}>{item.username}</Text>
-                                <Text style={styles.name}>@{item.firstname}</Text>
-                                <TouchableOpacity style={styles.bfollow}>
-                                    <Text style={styles.tfollow}>
-                                        Follow
-                                    </Text>
-                                </TouchableOpacity>
+                <View>
+                    <FlatList
+                        data={this.state.dataSuggest}
+                        ItemSeparatorComponent={this.ListViewItemSeparator}
+                        renderItem={({ item }) => (
                                 <TouchableOpacity>
-                                    <Image
-                                        source={require('../../assets/icons/delete-64.png')}
-                                        resizeMode='contain'
-                                        style={styles.delete}
-                                    />
+                                    <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                                    <Text style={styles.userName}>{item.username}</Text>
+                                    <Text style={styles.name}>@{item.firstname}</Text>
+                                    <TouchableOpacity>
+                                        <Image
+                                            source={require('../../assets/icons/delete-64.png')}
+                                            resizeMode='contain'
+                                            style={styles.delete2}
+                                        />
+                                    </TouchableOpacity>
                                 </TouchableOpacity>
-                            </TouchableOpacity>
-                    )}
-                    enableEmptySections={true}
-                    style={{ marginTop: 130, flexGrow: 1 }}
-                    keyExtractor={(item, index) => index.toString()}
-                />
+                        )}
+                        enableEmptySections={true}
+                        style={{ marginTop: 35, flexGrow: 1, paddingBottom: 20 }}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                </View>
+
             </ScrollView>
+            
         )
     }
 }
@@ -200,6 +155,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1
     },
+
     border: {
         top: 110,
         paddingVertical: 7,
@@ -207,21 +163,20 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'row',
         borderColor: 'grey',
-        //position: 'relative',
         borderRadius: 5,
         borderWidth: 1,
         marginHorizontal: 20,
     },
+    
     tsearch: {
         top: 3
     },
+
     isearch: {
-        // position: 'absolute',
-        // top: -5,
         left: 275,
         width: 20
-        //height: 10
     },
+
     title: {
         color: 'black',
         fontWeight: 'bold',
@@ -230,6 +185,16 @@ const styles = StyleSheet.create({
         top: 130,
         marginHorizontal: 20,
     },
+
+    title2: {
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 20,
+        margin: 3,
+        top: 30,
+        marginHorizontal: 20,
+    },
+
     gambar: {
         top: 10,
         padding: 15,
@@ -241,19 +206,20 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         marginHorizontal: 20,
     },
+
     userName: {
         color: 'black',
         padding: 5,
         top: 10,
-        //marginHorizontal: 5,
-        //marginVertical: 5,
         fontWeight: '500',
         left: 80
     },
+
     name: {
         left: 85,
         marginVertical: 8
     },
+
     bfollow: {
         backgroundColor: '#0C8EFF',
         paddingVertical: 5,
@@ -264,18 +230,25 @@ const styles = StyleSheet.create({
         top: 20,
         right: 70
     },
+
     tfollow: {
         color: 'white'
     },
+
     delete: {
-        //flexDirection: 'row',
         position: 'absolute',
         right: 25,
-        //top: 0,
         width: 20,
         bottom: -1,
-        // height:30,
     },
+
+    delete2: {
+        position: 'absolute',
+        right: 25,
+        width: 20,
+        bottom: -1,
+    },
+
     headerT: {
         fontSize: 30,
         color: 'black',
@@ -283,18 +256,4 @@ const styles = StyleSheet.create({
         left: 20,
         top: 25
     }
-    // follow: {
-    //     width: 120,
-    //     height: 30,
-    //     // height:29,
-    //     // top: 150,
-    //     // bottom: 592,
-    //     backgroundColor: TombolBgg,
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     paddingVertical: 5,
-    //     marginHorizontal: 5,
-    //     borderRadius: 10,
-    //     elevation: 5, 
-    // }    
 })

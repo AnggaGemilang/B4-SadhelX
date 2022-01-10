@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
 
   textInputStyle: {
     height: 45,
-    top: 20,
+    top: 10,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',

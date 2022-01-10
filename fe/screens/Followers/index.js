@@ -113,18 +113,12 @@ export default class Followers extends Component {
         <View></View>
       )
     }
-
   }
 
   render() {
     return (
       //ListView to show with textinput used as search bar
       <View style={styles.viewStyle}>
-        <View
-          style={{
-            borderBottomColor: 'black',
-            borderBottomWidth: 1,
-          }} />
 
         <TextInput
           style={styles.textInputStyle}
@@ -134,6 +128,7 @@ export default class Followers extends Component {
           placeholder="Cari Teman"
           clearButtonMode='always'
         />
+        
         <Text
           style={{
             top: 25,
@@ -196,7 +191,7 @@ const styles = StyleSheet.create({
 
   textInputStyle: {
     height: 45,
-    top: 20,
+    top: 10,
     borderWidth: 1,
     paddingLeft: 10,
     borderColor: '#080808',

@@ -96,284 +96,107 @@ export default class Member extends Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <View>
 
-                {/* Status atas */}
+            <View style={styles.container}>
 
-                <View
-                    style={{
-                        position: 'absolute',
-                        paddingVertical: 150,
-                        left: 180,
-                        flex: 1,
+                <View style={styles.container1}>
 
-                    }}
-                >
-                    <TouchableOpacity
-
-                        onPress={() => this.props.navigation.navigate('Followers')}
-                    >
+                    <View>
+                        <Image
+                            source={require('../../assets/icons/pp.png')}
+                            style={{
+                                width: 100,
+                                height: 100,
+                                borderRadius: 100,
+                                borderWidth: 1.5,
+                                borderColor: '#000',
+                            }}
+                        />
+                    </View>
+                    <View >
                         <Text
                             style={{
-                                fontSize: 20
-                            }}
-                        >
-                            Polower
+                                textAlign: 'center', 
+                                fontSize: 18
+                            }} >
+                            129
                         </Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View
-                    style={{
-                        position: 'absolute',
-                        paddingVertical: 150,
-                        left: 300,
-                        flex: 1,
-
-                    }}
-                >
-                    <TouchableOpacity
-
-                        onPress={() => this.props.navigation.navigate('Following')}
-                    >
                         <Text
                             style={{
-                                fontSize: 20
-                            }}
-                        >
-                            Polowing
+                                fontSize: 18
+                            }} >
+                            Post
                         </Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Followers')}>
+                            <Text
+                                style={{
+                                    textAlign: 'center', 
+                                    fontSize: 18
+                                }} >
+                                129
+                            </Text>
+                            <Text
+                                style={{
+                                    fontSize: 18
+                                }}
+                            >
+                                Follower
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Following')}>
+                            <Text
+                                style={{
+                                    textAlign: 'center', 
+                                    fontSize: 18
+                                }} >
+                                129
+                            </Text>
+                            <Text
+                                style={{
+                                    fontSize: 18
+                                }}
+                            >
+                                Following
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
-                {/* PP */}
 
-                <View
-                    style={{
-                        position: 'absolute',
-                        marginVertical: 100,
-                        marginLeft: 20,
-                        flex: 1,
 
-                    }}
-                >
-                    <Image
-                        source={require('../../assets/icons/pp.png')}
-                        style={{
-                            width: 120,
-                            height: 120,
-                            borderRadius: 100,
-                            borderWidth: 1.5,
-                            borderColor: '#000',
-                            top: 5
-                        }}
-                    />
-                </View>
 
-                {/* nick */}
-                <View
-                    style={{
-                        position: 'absolute',
-                        marginHorizontal: 30,
-                        marginVertical: 250,
-                        flex: 1,
-                    }}
-                >
-                    <Text
-                        style={{
-                            fontWeight: '900',
-                            fontSize: 20
-                        }}
-                    >
-                        Mpit
-                    </Text>
-                </View>
 
-                {/* KET */}
-                <View
-                    style={{
-                        position: 'absolute',
-                        marginHorizontal: 30,
-                        marginVertical: 280,
-                        flex: 1,
-                    }}
-                >
-                    <Text
-                        style={{
-                            fontSize: 15
-                        }}
-                    >
-                        Biodata
-                    </Text>
-                </View>
 
-                {/* Tombol */}
-                <View
-                    style={{
-                        marginHorizontal: 15,
-                        position: 'absolute',
-                        flexDirection: 'row',
-                        // alignItems: 'center',
-                        // justifyContent: 'center',
-                        marginVertical: 350,
-                        flex: 1,
 
-                    }}
-                >
 
-                    {/* Follow */}
-                    <TouchableOpacity
 
-                        style={{
-                            width: 120,
-                            height: 30,
-                            // height:29,
-                            // top: 150,
-                            // bottom: 592,
-                            backgroundColor: TombolBg,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            paddingVertical: 5,
-                            marginHorizontal: 5,
-                            borderRadius: 10,
-                            elevation: 5,
-                        }}
-                        onPress={() => {
-                            if (!this.state.toggle){
-                                this.requestAPI('http://192.168.1.8:8080/api/following')
-                            } else {
-                                return Alert.alert(
-                                    "Are your sure?",
-                                    "You can't follow him/her anymore",
-                                    [
-                                        {
-                                            text: "Yes",
-                                            onPress: () => {
-                                                console.log("asdasdasd")
-                                                this.requestAPI('http://192.168.1.8:8080/api/following/2/1')
-                                            },
-                                        },
-                                        {
-                                            text: "No",
-                                        },
-                                    ]
-                                );
-                            }
-                        }}
-
-                    >
-                        <Text
-                            style={{
-                                color: '#fff',
-                                fontWeight: 'bold'
-
-                            }}
-                        >
-                            {Teman}
-                        </Text>
-                    </TouchableOpacity>
-
-                    {/* Activity */}
-                    <TouchableOpacity
-                        style={{
-                            width: 120,
-                            // height:29,
-                            // top: 120,
-                            // bottom: 592,
-                            // left: 110,
-                            // right:592,
-                            backgroundColor: '#000',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            paddingVertical: 5,
-                            marginHorizontal: 5,
-                            borderRadius: 10,
-                            elevation: 5
-                        }}
-                    >
-                        <Text
-                            style={{
-                                color: '#fff',
-                                fontWeight: 'bold'
-
-                            }}
-                        >
-                            Activity
-                        </Text>
-                    </TouchableOpacity>
-
-                    {/* Menus */}
-                    <TouchableOpacity
-                        style={{
-                            width: 120,
-                            // height:29,
-                            // top: 92,
-                            //bottom: 598,
-                            // left: 220,
-                            // right: 82,
-                            backgroundColor: '#000',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            paddingVertical: 5,
-                            marginHorizontal: 5,
-                            borderRadius: 10,
-                            elevation: 5
-                        }}
-                    >
-                        <Text
-                            style={{
-                                color: '#fff',
-                                fontWeight: 'bold'
-
-                            }}
-                        >
-                            Menus
-                        </Text>
-                    </TouchableOpacity>
-
-                    {/* dll */}
-                    <TouchableOpacity
-                        style={{
-                            width: 32,
-                            // height:29,
-                            // top: 64,
-                            //bottom: 598,
-                            // left: 327,
-                            // right: 82,
-                            backgroundColor: '#000',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            paddingVertical: 5,
-                            marginHorizontal: 15,
-                            borderRadius: 10,
-                            elevation: 5
-                        }}
-                    >
-                        <Text
-                            style={{
-                                color: '#fff',
-                                fontWeight: 'bold'
-
-                            }}
-                        >
-                            V
-                        </Text>
-                    </TouchableOpacity>
-
-                </View>
-
+                
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // position: 'absolute',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'whitesmoke'
-    }
-})
+  container: {
+    alignItems: 'center',
+    paddingTop: 45,
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  container1: {
+    flex: 1,
+    color: 'black',
+    alignItems: 'center',
+    paddingTop: 45,
+    marginHorizontal: 25,
+    alignContent: 'center',
+    justifyContent: "space-between",
+    flexDirection: "row",
+  }
+});
