@@ -2976,3 +2976,42 @@
 [LOG] [2022-01-11 05:35:44] 6 menampilkan data follow request
 [LOG] [2022-01-11 05:35:44] 6 menampilkan data suggest member
 [LOG] [2022-01-11 05:35:55] mencari data member dengan kata kunci 'A'
+[LOG] [2022-01-11 07:08:23] 8 menampilkan data follower
+[LOG] [2022-01-11 07:08:25] 8 menampilkan data follower
+[LOG] [2022-01-11 07:08:27] 8 menampilkan data following
+[LOG] [2022-01-11 07:08:28] 8 menampilkan data following
+[LOG] [2022-01-11 07:08:30] 8 menampilkan data following
+[LOG] [2022-01-11 07:08:34] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2022-01-11 07:08:36] 8 mencari data following dengan kata kunci 'A'
+[LOG] [2022-01-11 07:08:40] 8 menampilkan data follower
+[LOG] [2022-01-11 07:08:41] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2022-01-11 07:08:45] 1 mengirimkan pertemanan ke 2
+[LOG] [2022-01-11 07:08:49] 1 data telah dihapus
+[LOG] [2022-01-11 07:08:52] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:08:52] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:08:56] 1 data telah diupdate
+[LOG] [2022-01-11 07:08:56] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:08:56] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:09:01] 1 data telah dihapus
+[LOG] [2022-01-11 07:09:01] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:09:01] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:09:08] 6 mengirimkan pertemanan ke 2
+[LOG] [2022-01-11 07:09:09] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:09:09] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:09:11] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:09:11] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:09:20] mencari data member dengan kata kunci 'A'
+[LOG] [2022-01-11 07:09:34] mencari data member dengan kata kunci 'Aj'
+[LOG] [2022-01-11 07:09:37] mencari data member dengan kata kunci 'Ajk'
+[LOG] [2022-01-11 07:18:22] 8 menampilkan data follower
+[LOG] [2022-01-11 07:18:24] 8 mencari data follower dengan kata kunci 'A'
+[LOG] [2022-01-11 07:18:27] 8 menampilkan data following
+[LOG] [2022-01-11 07:18:28] 8 menampilkan data following
+[LOG] [2022-01-11 07:18:30] 8 menampilkan data following
+[LOG] [2022-01-11 07:18:34] 1 mengirimkan pertemanan ke 2
+[LOG] [2022-01-11 07:18:37] 1 data telah dihapus
+[LOG] [2022-01-11 07:18:47] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:18:48] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:18:59] 6 menampilkan data follow request
+[LOG] [2022-01-11 07:18:59] 6 menampilkan data suggest member
+[LOG] [2022-01-11 07:19:09] mencari data member dengan kata kunci 'A'

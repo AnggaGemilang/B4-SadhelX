@@ -1,7 +1,5 @@
 import React from 'react'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
-import Router from './router';
-import Profile from './screens/Profile';
 import HomeTab from './router'
 
 const navTheme = DefaultTheme;
@@ -15,4 +13,5 @@ const App = () => {
     </NavigationContainer>
   );
 }
+
 export default App

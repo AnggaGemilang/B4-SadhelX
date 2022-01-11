@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { View, Text, TouchableOpacity } from 'react-native'
-import { HeaderTabs } from '..'
 
 export default function HeaderNavigator() {
     const [activeTab, setActiveTab] = useState("Friends");
@@ -50,14 +49,10 @@ const HeaderButton = (props) => (
         paddingVertical: 5,
         paddingHorizontal: 18,
         marginHorizontal: 10,
-        //marginTop: 15,
         marginVertical: 10,
         borderRadius: 5,
-
-
     }}
-        onPress={() => props.setActiveTab(props.text)}
-    >
+    onPress={() => props.setActiveTab(props.text)} >
         <Text style={{ color: props.activeTab === props.text ? '#FFF' : '#757575' }}>{props.text}</Text>
     </TouchableOpacity>
 );
