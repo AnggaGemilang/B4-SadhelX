@@ -174,7 +174,6 @@ export default class Followers extends Component {
       }
     }
   }
-
   const styles = StyleSheet.create({
     viewStyle: {
       justifyContent: 'center',
