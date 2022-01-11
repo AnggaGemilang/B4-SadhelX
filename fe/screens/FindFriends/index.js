@@ -37,13 +37,11 @@ export default class FindFriends extends Component {
           page: -1,
           jumlahPage: -1,
           isRecent: true,
-        }, function () {
-          console.log(recentLists)
-        });
+        })
       }
     }).catch((error) => {
       this.setState({ isLoading: false, dataSource: [] });
-    });
+    })
   }
 
   componentDidMount () {
@@ -89,17 +87,17 @@ export default class FindFriends extends Component {
           onPress={() => {
             console.log("Dipencet")
           }}>
-          <TouchableOpacity
-            onPress={() => {
-              deleteRecentData(item.id).then().catch(error => {
-                alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
-              });
-              this.loadDataRecent()
-            }} >
+          <TouchableOpacity>
             <Image source={{ uri: item.image_file }} style={styles.gambar} />
               <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
               <Text style={styles.name}>@{item.username}</Text>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  deleteRecentData(item.id).then().catch(error => {
+                    alert(`Failed to delete recentItem with id = ${id}, error=${error}`);
+                  });
+                  this.loadDataRecent()
+              }} >
               <Image
                 source={require('../../assets/icons/delete-64.png')}
                 resizeMode='contain'
