@@ -18,20 +18,22 @@ export default class SuggestnAccept extends Component {
         this.state = { 
             dataSuggest: [],
             dataRequest: [],
-            isLoading: false, 
+            isLoading: true, 
             page: 1, 
         };
     }
 
     fetchData = async () => {
+        this.setState({
+            isLoading: true,
+        })
         try {
             const [respTodoOne, respTodoTwo] = await Promise.all([
                 fetch("http://192.168.1.8:8080/api/follower/request/6"),
-                fetch("http://192.168.1.8:8080/api/member/suggest/8")
+                fetch("http://192.168.1.8:8080/api/member/suggest/6")
             ]);
             const todoOne = await respTodoOne.json();
             const todoTwo = await respTodoTwo.json();
-
             this.setState({
                 isLoading: false,
                 dataRequest:todoOne.data,
@@ -42,15 +44,43 @@ export default class SuggestnAccept extends Component {
         }
     }
 
+    requestFollow = (pengirim, penerima) => {
+        let options = {}
+        options = {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                pengirim_id: parseInt(pengirim),
+                penerima_id: parseInt(penerima)
+            })
+        };
+        fetch('http://192.168.1.8:8080/api/following', options)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response.message)
+            this.fetchData()
+        })
+        .catch(response => {
+            this.state = true
+            console.log(response)
+        }) 
+    }
+
     postData = async (link, tipe) => {
+        let response
         try {
-            console.log(link)
-            let response
+            this.setState({
+                isLoading: true,
+            })
             if (tipe == 'accept'){
                 response = await axios.put(link);
             } else {
                 response = await axios.delete(link);
             }
+            this.fetchData()
         } catch (error) {
             console.error(error);
         }
@@ -83,12 +113,14 @@ export default class SuggestnAccept extends Component {
                             <Image source={{ uri: item.image_file }} style={styles.gambar} />
                             <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
                             <Text style={styles.name}>@{item.username}</Text>
-                            <TouchableOpacity style={styles.bfollow}>
+                            <TouchableOpacity style={styles.bfollow}
+                                onPress={() => this.requestFollow(6, item.user_id)} >
                                 <Text style={styles.tfollow}>
                                     Follow
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity                        
+                                onPress={() => this.fetchData() }>
                                 <Image
                                     source={require('../../assets/icons/delete-64.png')}
                                     resizeMode='contain'
@@ -106,62 +138,87 @@ export default class SuggestnAccept extends Component {
     }
 
     render() {
-        return (
-            <ScrollView
-                style={styles.container} >
-                <Text style={styles.headerT}>Search</Text>
-                <HeaderNavigation />
-                <TouchableOpacity
-                    style={styles.border}
-                    onPress={() => this.props.navigation.navigate('FindFriends')}>
-                    <Text style={styles.tsearch}>Search</Text>
-                    <Image
-                        source={require('../../assets/icons/searchA.png')}
-                        resizeMode='contain'
-                        style={styles.isearch}
+
+        if (this.state.isLoading == true){
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.headerT}>Search</Text>
+                    <HeaderNavigation />
+                    <TouchableOpacity
+                        style={styles.border}
+                        onPress={() => this.props.navigation.navigate('FindFriends')}>
+                        <Text style={styles.tsearch}>Search</Text>
+                        <Image
+                            source={require('../../assets/icons/searchA.png')}
+                            resizeMode='contain'
+                            style={styles.isearch}
+                        />
+                    </TouchableOpacity>
+
+                    <View >
+                        <ActivityIndicator style={{ marginTop: 150 }} size={"small"} />
+                    </View>
+
+                </View>   
+            )
+        } else {
+            return (
+                <ScrollView
+                    style={styles.container} >
+                    <Text style={styles.headerT}>Search</Text>
+                    <HeaderNavigation />
+                    <TouchableOpacity
+                        style={styles.border}
+                        onPress={() => this.props.navigation.navigate('FindFriends')}>
+                        <Text style={styles.tsearch}>Search</Text>
+                        <Image
+                            source={require('../../assets/icons/searchA.png')}
+                            resizeMode='contain'
+                            style={styles.isearch}
+                        />
+                    </TouchableOpacity>
+
+                    <Text style={styles.title} >
+                        Follow Request
+                    </Text>
+
+                    <FlatList
+                        data={this.state.dataRequest}
+                        ItemSeparatorComponent={this.ListViewItemSeparator}
+                        onEndReached={this.handleLoadMore}
+                        ListFooterComponent={this.BottomFlatList}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity>
+                                <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                                <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
+                                <Text style={styles.name}>@{item.username}</Text>
+                                <TouchableOpacity style={styles.bfollow}
+                                    onPress={ () =>
+                                        this.postData('http://192.168.1.8:8080/api/follower/6'+ '/' + item.user_id, 'accept')
+                                    } >
+                                    <Text style={styles.tfollow}>
+                                        Accept
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={ () =>
+                                        this.postData('http://192.168.1.8:8080/api/follower/6'+ '/' + item.user_id, 'deny')
+                                    }>
+                                    <Image
+                                        source={require('../../assets/icons/delete-64.png')}
+                                        resizeMode='contain'
+                                        style={styles.delete}
+                                    />
+                                </TouchableOpacity>
+                            </TouchableOpacity>
+                        )}
+                        enableEmptySections={true}
+                        style={{ marginTop: 130, flexGrow: 1 }}
+                        keyExtractor={(item, index) => index.toString()}
                     />
-                </TouchableOpacity>
-
-                <Text style={styles.title} >
-                    Follow Request
-                </Text>
-
-                <FlatList
-                    data={this.state.dataRequest}
-                    ItemSeparatorComponent={this.ListViewItemSeparator}
-                    onEndReached={this.handleLoadMore}
-                    ListFooterComponent={this.BottomFlatList}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity>
-                            <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                            <Text style={styles.userName}>{item.firstname} {item.lastname}</Text>
-                            <Text style={styles.name}>@{item.username}</Text>
-                            <TouchableOpacity style={styles.bfollow}
-                                onPress={ () =>
-                                    this.postData('http://192.168.1.8:8080/api/follower/6'+ '/' + item.user_id, 'accept')
-                                } >
-                                <Text style={styles.tfollow}>
-                                    Accept
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={ () =>
-                                    this.postData('http://192.168.1.8:8080/api/follower/6'+ '/' + item.user_id, 'deny')
-                                }>
-                                <Image
-                                    source={require('../../assets/icons/delete-64.png')}
-                                    resizeMode='contain'
-                                    style={styles.delete}
-                                />
-                            </TouchableOpacity>
-                        </TouchableOpacity>
-                    )}
-                    enableEmptySections={true}
-                    style={{ marginTop: 130, flexGrow: 1 }}
-                    keyExtractor={(item, index) => index.toString()}
-                />
-            </ScrollView>
-        )
+                </ScrollView>
+            )
+        }
     }
 }
 

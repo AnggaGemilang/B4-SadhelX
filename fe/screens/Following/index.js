@@ -14,7 +14,7 @@ import {
 
 import axios from 'axios'
 
-export default class Following extends Component {
+export default class Followers extends Component {
 
   constructor(props) {
     super(props);
@@ -24,13 +24,14 @@ export default class Following extends Component {
       page: 1,
       jumlahPage: 0,
       jumlahData: 0,
-      text: ""
+      text: "",
+      isEmpty: false
     };
   }
 
   fetchData = async (text) => {
     this.setState({
-      isLoading: true
+      isEmpty: false
     })
     try {
       let response
@@ -39,7 +40,6 @@ export default class Following extends Component {
       } else {
         response = await axios.get(`http://192.168.1.8:8080/api/following/8?limit=8&page=${this.state.page}`);
       }
-
       if (this.state.page == 1) {
         this.setState({
           isLoading: false,
@@ -59,7 +59,11 @@ export default class Following extends Component {
         })
       }
     } catch (error) {
-      console.error(error);
+      if (error.response.status == 404){
+        this.setState({
+          isEmpty: true
+        })
+      }
     }
   }
 
@@ -91,13 +95,16 @@ export default class Following extends Component {
   };
 
   handleLoadMore = async () => {
+
     if (this.state.page != this.state.jumlahPage) {
       this.setState({
-        page: this.state.page+1
-      }, function(){
+        page: this.state.page + 1,
+        isLoading: true
+      }, function () {
         this.fetchData(this.state.text)
       })
     }
+
   }
 
   footerList = () => {
@@ -109,56 +116,65 @@ export default class Following extends Component {
       )
     } else {
       return (
-        <View><Text>Null</Text></View>
+        <View></View>
       )
     }
   }
 
   render() {
-    return (
-      <View style={styles.viewStyle}>
-        <TextInput
-          style={styles.textInputStyle}
-          onChangeText={text => this.SearchFilterFunction(text)}
-          value={this.state.text}
-          underlineColorAndroid="transparent"
-          placeholder="Cari Teman"
-          clearButtonMode='always'
-        />
-        <Text
-          style={{
-            top: 25,
-            marginHorizontal: 10,
-          }} >
-          {this.state.jumlahData} Teman
-        </Text>
+    if (this.state.isEmpty == true) {
+      return (
+        <View style={styles.viewStyle}>
+          <Text style={{textAlign: 'center'}} >Data Tidak Ditemukan</Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.viewStyle}>
+          <TextInput
+            style={styles.textInputStyle}
+            onChangeText={text => this.SearchFilterFunction(text)}
+            value={this.state.text}
+            underlineColorAndroid="transparent"
+            placeholder="Cari Teman"
+            clearButtonMode='always'
+          />
+          
+          <Text
+            style={{
+              top: 25,
+              marginHorizontal: 10,
+            }}
+          >
+            {this.state.jumlahData} Teman
+          </Text>
 
-        <FlatList
-          data={this.state.data}
-          ItemSeparatorComponent={this.ListViewItemSeparator}
-          onEndReached={this.handleLoadMore}
-          ListFooterComponent={this.footerList}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => console.log("Member")}>
-              <View flexDirection="row">
-                <Image source={{ uri: item.image_file }} style={styles.gambar} />
-                <View justifyContent="center">
-                  <Text style={styles.textStyle}>{item.firstname + " " + item.lastname}</Text>
-                  <Text style={styles.textburik}>@{item.username}</Text>
+          <FlatList
+            data={this.state.data}
+            ItemSeparatorComponent={this.ListViewItemSeparator}
+            onEndReached={this.handleLoadMore}
+            ListFooterComponent={this.footerList}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => console.log("Member")}>
+                <View flexDirection="row">
+                  <Image source={{ uri: item.image_file }} style={styles.gambar} />
+                  <View justifyContent="center">
+                    <Text style={styles.textStyle} >{item.firstname + " " + item.lastname}</Text>
+                    <Text style={styles.textburik} >@{item.username}</Text>
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
-          )}
-          enableEmptySections={true}
-          style={{ marginTop: 30 }}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-    );
+              </TouchableOpacity>
+            )}
+            enableEmptySections={true}
+            style={{ marginTop: 30 }}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+      );
+    }
   }
 }
-
 const styles = StyleSheet.create({
   viewStyle: {
     justifyContent: 'center',
@@ -175,7 +191,6 @@ const styles = StyleSheet.create({
 
   textburik: {
     fontSize: 15,
-    fontWeight: '500'
   },
 
   gambar: {

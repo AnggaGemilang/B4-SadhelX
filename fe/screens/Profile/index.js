@@ -195,7 +195,6 @@ export default class Member extends Component {
                                         {
                                             text: "Yes",
                                             onPress: () => {
-                                                console.log("asdasdasd")
                                                 this.requestAPI('http://192.168.1.8:8080/api/following/2/1')
                                             },
                                         },
