@@ -1,8 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import Feed from '../screens/feed';
 import Safety from '../screens/safety';
 import Search from '../screens/search';
@@ -11,10 +10,6 @@ import Followers from '../screens/Followers';
 import Following from '../screens/Following';
 import Profile from '../screens/Profile';
 import FindFriends from '../screens/FindFriends';
-import {
-  HeaderSearchBar,
-  HeaderClassicSearchBar
-} from "react-native-header-search-bar";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,8 +25,7 @@ function HomeTabs({ navigation }) {
           borderTopRightRadius: 30,
           height: 72
         }
-      }}
-    >
+      }} >
       <Tab.Screen name="Feed" component={Feed} options={{
         headerShown: false, tabBarIcon: ({ focused }) => (
           <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
@@ -125,82 +119,12 @@ function HomeTabs({ navigation }) {
 function Router({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="SplashScreen">
-      {/* <Stack.Screen
-        name="SplashScreen"
-        component={SplashScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="WelcomeAuth"
-        component={WelcomeAuth}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="SignIn"
-        component={SignIn}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{headerShown: false}}
-      /> */}
-
-      {/* <Stack.Screen
-        name="SignUp"
-        component={SignUp}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="SignUpForm"
-        component={SignUpForm}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="CheckEmailToken"
-        component={CheckEmailToken}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="SuccessSignUp"
-        component={SuccessSignUp}
-        options={{headerShown: false}}
-      /> */}
-      {/* <Stack.Screen
-        name="ForgotPassword"
-        component={ForgotPassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="CheckEmailForgot"
-        component={CheckEmailForgot}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="SuccessCreatePassword"
-        component={SuccessCreatePassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="CreateNewPassword"
-        component={CreateNewPassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="MainApp"
-        component={MainApp}
-        options={{headerShown: false}}
-      /> */}
       <Stack.Screen
         name="TabNavigation"
         component={HomeTabs}
         options={{ headerShown: false, animationEnabled: false }}
       />
-      {/* <Stack.Screen
-        name="Following"
-        component={Safety}
-        options={{headerShown: false, animationEnabled: false}}
-      /> */}
+
       <Stack.Screen
         name="Followers"
         component={Followers}
@@ -220,6 +144,7 @@ function Router({ navigation }) {
           headerTransparent: true,
         }}
       />
+
       <Stack.Screen
         name="FindFriends"
         component={FindFriends}
@@ -232,7 +157,6 @@ function Router({ navigation }) {
             height: 90,
           }
         }}
-
       />
     </Stack.Navigator>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
-const feed = ({ navigation }) => {
+const feed = () => {
     return (
         <View style={styles.container}>
             <Text>Feed Screen</Text>

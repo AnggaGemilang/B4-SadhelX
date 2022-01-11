@@ -19,9 +19,7 @@ export default class Member extends Component {
     }
 
     requestAPI = link => {
-
         let options = {}
-
         if(!this.state.toggle){
             options = {
                 headers: {
